@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBD — Mock Screens</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --navy:#0E1B2E;
+  --navy-2:#152438;
+  --navy-3:#1D3050;
+  --teal:#00C896;
+  --teal-dim:#00A87D;
+  --teal-faint:rgba(0,200,150,.08);
+  --teal-faint2:rgba(0,200,150,.14);
+  --amber:#E8A230;
+  --red:#E05050;
+  --text:#F0EEE8;
+  --text-2:#9B9E9A;
+  --text-3:#5A5E5A;
+  --border:rgba(255,255,255,.07);
+  --border-2:rgba(255,255,255,.12);
+  --surface:rgba(255,255,255,.04);
+  --surface-2:rgba(255,255,255,.07);
+  --font-display:'DM Serif Display',serif;
+  --font-body:'Geist',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --r:10px;
+  --r-lg:16px;
+}
+
+body{
+  background:#0B1520;
+  font-family:var(--font-body);
+  color:var(--text);
+  min-height:100vh;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+.screen-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,21,32,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 40px;
+  display:flex;align-items:center;gap:6px;height:48px;
+}
+.screen-nav a{
+  font-size:12px;font-weight:500;letter-spacing:.02em;
+  color:var(--text-2);text-decoration:none;
+  padding:4px 12px;border-radius:20px;
+  transition:all .15s;white-space:nowrap;
+}
+.screen-nav a:hover{color:var(--text);background:var(--surface-2)}
+.screen-nav a.active{color:var(--navy);background:var(--teal)}
+.nav-logo{font-family:var(--font-display);font-size:16px;color:var(--teal);margin-right:12px;letter-spacing:-.01em}
+
+/* ── SCREEN WRAPPER ──────────────────────────────────── */
+.screen{display:none;min-height:100vh;padding:0}
+.screen.active{display:flex;flex-direction:column}
+
+/* ── SHARED COMPONENTS ───────────────────────────────── */
+.top-bar{
+  height:52px;
+  background:var(--navy-2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;flex-shrink:0;
+}
+.top-bar-logo{font-family:var(--font-display);font-size:18px;color:var(--teal);letter-spacing:-.01em}
+.top-bar-right{display:flex;align-items:center;gap:16px}
+.credit-pill{
+  background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);
+  color:var(--teal);font-size:12px;font-weight:500;
+  padding:4px 12px;border-radius:20px;font-family:var(--font-mono);
+}
+.avatar{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--navy-3);border:1px solid var(--border-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:500;color:var(--text-2);
+}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font-body);font-size:14px;font-weight:500;
+  padding:10px 22px;border-radius:var(--r);border:none;cursor:pointer;
+  transition:all .15s;text-decoration:none;
+}
+.btn-primary{background:var(--teal);color:var(--navy)}
+.btn-primary:hover{background:var(--teal-dim)}
+.btn-ghost{background:var(--surface);border:1px solid var(--border-2);color:var(--text-2)}
+.btn-ghost:hover{background:var(--surface-2);color:var(--text)}
+.btn-sm{font-size:13px;padding:7px 16px}
+.btn-lg{font-size:15px;padding:13px 28px}
+
+.badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:500;
+  padding:3px 9px;border-radius:20px;
+  font-family:var(--font-mono);
+}
+.badge-teal{background:var(--teal-faint2);border:1px solid rgba(0,200,150,.2);color:var(--teal)}
+.badge-amber{background:rgba(232,162,48,.1);border:1px solid rgba(232,162,48,.2);color:var(--amber)}
+.badge-red{background:rgba(224,80,80,.1);border:1px solid rgba(224,80,80,.2);color:var(--red)}
+.badge-gray{background:var(--surface);border:1px solid var(--border-2);color:var(--text-2)}
+
+.tag{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;padding:2px 8px;border-radius:4px;
+  background:var(--surface-2);color:var(--text-2);
+}
+
+input[type=text],input[type=email],input[type=password],select{
+  width:100%;background:var(--surface);
+  border:1px solid var(--border-2);border-radius:var(--r);
+  color:var(--text);font-family:var(--font-body);font-size:14px;
+  padding:10px 14px;outline:none;
+  transition:border .15s;
+}
+input:focus,select:focus{border-color:rgba(0,200,150,.4)}
+input::placeholder{color:var(--text-3)}
+label{font-size:13px;color:var(--text-2);display:block;margin-bottom:6px;font-weight:500}
+
+.divider{height:1px;background:var(--border);margin:24px 0}
+
+/* ── SCREEN 1: SIGNUP ────────────────────────────────── */
+#s1{
+  background:var(--navy);
+  align-items:center;justify-content:center;
+  padding:60px 20px;
+}
+.signup-card{
+  width:100%;max-width:420px;
+  background:var(--navy-2);
+  border:1px solid var(--border-2);
+  border-radius:var(--r-lg);
+  padding:36px 32px;
+}
+.signup-logo{
+  font-family:var(--font-display);font-size:28px;
+  color:var(--teal);text-align:center;margin-bottom:4px;
+}
+.signup-tagline{
+  font-size:13px;color:var(--text-2);text-align:center;
+  margin-bottom:28px;line-height:1.5;
+}
+.form-row{margin-bottom:16px}
+.form-split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.signup-footer{
+  text-align:center;margin-top:20px;
+  font-size:12px;color:var(--text-3);
+}
+.signup-footer a{color:var(--teal);text-decoration:none}
+.radio-group{display:flex;gap:8px;margin-top:4px}
+.radio-opt{
+  flex:1;border:1px solid var(--border-2);border-radius:var(--r);
+  padding:10px 12px;cursor:pointer;
+  display:flex;align-items:flex-start;gap:9px;
+  transition:all .15s;
+}
+.radio-opt.selected{border-color:rgba(0,200,150,.4);background:var(--teal-faint)}
+.radio-dot{
+  width:16px;height:16px;border-radius:50%;
+  border:2px solid var(--border-2);flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+}
+.radio-opt.selected .radio-dot{border-color:var(--teal)}
+.radio-dot-inner{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.radio-label{font-size:13px;color:var(--text-2)}
+.radio-opt.selected .radio-label{color:var(--text)}
+
+/* ── SCREEN 2: DEAL BOX ──────────────────────────────── */
+#s2{background:var(--navy)}
+.dealbox-layout{
+  display:grid;grid-template-columns:260px 1fr;
+  flex:1;min-height:0;
+}
+.dealbox-sidebar{
+  background:var(--navy-2);
+  border-right:1px solid var(--border);
+  padding:28px 20px;
+}
+.sidebar-step{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 12px;border-radius:var(--r);
+  margin-bottom:4px;cursor:pointer;
+  transition:background .15s;
+}
+.sidebar-step:hover{background:var(--surface)}
+.sidebar-step.active{background:var(--teal-faint2)}
+.step-num{
+  width:24px;height:24px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:500;font-family:var(--font-mono);
+  background:var(--surface-2);color:var(--text-3);
+  border:1px solid var(--border);
+}
+.sidebar-step.active .step-num{background:var(--teal);color:var(--navy);border-color:var(--teal)}
+.sidebar-step.done .step-num{background:rgba(0,200,150,.15);color:var(--teal);border-color:rgba(0,200,150,.3)}
+.step-info{flex:1}
+.step-name{font-size:13px;font-weight:500;color:var(--text-2)}
+.sidebar-step.active .step-name{color:var(--text)}
+.step-desc{font-size:11px;color:var(--text-3);margin-top:2px}
+.dealbox-content{padding:36px 40px;overflow-y:auto}
+.db-heading{
+  font-family:var(--font-display);font-size:26px;color:var(--text);
+  margin-bottom:6px;
+}
+.db-subheading{font-size:14px;color:var(--text-2);margin-bottom:28px;line-height:1.5}
+.industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px}
+.industry-chip{
+  border:1px solid var(--border-2);border-radius:var(--r);
+  padding:10px 12px;cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+  transition:all .15s;background:var(--surface);
+}
+.industry-chip:hover{border-color:var(--border-2);background:var(--surface-2)}
+.industry-chip.selected{border-color:rgba(0,200,150,.4);background:var(--teal-faint)}
+.chip-icon{font-size:16px;opacity:.7}
+.chip-label{font-size:13px;color:var(--text-2)}
+.industry-chip.selected .chip-label{color:var(--text)}
+.weight-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  margin-bottom:8px;
+}
+.weight-label{font-size:14px;color:var(--text)}
+.weight-pills{display:flex;gap:4px}
+.w-pill{
+  width:32px;height:28px;border-radius:6px;
+  border:1px solid var(--border-2);background:var(--surface-2);
+  color:var(--text-3);font-size:12px;font-weight:500;
+  font-family:var(--font-mono);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;
+}
+.w-pill.active{background:var(--teal);border-color:var(--teal);color:var(--navy)}
+.db-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:24px;border-top:1px solid var(--border);margin-top:8px;
+}
+
+/* ── SCREEN 3: WAITING ───────────────────────────────── */
+#s3{background:var(--navy);align-items:center;justify-content:center;padding:60px 20px}
+.wait-card{
+  width:100%;max-width:480px;
+  background:var(--navy-2);border:1px solid var(--border-2);
+  border-radius:var(--r-lg);padding:40px 36px;text-align:center;
+}
+.wait-icon{
+  width:64px;height:64px;border-radius:50%;
+  background:var(--teal-faint2);border:1px solid rgba(0,200,150,.2);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;font-size:26px;
+}
+.wait-title{
+  font-family:var(--font-display);font-size:24px;color:var(--text);
+  margin-bottom:8px;
+}
+.wait-sub{font-size:14px;color:var(--text-2);margin-bottom:28px;line-height:1.6}
+.pipeline-steps{text-align:left;margin-bottom:28px}
+.pipe-step{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+.pipe-step:last-child{border-bottom:none}
+.pipe-dot{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+}
+.pipe-dot.done{background:var(--teal)}
+.pipe-dot.active{background:var(--amber);box-shadow:0 0 0 3px rgba(232,162,48,.2)}
+.pipe-dot.pending{background:var(--text-3)}
+.pipe-label{font-size:13px}
+.pipe-step .pipe-label.done{color:var(--text-2)}
+.pipe-step .pipe-label.active{color:var(--text);font-weight:500}
+.pipe-step .pipe-label.pending{color:var(--text-3)}
+.pipe-time{font-size:11px;color:var(--text-3);margin-left:auto;font-family:var(--font-mono)}
+.wait-note{
+  font-size:12px;color:var(--text-3);
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px 16px;line-height:1.6;text-align:left;
+}
+.wait-note span{color:var(--teal)}
+
+/* ── SCREEN 4: LEAD FEED ─────────────────────────────── */
+#s4{background:var(--navy)}
+.feed-layout{display:grid;grid-template-columns:1fr 340px;flex:1;min-height:0}
+.feed-main{padding:28px 32px;overflow-y:auto}
+.feed-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.feed-title{font-family:var(--font-display);font-size:22px;color:var(--text)}
+.feed-meta{font-size:13px;color:var(--text-2);margin-top:2px}
+.lead-card{
+  background:var(--navy-2);border:1px solid var(--border-2);
+  border-radius:var(--r-lg);padding:22px 24px;margin-bottom:12px;
+  cursor:pointer;transition:border .15s;
+}
+.lead-card:hover{border-color:rgba(0,200,150,.25)}
+.lead-card.active-card{border-color:rgba(0,200,150,.5);background:rgba(0,200,150,.04)}
+.lead-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.lead-name{font-size:16px;font-weight:500;color:var(--text);margin-bottom:3px}
+.lead-location{font-size:13px;color:var(--text-2)}
+.score-ring{
+  width:48px;height:48px;flex-shrink:0;
+  position:relative;display:flex;align-items:center;justify-content:center;
+}
+.score-ring svg{position:absolute;top:0;left:0}
+.score-val{font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--teal);z-index:1}
+.lead-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.lead-signals{
+  display:flex;gap:16px;padding-top:12px;
+  border-top:1px solid var(--border);
+}
+.signal-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2)}
+.signal-dot{width:6px;height:6px;border-radius:50%}
+.signal-dot.green{background:var(--teal)}
+.signal-dot.amber{background:var(--amber)}
+.signal-dot.red{background:var(--red)}
+.signal-dot.gray{background:var(--text-3)}
+.lead-actions{display:flex;gap:8px;margin-top:14px}
+.action-pass{
+  flex:1;padding:9px;border-radius:var(--r);
+  border:1px solid rgba(224,80,80,.25);background:rgba(224,80,80,.06);
+  color:var(--red);font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .15s;
+}
+.action-pass:hover{background:rgba(224,80,80,.12)}
+.action-like{
+  flex:1;padding:9px;border-radius:var(--r);
+  border:1px solid rgba(0,200,150,.25);background:rgba(0,200,150,.06);
+  color:var(--teal);font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .15s;
+}
+.action-like:hover{background:rgba(0,200,150,.12)}
+.feed-sidebar{
+  background:var(--navy-2);border-left:1px solid var(--border);
+  padding:24px 20px;overflow-y:auto;
+}
+.sidebar-section{margin-bottom:24px}
+.sidebar-heading{font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat-cell{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:10px 12px;
+}
+.stat-val{font-family:var(--font-mono);font-size:18px;font-weight:500;color:var(--text);margin-bottom:2px}
+.stat-label{font-size:11px;color:var(--text-3)}
+.feedback-bar{margin-bottom:10px}
+.fb-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text-2);margin-bottom:5px}
+.fb-track{height:5px;border-radius:3px;background:var(--surface-2)}
+.fb-fill{height:100%;border-radius:3px;background:var(--teal)}
+.rescore-note{
+  font-size:12px;color:var(--text-3);
+  background:var(--teal-faint);border:1px solid rgba(0,200,150,.15);
+  border-radius:var(--r);padding:10px 12px;line-height:1.5;
+}
+.rescore-note span{color:var(--teal);font-weight:500}
+
+/* ── Enhanced lead card ──────────────────────────────── */
+.lead-meta-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:6px;margin-bottom:12px;
+}
+.lead-meta-cell{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:7px 10px;
+}
+.lead-meta-label{font-size:10px;color:var(--text-3);margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.lead-meta-val{font-size:13px;font-weight:500;color:var(--text);font-family:var(--font-mono)}
+.lead-meta-val.good{color:var(--teal)}
+.lead-meta-val.warn{color:var(--amber)}
+.lead-meta-val.bad{color:var(--red)}
+.readiness-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:8px 12px;margin-bottom:12px;
+}
+.readiness-label{font-size:12px;color:var(--text-2)}
+.readiness-flames{display:flex;gap:3px}
+.flame{font-size:14px;opacity:.2}
+.flame.on{opacity:1}
+.owner-row{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;
+  background:var(--teal-faint);border:1px solid rgba(0,200,150,.15);
+  border-radius:8px;margin-bottom:12px;
+}
+.owner-avatar{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:500;color:var(--teal);flex-shrink:0;
+}
+.owner-name{font-size:13px;color:var(--text);font-weight:500}
+.owner-detail{font-size:11px;color:var(--text-2)}
+
+/* ── SCREEN 5: BULK MODE ─────────────────────────────── */
+#s5{background:var(--navy)}
+.bulk-layout{display:flex;flex-direction:column;flex:1;min-height:0}
+.bulk-toolbar{
+  padding:14px 28px;background:var(--navy-2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.toolbar-label{font-size:13px;color:var(--text-2);white-space:nowrap}
+.bulk-filters{display:flex;gap:8px;flex:1;align-items:center}
+.filter-select{
+  background:var(--surface);border:1px solid var(--border-2);
+  border-radius:var(--r);color:var(--text-2);font-family:var(--font-body);
+  font-size:12px;padding:6px 10px;cursor:pointer;outline:none;
+}
+.filter-select:focus{border-color:rgba(0,200,150,.3)}
+.bulk-count{font-size:13px;color:var(--text-2);white-space:nowrap}
+.bulk-count strong{color:var(--text);font-family:var(--font-mono)}
+.bulk-table-wrap{flex:1;overflow-y:auto;padding:0}
+table{width:100%;border-collapse:collapse}
+thead th{
+  background:var(--navy-2);font-size:11px;font-weight:500;
+  color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;
+  padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);
+  position:sticky;top:0;white-space:nowrap;
+}
+thead th:first-child{padding-left:20px}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer}
+tbody tr:hover{background:var(--surface)}
+tbody tr.selected-row{background:var(--teal-faint)}
+tbody td{padding:11px 16px;font-size:13px;color:var(--text-2);vertical-align:middle}
+tbody td:first-child{padding-left:20px}
+.td-name{color:var(--text);font-weight:500}
+.td-score{font-family:var(--font-mono);font-weight:500}
+.td-score.high{color:var(--teal)}
+.td-score.mid{color:var(--amber)}
+.cb{width:14px;height:14px;border-radius:3px;border:1px solid var(--border-2);background:var(--surface);cursor:pointer;accent-color:var(--teal)}
+.bulk-footer{
+  padding:12px 20px;background:var(--navy-2);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.bulk-footer-left{font-size:13px;color:var(--text-2)}
+.bulk-footer-left strong{color:var(--text);font-family:var(--font-mono)}
+
+/* ── SCREEN 6: EXPORT ────────────────────────────────── */
+#s6{background:var(--navy);align-items:center;justify-content:center;padding:60px 20px}
+.export-card{
+  width:100%;max-width:520px;
+  background:var(--navy-2);border:1px solid var(--border-2);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.export-header{
+  padding:28px 28px 20px;
+  border-bottom:1px solid var(--border);
+}
+.export-header-title{font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:4px}
+.export-header-sub{font-size:13px;color:var(--text-2)}
+.export-body{padding:20px 28px}
+.export-summary{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;
+}
+.export-stat{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px 14px;text-align:center;
+}
+.export-stat-val{font-family:var(--font-mono);font-size:20px;font-weight:500;color:var(--text);margin-bottom:2px}
+.export-stat-label{font-size:11px;color:var(--text-3)}
+.col-toggle-list{margin-bottom:20px}
+.col-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:9px 0;border-bottom:1px solid var(--border);
+}
+.col-toggle:last-child{border-bottom:none}
+.col-name{font-size:13px;color:var(--text)}
+.col-ex{font-size:11px;color:var(--text-3);margin-top:1px}
+.toggle-sw{
+  width:32px;height:18px;border-radius:9px;
+  background:var(--teal);position:relative;cursor:pointer;flex-shrink:0;
+}
+.toggle-sw.off{background:var(--surface-2);border:1px solid var(--border-2)}
+.toggle-thumb{
+  position:absolute;top:2px;width:14px;height:14px;border-radius:50%;
+  background:var(--navy);transition:left .15s;
+}
+.toggle-sw .toggle-thumb{left:16px}
+.toggle-sw.off .toggle-thumb{left:2px;background:var(--text-3)}
+.export-cost{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);
+  border-radius:var(--r);padding:12px 16px;margin-bottom:16px;
+}
+.export-cost-label{font-size:13px;color:var(--teal)}
+.export-cost-val{font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--teal)}
+.export-footer{
+  padding:0 28px 24px;
+  display:flex;gap:10px;
+}
+
+/* ── OUTREACH SCREEN ─────────────────────────────────── */
+.seq-step{
+  background:var(--navy-2);border:1px solid var(--border-2);
+  border-radius:var(--r-lg);overflow:hidden;margin-bottom:0;
+}
+.seq-step-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 16px;border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.seq-step-body{padding:14px 16px}
+.seq-num{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--teal);color:var(--navy);
+  font-size:12px;font-weight:600;font-family:var(--font-mono);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.seq-remove{
+  background:none;border:none;color:var(--text-3);cursor:pointer;
+  font-size:13px;padding:3px 6px;border-radius:4px;
+  transition:all .15s;
+}
+.seq-remove:hover{background:rgba(224,80,80,.1);color:var(--red)}
+.seq-prompt{
+  width:100%;background:var(--surface);border:1px solid var(--border-2);
+  border-radius:var(--r);color:var(--text);font-family:var(--font-body);
+  font-size:13px;padding:10px 12px;outline:none;resize:vertical;
+  line-height:1.6;transition:border .15s;
+}
+.seq-prompt:focus{border-color:rgba(0,200,150,.35)}
+.seq-connector{
+  display:flex;align-items:center;gap:0;
+  padding:0 20px;height:40px;
+}
+.seq-connector-line{flex:1;height:1px;background:var(--border-2)}
+.seq-wait-badge{
+  font-size:11px;font-weight:500;color:var(--text-3);font-family:var(--font-mono);
+  padding:3px 10px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border);
+  white-space:nowrap;
+}
+.recipient-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 10px;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r);
+}
+.recipient-name{font-size:13px;color:var(--text-2)}
+</style>
+</head>
+<body>
+
+<!-- ── META NAV ────────────────────────────────────────── -->
+<nav class="screen-nav">
+  <span class="nav-logo">TBD</span>
+  <a href="#" class="active" onclick="show('s1',this)">1. Signup</a>
+  <a href="#" onclick="show('s2',this)">2. Deal Box</a>
+  <a href="#" onclick="show('s3',this)">3. Waiting</a>
+  <a href="#" onclick="show('s4',this)">4. Lead feed</a>
+  <a href="#" onclick="show('s5',this)">5. Bulk mode</a>
+  <a href="#" onclick="show('s6',this)">6. Outreach</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 1 — SIGNUP                                   -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen active" id="s1">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 20px;background:var(--navy)">
+    <div class="signup-card">
+      <div class="signup-logo">TBD</div>
+      <div class="signup-tagline">Find off-market businesses that match<br>your acquisition thesis.</div>
+
+      <div class="form-split">
+        <div class="form-row">
+          <label>First name</label>
+          <input type="text" value="Nicholas">
+        </div>
+        <div class="form-row">
+          <label>Last name</label>
+          <input type="text" value="Lazares">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label>Work email</label>
+        <input type="email" value="nicholas@example.com">
+      </div>
+
+      <div class="form-row">
+        <label>Password</label>
+        <input type="password" value="••••••••••">
+      </div>
+
+      <div class="form-row">
+        <label>I am a</label>
+        <div class="radio-group">
+          <div class="radio-opt selected">
+            <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+            <div>
+              <div class="radio-label" style="font-weight:500">Solo searcher</div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:2px">12-month timeline</div>
+            </div>
+          </div>
+          <div class="radio-opt">
+            <div class="radio-dot"></div>
+            <div>
+              <div class="radio-label" style="font-weight:500">Institutional</div>
+              <div style="font-size:11px;color:var(--text-3);margin-top:2px">High-volume sourcing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;margin-top:8px" onclick="show('s2',null)">
+        Create account →
+      </button>
+
+      <div class="signup-footer">
+        Already have an account? <a href="#">Sign in</a>
+      </div>
+
+      <div class="divider"></div>
+      <div style="display:flex;justify-content:center;gap:16px">
+        <span class="badge badge-teal">50 free credits</span>
+        <span class="badge badge-gray">No card required</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 2 — DEAL BOX                                 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s2">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <div class="credit-pill">50 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+
+  <div class="dealbox-layout" style="flex:1">
+    <!-- Sidebar -->
+    <div class="dealbox-sidebar">
+      <div style="font-size:11px;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;font-weight:500">Setup steps</div>
+
+      <div class="sidebar-step done">
+        <div class="step-num">✓</div>
+        <div class="step-info">
+          <div class="step-name">Your profile</div>
+          <div class="step-desc">Name &amp; account type</div>
+        </div>
+      </div>
+      <div class="sidebar-step active">
+        <div class="step-num">2</div>
+        <div class="step-info">
+          <div class="step-name">Industries</div>
+          <div class="step-desc">Choose your target sectors</div>
+        </div>
+      </div>
+      <div class="sidebar-step">
+        <div class="step-num">3</div>
+        <div class="step-info">
+          <div class="step-name">Geography</div>
+          <div class="step-desc">States you'll consider</div>
+        </div>
+      </div>
+      <div class="sidebar-step">
+        <div class="step-num">4</div>
+        <div class="step-info">
+          <div class="step-name">Financials</div>
+          <div class="step-desc">Revenue &amp; size targets</div>
+        </div>
+      </div>
+      <div class="sidebar-step">
+        <div class="step-num">5</div>
+        <div class="step-info">
+          <div class="step-name">Criteria weights</div>
+          <div class="step-desc">What matters most to you</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div style="font-size:12px;color:var(--text-3);line-height:1.6">
+        Your Deal Box drives every score and recommendation. You can edit it anytime from settings.
+      </div>
+    </div>
+
+    <!-- Content panels -->
+    <div class="dealbox-content" id="db-content">
+
+      <!-- Panel 1: Industries -->
+      <div class="db-panel" id="db-p1">
+        <div class="db-heading">What industries are you targeting?</div>
+        <div class="db-subheading">Select one or more. You can add more later as your thesis evolves.</div>
+        <div class="industry-grid">
+          <div class="industry-chip selected"><span class="chip-icon">🔧</span><span class="chip-label">HVAC</span></div>
+          <div class="industry-chip selected"><span class="chip-icon">🐛</span><span class="chip-label">Pest control</span></div>
+          <div class="industry-chip"><span class="chip-icon">🪠</span><span class="chip-label">Plumbing</span></div>
+          <div class="industry-chip"><span class="chip-icon">⚡</span><span class="chip-label">Electrical</span></div>
+          <div class="industry-chip selected"><span class="chip-icon">🌿</span><span class="chip-label">Landscaping</span></div>
+          <div class="industry-chip"><span class="chip-icon">🏠</span><span class="chip-label">Roofing</span></div>
+          <div class="industry-chip"><span class="chip-icon">🚗</span><span class="chip-label">Auto repair</span></div>
+          <div class="industry-chip"><span class="chip-icon">🧹</span><span class="chip-label">Cleaning services</span></div>
+          <div class="industry-chip"><span class="chip-icon">🦷</span><span class="chip-label">Dental practices</span></div>
+          <div class="industry-chip"><span class="chip-icon">📊</span><span class="chip-label">Accounting firms</span></div>
+          <div class="industry-chip"><span class="chip-icon">🏗</span><span class="chip-label">Foundation repair</span></div>
+          <div class="industry-chip" style="border-style:dashed"><span class="chip-icon">＋</span><span class="chip-label" style="color:var(--text-3)">Custom niche</span></div>
+        </div>
+        <div class="db-footer">
+          <span style="font-size:13px;color:var(--text-3)">Step 2 of 5</span>
+          <button class="btn btn-primary" onclick="dbStep(2)">Next: Geography →</button>
+        </div>
+      </div>
+
+      <!-- Panel 2: Geography -->
+      <div class="db-panel" id="db-p2" style="display:none">
+        <div class="db-heading">Where are you searching?</div>
+        <div class="db-subheading">Select the states you want to source businesses from. You can target multiple states.</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px">
+          <div class="industry-chip selected"><span class="chip-label">Texas</span></div>
+          <div class="industry-chip selected"><span class="chip-label">Florida</span></div>
+          <div class="industry-chip"><span class="chip-label">California</span></div>
+          <div class="industry-chip"><span class="chip-label">New York</span></div>
+          <div class="industry-chip"><span class="chip-label">Georgia</span></div>
+          <div class="industry-chip"><span class="chip-label">Ohio</span></div>
+          <div class="industry-chip"><span class="chip-label">North Carolina</span></div>
+          <div class="industry-chip"><span class="chip-label">Arizona</span></div>
+          <div class="industry-chip"><span class="chip-label">Illinois</span></div>
+          <div class="industry-chip"><span class="chip-label">Pennsylvania</span></div>
+          <div class="industry-chip"><span class="chip-label">Tennessee</span></div>
+          <div class="industry-chip"><span class="chip-label">Colorado</span></div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:24px">
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:8px">Scraping is done at state level — you filter by city later for free.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span class="badge badge-teal">Texas selected</span>
+            <span class="badge badge-teal">Florida selected</span>
+          </div>
+        </div>
+        <div class="db-footer">
+          <button class="btn btn-ghost" onclick="dbStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="dbStep(3)">Next: Financials →</button>
+        </div>
+      </div>
+
+      <!-- Panel 3: Financials -->
+      <div class="db-panel" id="db-p3" style="display:none">
+        <div class="db-heading">What are your financial targets?</div>
+        <div class="db-subheading">Set the revenue range you want to acquire in. Leads outside this range will score lower.</div>
+        <div style="margin-bottom:24px">
+          <label style="margin-bottom:10px">Target revenue range</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="industry-chip"><span class="chip-label">Under $1M</span></div>
+            <div class="industry-chip selected"><span class="chip-label">$1M – $5M</span></div>
+            <div class="industry-chip"><span class="chip-label">$5M – $10M</span></div>
+            <div class="industry-chip"><span class="chip-label">$10M+</span></div>
+          </div>
+        </div>
+        <div style="margin-bottom:24px">
+          <label style="margin-bottom:10px">Business model preference</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div class="industry-chip selected"><span class="chip-label">B2B only</span></div>
+            <div class="industry-chip"><span class="chip-label">B2C only</span></div>
+            <div class="industry-chip"><span class="chip-label">Either</span></div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:24px">
+          <div style="font-size:12px;color:var(--text-3);line-height:1.6">Revenue is estimated using employee count × BLS industry benchmarks. Shown as a bucket (e.g. $1M–$5M) with a confidence indicator.</div>
+        </div>
+        <div class="db-footer">
+          <button class="btn btn-ghost" onclick="dbStep(2)">← Back</button>
+          <button class="btn btn-primary" onclick="dbStep(4)">Next: Criteria weights →</button>
+        </div>
+      </div>
+
+      <!-- Panel 4: Criteria weights -->
+      <div class="db-panel" id="db-p4" style="display:none">
+        <div class="db-heading">How important is each factor?</div>
+        <div class="db-subheading">Set a weight of 1–3 for each criterion. Higher weight = more influence on the lead score.</div>
+        <div style="margin-bottom:24px">
+          <div class="weight-row">
+            <div class="weight-label">Business model (B2B preferred)</div>
+            <div class="weight-pills">
+              <div class="w-pill">1</div><div class="w-pill">2</div><div class="w-pill active">3</div>
+            </div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-label">Geography match</div>
+            <div class="weight-pills">
+              <div class="w-pill">1</div><div class="w-pill active">2</div><div class="w-pill">3</div>
+            </div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-label">Revenue range fit</div>
+            <div class="weight-pills">
+              <div class="w-pill">1</div><div class="w-pill">2</div><div class="w-pill active">3</div>
+            </div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-label">Low digital sophistication</div>
+            <div class="weight-pills">
+              <div class="w-pill">1</div><div class="w-pill active">2</div><div class="w-pill">3</div>
+            </div>
+          </div>
+          <div class="weight-row">
+            <div class="weight-label">Retirement age signal</div>
+            <div class="weight-pills">
+              <div class="w-pill active">1</div><div class="w-pill">2</div><div class="w-pill">3</div>
+            </div>
+          </div>
+        </div>
+        <div class="db-footer">
+          <button class="btn btn-ghost" onclick="dbStep(3)">← Back</button>
+          <button class="btn btn-primary" onclick="dbStep(5)">Next: Review →</button>
+        </div>
+      </div>
+
+      <!-- Panel 5: Review -->
+      <div class="db-panel" id="db-p5" style="display:none">
+        <div class="db-heading">Review your Deal Box</div>
+        <div class="db-subheading">This is what drives every lead score. You can edit it anytime from settings.</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
+            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Industries</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span class="badge badge-teal">HVAC</span>
+              <span class="badge badge-teal">Pest control</span>
+              <span class="badge badge-teal">Landscaping</span>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
+            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Geography</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span class="badge badge-teal">Texas</span>
+              <span class="badge badge-teal">Florida</span>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
+            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Financials</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <span class="badge badge-amber">$1M – $5M revenue</span>
+              <span class="badge badge-teal">B2B preferred</span>
+            </div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
+            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Top weights</div>
+            <div style="font-size:13px;color:var(--text-2);line-height:1.8">
+              Business model ●●●&nbsp;&nbsp;·&nbsp;&nbsp;Revenue fit ●●●&nbsp;&nbsp;·&nbsp;&nbsp;Geography ●●○
+            </div>
+          </div>
+        </div>
+        <div class="db-footer">
+          <button class="btn btn-ghost" onclick="dbStep(4)">← Back</button>
+          <button class="btn btn-primary" onclick="show('s3',null)">Build my list — 10 credits →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 3 — WAITING                                  -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s3">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <div class="credit-pill">40 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:48px 20px;background:var(--navy)">
+    <div class="wait-card">
+      <div class="wait-icon">⚙</div>
+      <div class="wait-title">Building your list</div>
+      <div class="wait-sub">We're sourcing and scoring HVAC + pest control companies across Texas and Florida. This usually takes 4–12 hours for popular niches.</div>
+
+      <div class="pipeline-steps">
+        <div class="pipe-step">
+          <div class="pipe-dot done"></div>
+          <span class="pipe-label done">Scraping BBB and Google Maps</span>
+          <span class="pipe-time">Done</span>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-dot done"></div>
+          <span class="pipe-label done">Filtering to your geography</span>
+          <span class="pipe-time">Done</span>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-dot active"></div>
+          <span class="pipe-label active">Enriching top matches</span>
+          <span class="pipe-time" style="color:var(--amber)">~2 hrs left</span>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-dot pending"></div>
+          <span class="pipe-label pending">Scoring against your Deal Box</span>
+          <span class="pipe-time">Queued</span>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-dot pending"></div>
+          <span class="pipe-label pending">Your list is ready</span>
+          <span class="pipe-time">Queued</span>
+        </div>
+      </div>
+
+      <div class="wait-note">
+        <span>✉ We'll email you</span> at nicholas@example.com when your first 20 leads are ready. No need to keep this tab open.
+      </div>
+
+      <div style="margin-top:20px;display:flex;gap:8px;justify-content:center">
+        <button class="btn btn-ghost btn-sm">Edit Deal Box</button>
+        <button class="btn btn-ghost btn-sm">Add another niche</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 4 — LEAD FEED                                -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s4">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <div class="credit-pill">35 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+
+  <div class="feed-layout" style="flex:1">
+    <div class="feed-main">
+      <div class="feed-header">
+        <div>
+          <div class="feed-title">Your leads</div>
+          <div class="feed-meta">Batch 1 of 5 · HVAC &amp; pest control · Texas</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn btn-ghost btn-sm">Filter</button>
+          <button class="btn btn-ghost btn-sm" onclick="show('s6',null)">Start outreach →</button>
+        </div>
+      </div>
+
+      <!-- Lead card 1 — active -->
+      <div class="lead-card active-card">
+        <div class="lead-top">
+          <div>
+            <div class="lead-name">Lone Star HVAC Services</div>
+            <div class="lead-location">Austin, TX · HVAC · Sole proprietor</div>
+          </div>
+          <div class="score-ring">
+            <svg width="48" height="48" viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3"/>
+              <circle cx="24" cy="24" r="20" fill="none" stroke="#00C896" stroke-width="3" stroke-dasharray="113" stroke-dashoffset="15" stroke-linecap="round" transform="rotate(-90 24 24)"/>
+            </svg>
+            <span class="score-val">87</span>
+          </div>
+        </div>
+
+        <!-- Owner identified -->
+        <div class="owner-row">
+          <div class="owner-avatar">JW</div>
+          <div>
+            <div class="owner-name">James Whitfield</div>
+            <div class="owner-detail">Owner · Est. age 63 · Retirement signal</div>
+          </div>
+          <span class="badge badge-teal" style="margin-left:auto;font-size:10px">Owner found</span>
+        </div>
+
+        <!-- Acquisition readiness -->
+        <div class="readiness-bar">
+          <span class="readiness-label">Acquisition readiness</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="readiness-flames">
+              <span class="flame on">🔥</span>
+              <span class="flame on">🔥</span>
+              <span class="flame on">🔥</span>
+            </div>
+            <span style="font-size:11px;color:var(--teal);font-weight:500">High</span>
+          </div>
+        </div>
+
+        <!-- Meta grid -->
+        <div class="lead-meta-grid">
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">In business</div>
+            <div class="lead-meta-val good">27 yrs</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Est. revenue</div>
+            <div class="lead-meta-val warn">$1M–$5M</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Entity type</div>
+            <div class="lead-meta-val">Sole prop</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Google reviews</div>
+            <div class="lead-meta-val good">4.8 · 94</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">BBB rating</div>
+            <div class="lead-meta-val good">A+</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">BBB complaints</div>
+            <div class="lead-meta-val good">0</div>
+          </div>
+        </div>
+
+        <div class="lead-badges">
+          <span class="badge badge-teal">B2B commercial</span>
+          <span class="badge badge-amber">Retirement age</span>
+          <span class="badge badge-red">No website</span>
+          <span class="badge badge-red">No LinkedIn</span>
+        </div>
+        <div class="lead-actions">
+          <button class="action-pass">✕ Pass</button>
+          <button class="action-like">♥ Save</button>
+        </div>
+      </div>
+
+      <!-- Lead card 2 -->
+      <div class="lead-card">
+        <div class="lead-top">
+          <div>
+            <div class="lead-name">Precision Pest Control Inc.</div>
+            <div class="lead-location">Houston, TX · Pest control · LLC</div>
+          </div>
+          <div class="score-ring">
+            <svg width="48" height="48" viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3"/>
+              <circle cx="24" cy="24" r="20" fill="none" stroke="#00C896" stroke-width="3" stroke-dasharray="113" stroke-dashoffset="23" stroke-linecap="round" transform="rotate(-90 24 24)"/>
+            </svg>
+            <span class="score-val">80</span>
+          </div>
+        </div>
+
+        <!-- Owner identified -->
+        <div class="owner-row">
+          <div class="owner-avatar">RD</div>
+          <div>
+            <div class="owner-name">Robert Diaz</div>
+            <div class="owner-detail">Registered agent · Age unknown</div>
+          </div>
+          <span class="badge badge-amber" style="margin-left:auto;font-size:10px">Partial info</span>
+        </div>
+
+        <!-- Acquisition readiness -->
+        <div class="readiness-bar">
+          <span class="readiness-label">Acquisition readiness</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="readiness-flames">
+              <span class="flame on">🔥</span>
+              <span class="flame on">🔥</span>
+              <span class="flame" style="opacity:.15">🔥</span>
+            </div>
+            <span style="font-size:11px;color:var(--amber);font-weight:500">Medium</span>
+          </div>
+        </div>
+
+        <!-- Meta grid -->
+        <div class="lead-meta-grid">
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">In business</div>
+            <div class="lead-meta-val good">21 yrs</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Est. revenue</div>
+            <div class="lead-meta-val warn">$1M–$5M</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Entity type</div>
+            <div class="lead-meta-val">LLC</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Google reviews</div>
+            <div class="lead-meta-val good">4.6 · 47</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">BBB rating</div>
+            <div class="lead-meta-val warn">B</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">BBB complaints</div>
+            <div class="lead-meta-val warn">2</div>
+          </div>
+        </div>
+
+        <div class="lead-badges">
+          <span class="badge badge-teal">B2B commercial</span>
+          <span class="badge badge-red">No website</span>
+          <span class="badge badge-red">No LinkedIn</span>
+        </div>
+        <div class="lead-actions">
+          <button class="action-pass">✕ Pass</button>
+          <button class="action-like">♥ Save</button>
+        </div>
+      </div>
+
+      <!-- Lead card 3 -->
+      <div class="lead-card">
+        <div class="lead-top">
+          <div>
+            <div class="lead-name">Gulf Coast Climate Control</div>
+            <div class="lead-location">Dallas, TX · HVAC · LLC</div>
+          </div>
+          <div class="score-ring">
+            <svg width="48" height="48" viewBox="0 0 48 48">
+              <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3"/>
+              <circle cx="24" cy="24" r="20" fill="none" stroke="#E8A230" stroke-width="3" stroke-dasharray="113" stroke-dashoffset="42" stroke-linecap="round" transform="rotate(-90 24 24)"/>
+            </svg>
+            <span class="score-val" style="color:var(--amber)">63</span>
+          </div>
+        </div>
+
+        <!-- No owner found -->
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:12px">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-3);flex-shrink:0">?</div>
+          <div>
+            <div style="font-size:13px;color:var(--text-2)">Owner not identified</div>
+            <div style="font-size:11px;color:var(--text-3)">No BBB filing match · SoS agent is a law firm</div>
+          </div>
+          <span class="badge badge-gray" style="margin-left:auto;font-size:10px">No owner</span>
+        </div>
+
+        <!-- Acquisition readiness -->
+        <div class="readiness-bar">
+          <span class="readiness-label">Acquisition readiness</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="readiness-flames">
+              <span class="flame on">🔥</span>
+              <span class="flame" style="opacity:.15">🔥</span>
+              <span class="flame" style="opacity:.15">🔥</span>
+            </div>
+            <span style="font-size:11px;color:var(--text-2);font-weight:500">Low</span>
+          </div>
+        </div>
+
+        <!-- Meta grid -->
+        <div class="lead-meta-grid">
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">In business</div>
+            <div class="lead-meta-val warn">24 yrs</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Est. revenue</div>
+            <div class="lead-meta-val">&lt;$1M</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Entity type</div>
+            <div class="lead-meta-val">LLC</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Google reviews</div>
+            <div class="lead-meta-val warn">3.9 · 18</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">BBB rating</div>
+            <div class="lead-meta-val good">A</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">BBB complaints</div>
+            <div class="lead-meta-val good">0</div>
+          </div>
+        </div>
+
+        <div class="lead-badges">
+          <span class="badge badge-gray">B2C residential</span>
+          <span class="badge badge-gray">Basic website</span>
+        </div>
+        <div class="lead-actions">
+          <button class="action-pass">✕ Pass</button>
+          <button class="action-like">♥ Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="feed-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Batch progress</div>
+        <div class="stat-grid">
+          <div class="stat-cell"><div class="stat-val">20</div><div class="stat-label">Leads this batch</div></div>
+          <div class="stat-cell"><div class="stat-val" style="color:var(--teal)">7</div><div class="stat-label">Saved</div></div>
+          <div class="stat-cell"><div class="stat-val" style="color:var(--red)">5</div><div class="stat-label">Passed</div></div>
+          <div class="stat-cell"><div class="stat-val">8</div><div class="stat-label">Remaining</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Feedback loop</div>
+        <div class="feedback-bar">
+          <div class="fb-label"><span>Actions until rescore</span><span>3 / 5</span></div>
+          <div class="fb-track"><div class="fb-fill" style="width:60%"></div></div>
+        </div>
+        <div class="rescore-note">
+          After <span>2 more actions</span> we'll rescore remaining leads based on your feedback.
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Why you passed</div>
+        <div class="feedback-bar">
+          <div class="fb-label"><span>B2C / residential</span><span>3</span></div>
+          <div class="fb-track"><div class="fb-fill" style="width:60%"></div></div>
+        </div>
+        <div class="feedback-bar">
+          <div class="fb-label"><span>Too small</span><span>1</span></div>
+          <div class="fb-track"><div class="fb-fill" style="width:20%"></div></div>
+        </div>
+        <div class="feedback-bar">
+          <div class="fb-label"><span>Wrong geography</span><span>1</span></div>
+          <div class="fb-track"><div class="fb-fill" style="width:20%"></div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Next batch</div>
+        <div style="font-size:13px;color:var(--text-2);margin-bottom:10px;line-height:1.5">75 more leads ready. Enriching next 20 costs 5 credits.</div>
+        <button class="btn btn-ghost btn-sm" style="width:100%">Load next 20 — 5 credits</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 5 — BULK MODE                                -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s5">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="font-size:12px;color:var(--text-3)">Institutional</span>
+      <div class="credit-pill">1,200 credits</div>
+      <div class="avatar">CH</div>
+    </div>
+  </div>
+
+  <div class="bulk-layout" style="flex:1">
+    <div class="bulk-toolbar">
+      <span class="toolbar-label">HVAC · Texas</span>
+      <div class="bulk-filters">
+        <select class="filter-select">
+          <option>All business models</option>
+          <option selected>B2B only</option>
+          <option>B2C only</option>
+        </select>
+        <select class="filter-select">
+          <option>All revenue ranges</option>
+          <option selected>$1M–$5M</option>
+          <option>$5M–$10M</option>
+        </select>
+        <select class="filter-select">
+          <option>All signals</option>
+          <option>Retirement signal</option>
+          <option>Low sophistication</option>
+        </select>
+        <select class="filter-select">
+          <option>Score: all</option>
+          <option>Score 70+</option>
+          <option selected>Score 60+</option>
+        </select>
+      </div>
+      <span class="bulk-count"><strong>412</strong> leads</span>
+      <button class="btn btn-primary btn-sm" onclick="show('s6',null)">Export selection →</button>
+    </div>
+
+    <div class="bulk-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><input type="checkbox" class="cb"></th>
+            <th>Business</th>
+            <th>Location</th>
+            <th>Model</th>
+            <th>Est. revenue</th>
+            <th>Signals</th>
+            <th>Website</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="selected-row">
+            <td><input type="checkbox" class="cb" checked></td>
+            <td class="td-name">Lone Star HVAC Services</td>
+            <td>Austin, TX</td>
+            <td><span class="badge badge-teal">B2B</span></td>
+            <td>$1M–$5M ●●●</td>
+            <td><span class="tag">Retirement</span> <span class="tag">Low digital</span></td>
+            <td><span style="color:var(--amber);font-size:12px">Bare</span></td>
+            <td class="td-score high">87</td>
+          </tr>
+          <tr class="selected-row">
+            <td><input type="checkbox" class="cb" checked></td>
+            <td class="td-name">Precision Pest Control Inc.</td>
+            <td>Houston, TX</td>
+            <td><span class="badge badge-teal">B2B</span></td>
+            <td>$1M–$5M ●●○</td>
+            <td><span class="tag">Low digital</span></td>
+            <td><span style="color:var(--red);font-size:12px">None</span></td>
+            <td class="td-score high">80</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="cb"></td>
+            <td class="td-name">Gulf Coast Climate Control</td>
+            <td>Dallas, TX</td>
+            <td><span class="badge badge-gray">B2C</span></td>
+            <td>&lt;$1M ●○○</td>
+            <td>—</td>
+            <td><span style="color:var(--teal);font-size:12px">Yes</span></td>
+            <td class="td-score mid">63</td>
+          </tr>
+          <tr class="selected-row">
+            <td><input type="checkbox" class="cb" checked></td>
+            <td class="td-name">Texas Air Solutions LLC</td>
+            <td>San Antonio, TX</td>
+            <td><span class="badge badge-teal">B2B</span></td>
+            <td>$1M–$5M ●●●</td>
+            <td><span class="tag">Retirement</span></td>
+            <td><span style="color:var(--amber);font-size:12px">Bare</span></td>
+            <td class="td-score high">79</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="cb"></td>
+            <td class="td-name">Hill Country HVAC &amp; Plumbing</td>
+            <td>Austin, TX</td>
+            <td><span class="badge badge-teal">B2B</span></td>
+            <td>$5M–$10M ●●○</td>
+            <td><span class="tag">Long-established</span></td>
+            <td><span style="color:var(--teal);font-size:12px">Yes</span></td>
+            <td class="td-score mid">71</td>
+          </tr>
+          <tr class="selected-row">
+            <td><input type="checkbox" class="cb" checked></td>
+            <td class="td-name">Brazos Valley Cooling Co.</td>
+            <td>Waco, TX</td>
+            <td><span class="badge badge-teal">B2B</span></td>
+            <td>$1M–$5M ●●○</td>
+            <td><span class="tag">Low digital</span></td>
+            <td><span style="color:var(--red);font-size:12px">None</span></td>
+            <td class="td-score high">76</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" class="cb"></td>
+            <td class="td-name">Permian Basin Air Services</td>
+            <td>Midland, TX</td>
+            <td><span class="badge badge-gray">B2C</span></td>
+            <td>&lt;$1M ●○○</td>
+            <td>—</td>
+            <td><span style="color:var(--amber);font-size:12px">Bare</span></td>
+            <td class="td-score mid">58</td>
+          </tr>
+          <tr class="selected-row">
+            <td><input type="checkbox" class="cb" checked></td>
+            <td class="td-name">Alamo Commercial HVAC</td>
+            <td>San Antonio, TX</td>
+            <td><span class="badge badge-teal">B2B</span></td>
+            <td>$1M–$5M ●●●</td>
+            <td><span class="tag">Retirement</span> <span class="tag">Low digital</span></td>
+            <td><span style="color:var(--red);font-size:12px">None</span></td>
+            <td class="td-score high">84</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bulk-footer">
+      <div class="bulk-footer-left"><strong>5</strong> of 412 leads selected</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost btn-sm">Select all 412</button>
+        <button class="btn btn-primary btn-sm" onclick="show('s6',null)">Start outreach campaign → →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 6 — OUTREACH                                 -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s6">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <div class="credit-pill">35 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 380px;background:var(--navy);min-height:0">
+
+    <!-- Left: campaign builder -->
+    <div style="padding:28px 32px;overflow-y:auto;border-right:1px solid var(--border)">
+
+      <!-- Header -->
+      <div style="margin-bottom:24px">
+        <div style="font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:4px">Outreach campaign</div>
+        <div style="font-size:13px;color:var(--text-2)">7 saved leads · HVAC &amp; pest control · Texas</div>
+      </div>
+
+      <!-- Campaign name -->
+      <div style="margin-bottom:20px">
+        <label>Campaign name</label>
+        <input type="text" value="HVAC Texas — Q1 outreach" style="width:100%">
+      </div>
+
+      <!-- Sequence builder -->
+      <div style="font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px">Sequence steps</div>
+
+      <!-- Step 1 -->
+      <div class="seq-step" id="seq-1">
+        <div class="seq-step-header">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="seq-num">1</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:var(--text)">Handwritten letter</div>
+              <div style="font-size:12px;color:var(--text-3);margin-top:1px">Sent day 1 · arrives in 3–5 days</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <span class="badge badge-teal">Day 1</span>
+            <button class="seq-remove" onclick="removeStep('seq-1')">✕</button>
+          </div>
+        </div>
+        <div class="seq-step-body">
+          <label style="margin-bottom:6px">Prompt for this message</label>
+          <textarea class="seq-prompt" rows="3" placeholder="Describe what you want the letter to say...">Write a short, warm letter introducing myself as someone interested in acquiring their business. Mention their long track record in the local area and that I am not a broker — I am a direct buyer. Keep it under 150 words. Sign off with my first name only.</textarea>
+          <div style="font-size:11px;color:var(--text-3);margin-top:6px">The AI will personalise this prompt using each company's signals, news, and web presence before generating the final letter.</div>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="seq-connector">
+        <div class="seq-connector-line"></div>
+        <div class="seq-wait-badge">Wait 7 days</div>
+        <div class="seq-connector-line"></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="seq-step" id="seq-2">
+        <div class="seq-step-header">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="seq-num">2</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:var(--text)">LinkedIn message</div>
+              <div style="font-size:12px;color:var(--text-3);margin-top:1px">Follow-up · day 8</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <span class="badge badge-amber">Day 8</span>
+            <button class="seq-remove" onclick="removeStep('seq-2')">✕</button>
+          </div>
+        </div>
+        <div class="seq-step-body">
+          <label style="margin-bottom:6px">Prompt for this message</label>
+          <textarea class="seq-prompt" rows="3" placeholder="Describe what you want the message to say...">Short LinkedIn connection message. Reference the letter I sent last week. Keep it conversational and under 60 words. No pitch — just an open door to talk.</textarea>
+          <div style="font-size:11px;color:var(--text-3);margin-top:6px">Only sent if a LinkedIn profile was found during enrichment.</div>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="seq-connector">
+        <div class="seq-connector-line"></div>
+        <div class="seq-wait-badge">Wait 14 days</div>
+        <div class="seq-connector-line"></div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="seq-step" id="seq-3">
+        <div class="seq-step-header">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="seq-num">3</div>
+            <div>
+              <div style="font-size:14px;font-weight:500;color:var(--text)">Email</div>
+              <div style="font-size:12px;color:var(--text-3);margin-top:1px">Final follow-up · day 22</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <span class="badge badge-gray">Day 22</span>
+            <button class="seq-remove" onclick="removeStep('seq-3')">✕</button>
+          </div>
+        </div>
+        <div class="seq-step-body">
+          <label style="margin-bottom:6px">Prompt for this message</label>
+          <textarea class="seq-prompt" rows="3" placeholder="Describe what you want the email to say...">A brief follow-up email. Acknowledge they are probably busy. Reiterate I am a serious buyer, not a broker. Ask for 15 minutes. Subject line should feel personal not templated.</textarea>
+          <div style="font-size:11px;color:var(--text-3);margin-top:6px">Personalised using any public news or social presence found for the business.</div>
+        </div>
+      </div>
+
+      <!-- Add step -->
+      <div style="display:flex;gap:8px;margin-top:16px;margin-bottom:28px">
+        <button class="btn btn-ghost btn-sm" onclick="addStep('email')">+ Email</button>
+        <button class="btn btn-ghost btn-sm" onclick="addStep('linkedin')">+ LinkedIn</button>
+        <button class="btn btn-ghost btn-sm" onclick="addStep('letter')">+ Letter</button>
+      </div>
+
+    </div>
+
+    <!-- Right: preview + launch -->
+    <div style="padding:24px 22px;overflow-y:auto;display:flex;flex-direction:column;gap:20px">
+
+      <!-- Campaign summary -->
+      <div>
+        <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px">Campaign summary</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="stat-cell"><div class="stat-val">7</div><div class="stat-label">Recipients</div></div>
+          <div class="stat-cell"><div class="stat-val" id="step-count">3</div><div class="stat-label">Steps</div></div>
+          <div class="stat-cell"><div class="stat-val">22</div><div class="stat-label">Day span</div></div>
+          <div class="stat-cell"><div class="stat-val" style="color:var(--amber)">21</div><div class="stat-label">Credits to send</div></div>
+        </div>
+      </div>
+
+      <!-- Human review section -->
+      <div>
+        <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px">Human review</div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px">
+          <div style="font-size:13px;color:var(--text);margin-bottom:6px;font-weight:500">Sample messages generated</div>
+          <div style="font-size:12px;color:var(--text-2);line-height:1.6;margin-bottom:12px">Before your campaign sends, review AI-generated samples for 3 leads. Approve to send to all 7.</div>
+
+          <!-- Sample preview card -->
+          <div id="preview-card" style="background:var(--navy-3);border:1px solid var(--border-2);border-radius:var(--r);padding:12px;margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <span style="font-size:12px;font-weight:500;color:var(--text)">Lone Star HVAC Services</span>
+              <span class="badge badge-teal" style="font-size:10px">Step 1 · Letter</span>
+            </div>
+            <div style="font-size:12px;color:var(--text-2);line-height:1.7" id="preview-text">
+              Dear James,<br><br>
+              My name is Nicholas — I came across Lone Star HVAC while researching established service businesses in Austin. Your 25-year track record serving commercial clients in the area caught my attention.<br><br>
+              I am a direct buyer, not a broker, and I am genuinely interested in learning more about your business at a time that suits you.<br><br>
+              Nicholas
+            </div>
+          </div>
+
+          <div style="display:flex;gap:6px">
+            <button class="btn btn-ghost btn-sm" style="flex:1" id="prev-sample" onclick="cycleSample(-1)">← Prev</button>
+            <span style="font-size:12px;color:var(--text-3);display:flex;align-items:center;padding:0 8px" id="sample-counter">1 / 3</span>
+            <button class="btn btn-ghost btn-sm" style="flex:1" id="next-sample" onclick="cycleSample(1)">Next →</button>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-ghost btn-sm" style="flex:1;color:var(--red);border-color:rgba(224,80,80,.25)" onclick="rejectSamples()">Regenerate</button>
+          <button class="btn btn-sm" style="flex:2;background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.25);color:var(--teal)" onclick="approveSamples()" id="approve-btn">Approve samples</button>
+        </div>
+      </div>
+
+      <!-- Leads in campaign -->
+      <div>
+        <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px">Recipients</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="recipient-row"><span class="recipient-name">Lone Star HVAC Services</span><span class="badge badge-teal" style="font-size:10px">3 channels</span></div>
+          <div class="recipient-row"><span class="recipient-name">Precision Pest Control Inc.</span><span class="badge badge-amber" style="font-size:10px">2 channels</span></div>
+          <div class="recipient-row"><span class="recipient-name">Texas Air Solutions LLC</span><span class="badge badge-teal" style="font-size:10px">3 channels</span></div>
+          <div class="recipient-row"><span class="recipient-name">Brazos Valley Cooling Co.</span><span class="badge badge-amber" style="font-size:10px">2 channels</span></div>
+          <div class="recipient-row"><span class="recipient-name">Alamo Commercial HVAC</span><span class="badge badge-teal" style="font-size:10px">3 channels</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:8px">2 leads missing LinkedIn — only email + letter will send for those.</div>
+      </div>
+
+      <!-- Launch -->
+      <div style="margin-top:auto;padding-top:8px">
+        <button class="btn btn-primary" style="width:100%;font-size:14px;padding:13px" id="launch-btn" onclick="launchCampaign()">Launch campaign — 21 credits</button>
+        <div style="font-size:11px;color:var(--text-3);text-align:center;margin-top:8px">You have 35 credits · 14 remaining after launch</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id, navEl) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.screen-nav a').forEach(a => a.classList.remove('active'));
+  if (navEl) { navEl.classList.add('active'); }
+  else {
+    const map = {s1:0,s2:1,s3:2,s4:3,s5:4,s6:5};
+    const links = document.querySelectorAll('.screen-nav a');
+    if (links[map[id]]) links[map[id]].classList.add('active');
+  }
+}
+
+document.querySelectorAll('.radio-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const group = opt.closest('.radio-group');
+    group.querySelectorAll('.radio-opt').forEach(o => {
+      o.classList.remove('selected');
+      o.querySelector('.radio-dot').innerHTML = '';
+    });
+    opt.classList.add('selected');
+    opt.querySelector('.radio-dot').innerHTML = '<div class="radio-dot-inner"></div>';
+  });
+});
+
+document.querySelectorAll('.industry-chip:not([style*="dashed"])').forEach(chip => {
+  chip.addEventListener('click', () => chip.classList.toggle('selected'));
+});
+
+document.querySelectorAll('#db-p3 .industry-chip').forEach(chip => {
+  const siblings = chip.closest('div').querySelectorAll('.industry-chip');
+  chip.addEventListener('click', () => {
+    siblings.forEach(s => s.classList.remove('selected'));
+    chip.classList.add('selected');
+  });
+});
+
+document.querySelectorAll('.weight-pills').forEach(group => {
+  group.querySelectorAll('.w-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      group.querySelectorAll('.w-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+});
+
+function dbStep(n) {
+  const steps = document.querySelectorAll('#s2 .sidebar-step');
+  steps.forEach((s, j) => {
+    s.classList.remove('active', 'done');
+    if (j < n - 1) s.classList.add('done');
+    if (j === n - 1) s.classList.add('active');
+  });
+  document.querySelectorAll('.db-panel').forEach(p => p.style.display = 'none');
+  const panel = document.getElementById('db-p' + n);
+  if (panel) panel.style.display = 'block';
+  const stepLabels = ['','Profile','Industries','Geography','Financials','Criteria weights'];
+  const footerNote = document.querySelector('#s2 .db-footer span');
+}
+
+document.querySelectorAll('#s2 .sidebar-step').forEach((step, i) => {
+  step.addEventListener('click', () => {
+    if (i === 0) return;
+    dbStep(i + 1);
+  });
+});
+
+let saved = 7, passed = 5, remaining = 8, actions = 3;
+function updateFeedStats() {
+  const vals = document.querySelectorAll('.stat-cell .stat-val');
+  if (vals[1]) vals[1].textContent = saved;
+  if (vals[2]) vals[2].textContent = passed;
+  if (vals[3]) vals[3].textContent = remaining;
+  const pct = Math.min(100, Math.round((actions / 5) * 100));
+  const fill = document.querySelector('.fb-fill');
+  const fbLabel = document.querySelector('.fb-label span:last-child');
+  if (fill) fill.style.width = pct + '%';
+  if (fbLabel) fbLabel.textContent = actions + ' / 5';
+  const rescoreNote = document.querySelector('.rescore-note');
+  const needed = 5 - actions;
+  if (rescoreNote) {
+    if (needed <= 0) {
+      rescoreNote.innerHTML = '<span>Rescored!</span> Your next batch reflects your preferences.';
+    } else {
+      rescoreNote.innerHTML = "After <span>" + needed + " more action" + (needed === 1 ? "" : "s") + "</span> we’ll rescore remaining leads based on your feedback.";
+    }
+  }
+}
+
+document.querySelectorAll('.action-like').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.lead-card');
+    card.style.transition = 'opacity .25s, transform .25s';
+    card.style.opacity = '0'; card.style.transform = 'translateX(40px)';
+    saved++; remaining = Math.max(0, remaining - 1); actions++;
+    if (actions >= 5) actions = 0;
+    updateFeedStats();
+    setTimeout(() => card.remove(), 280);
+  });
+});
+
+document.querySelectorAll('.action-pass').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.lead-card');
+    card.style.transition = 'opacity .25s, transform .25s';
+    card.style.opacity = '0'; card.style.transform = 'translateX(-40px)';
+    passed++; remaining = Math.max(0, remaining - 1); actions++;
+    if (actions >= 5) actions = 0;
+    updateFeedStats();
+    setTimeout(() => card.remove(), 280);
+  });
+});
+
+document.querySelectorAll('.lead-card').forEach(card => {
+  card.addEventListener('click', e => {
+    if (e.target.closest('.action-pass') || e.target.closest('.action-like')) return;
+    document.querySelectorAll('.lead-card').forEach(c => c.classList.remove('active-card'));
+    card.classList.add('active-card');
+  });
+});
+
+function updateBulkFooter() {
+  const checked = document.querySelectorAll('#s5 tbody input[type=checkbox]:checked');
+  const countEl = document.querySelector('.bulk-footer-left strong');
+  const exportBtn = document.querySelector('.bulk-footer .btn-primary');
+  if (countEl) countEl.textContent = checked.length;
+  if (exportBtn) exportBtn.textContent = 'Export ' + checked.length + ' selected — ' + (checked.length * 4) + ' credits';
+  document.querySelectorAll('#s5 tbody tr').forEach(tr => {
+    const cb = tr.querySelector('input[type=checkbox]');
+    if (cb) tr.classList.toggle('selected-row', cb.checked);
+  });
+}
+
+document.querySelectorAll('#s5 tbody input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', updateBulkFooter);
+});
+
+document.querySelectorAll('#s5 tbody tr').forEach(row => {
+  row.addEventListener('click', e => {
+    if (e.target.type === 'checkbox') return;
+    const cb = row.querySelector('input[type=checkbox]');
+    if (cb) { cb.checked = !cb.checked; updateBulkFooter(); }
+  });
+});
+
+const headerCb = document.querySelector('#s5 thead input[type=checkbox]');
+if (headerCb) {
+  headerCb.addEventListener('change', () => {
+    document.querySelectorAll('#s5 tbody input[type=checkbox]').forEach(cb => cb.checked = headerCb.checked);
+    updateBulkFooter();
+  });
+}
+
+document.querySelectorAll('.toggle-sw').forEach(sw => {
+  sw.addEventListener('click', () => sw.classList.toggle('off'));
+});
+
+const exportDownloadBtn = document.querySelector('.export-footer .btn-primary');
+if (exportDownloadBtn) {
+  exportDownloadBtn.addEventListener('click', () => {
+    exportDownloadBtn.textContent = 'Downloaded!';
+    exportDownloadBtn.style.background = 'var(--teal-dim)';
+    setTimeout(() => {
+      exportDownloadBtn.textContent = 'Download CSV — 3 credits';
+      exportDownloadBtn.style.background = '';
+    }, 2000);
+  });
+}
+
+
+// ── Outreach screen ───────────────────────────────────
+const samples = [
+  {
+    name: 'Lone Star HVAC Services',
+    step: 'Step 1 · Letter',
+    stepClass: 'badge-teal',
+    text: 'Dear James,<br><br>My name is Nicholas — I came across Lone Star HVAC while researching established service businesses in Austin. Your 25-year track record serving commercial clients caught my attention.<br><br>I am a direct buyer, not a broker, and I am genuinely interested in learning more at a time that suits you.<br><br>Nicholas'
+  },
+  {
+    name: 'Precision Pest Control Inc.',
+    step: 'Step 1 · Letter',
+    stepClass: 'badge-teal',
+    text: 'Dear Robert,<br><br>I recently came across Precision Pest Control while looking at well-established commercial pest management businesses in Houston. The fact that you have been operating for over 20 years with no website tells me the business runs on reputation alone — which is exactly the kind of operation I look for.<br><br>I am a direct buyer. Would you be open to a brief conversation?<br><br>Nicholas'
+  },
+  {
+    name: 'Alamo Commercial HVAC',
+    step: 'Step 2 · LinkedIn',
+    stepClass: 'badge-amber',
+    text: 'Hi David — I sent you a short letter last week. I am a buyer looking at commercial HVAC businesses in San Antonio and yours stood out. No rush, no pressure — just open to a conversation if you are ever thinking about what comes next for the business. Nicholas'
+  }
+];
+let sampleIdx = 0;
+
+function renderSample() {
+  const s = samples[sampleIdx];
+  document.getElementById('preview-text').innerHTML = s.text;
+  const card = document.getElementById('preview-card');
+  card.querySelector('.badge').className = 'badge ' + s.stepClass;
+  card.querySelector('.badge').textContent = s.step;
+  card.querySelector('[style*="font-weight:500"]').textContent = s.name;
+  document.getElementById('sample-counter').textContent = (sampleIdx + 1) + ' / ' + samples.length;
+}
+
+function cycleSample(dir) {
+  sampleIdx = (sampleIdx + dir + samples.length) % samples.length;
+  renderSample();
+}
+
+function approveSamples() {
+  const btn = document.getElementById('approve-btn');
+  btn.textContent = 'Approved';
+  btn.style.background = 'rgba(0,200,150,.2)';
+  btn.style.borderColor = 'rgba(0,200,150,.5)';
+  btn.disabled = true;
+  document.getElementById('launch-btn').style.background = 'var(--teal)';
+}
+
+function rejectSamples() {
+  const text = document.getElementById('preview-text');
+  text.style.opacity = '0.4';
+  setTimeout(() => {
+    sampleIdx = 0;
+    renderSample();
+    text.style.opacity = '1';
+  }, 400);
+}
+
+let stepCount = 3;
+function removeStep(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.transition = 'opacity .2s, transform .2s';
+  el.style.opacity = '0';
+  el.style.transform = 'translateX(-12px)';
+  stepCount = Math.max(1, stepCount - 1);
+  const sc = document.getElementById('step-count');
+  if (sc) sc.textContent = stepCount;
+  setTimeout(() => el.remove(), 220);
+}
+
+const channelLabels = { email: 'Email', linkedin: 'LinkedIn message', letter: 'Handwritten letter' };
+const channelDays   = { email: 'Day 30', linkedin: 'Day 30', letter: 'Day 30' };
+const channelBadge  = { email: 'badge-gray', linkedin: 'badge-amber', letter: 'badge-teal' };
+
+function addStep(type) {
+  stepCount++;
+  const sc = document.getElementById('step-count');
+  if (sc) sc.textContent = stepCount;
+  const id = 'seq-dyn-' + Date.now();
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <div class="seq-connector">
+      <div class="seq-connector-line"></div>
+      <div class="seq-wait-badge">Wait 7 days</div>
+      <div class="seq-connector-line"></div>
+    </div>
+    <div class="seq-step" id="${id}">
+      <div class="seq-step-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="seq-num">${stepCount}</div>
+          <div>
+            <div style="font-size:14px;font-weight:500;color:var(--text)">${channelLabels[type]}</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:1px">New step</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span class="badge ${channelBadge[type]}" style="font-size:10px">${channelDays[type]}</span>
+          <button class="seq-remove" onclick="removeStep('${id}')">✕</button>
+        </div>
+      </div>
+      <div class="seq-step-body">
+        <label style="margin-bottom:6px">Prompt for this message</label>
+        <textarea class="seq-prompt" rows="3" placeholder="Describe what you want this message to say..."></textarea>
+      </div>
+    </div>`;
+  const addBtns = document.querySelector('#s6 [style*="display:flex;gap:8px;margin-top:16px"]');
+  if (addBtns) addBtns.before(...div.childNodes);
+}
+
+function launchCampaign() {
+  const btn = document.getElementById('launch-btn');
+  btn.textContent = 'Launching...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Campaign launched!';
+    btn.style.background = 'var(--teal-dim)';
+    const creditPill = document.querySelector('#s6 .credit-pill');
+    if (creditPill) creditPill.textContent = '14 credits';
+  }, 900);
+}
+
+</script>
+</body>
+</html>
