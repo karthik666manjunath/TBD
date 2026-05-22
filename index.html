@@ -497,6 +497,39 @@ tbody td:first-child{padding-left:20px}
   display:flex;gap:10px;
 }
 
+
+/* ── Natural language deal box ───────────────────────── */
+.db-example-btn{
+  background:var(--surface);border:1px solid var(--border-2);
+  border-radius:20px;color:var(--text-2);font-size:12px;
+  padding:6px 14px;cursor:pointer;font-family:var(--font-body);
+  transition:all .15s;
+}
+.db-example-btn:hover{background:var(--surface-2);color:var(--text);border-color:rgba(0,200,150,.3)}
+.db-confirm-row{
+  display:flex;align-items:center;gap:12px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:11px 14px;
+}
+.db-confirm-label{
+  font-size:11px;font-weight:500;color:var(--text-3);
+  text-transform:uppercase;letter-spacing:.06em;
+  width:110px;flex-shrink:0;
+}
+.db-confirm-val{
+  flex:1;font-size:13px;color:var(--text);
+  display:flex;gap:6px;flex-wrap:wrap;align-items:center;
+}
+.db-edit-btn{
+  background:none;border:1px solid var(--border-2);
+  border-radius:6px;color:var(--text-3);font-size:11px;
+  padding:3px 10px;cursor:pointer;font-family:var(--font-body);
+  transition:all .15s;flex-shrink:0;
+}
+.db-edit-btn:hover{color:var(--teal);border-color:rgba(0,200,150,.3)}
+@keyframes spin{to{transform:rotate(360deg)}}
+#db-parse-spinner{display:inline-block;animation:spin 1s linear infinite;color:var(--teal);font-size:32px}
+
 /* ── OUTREACH SCREEN ─────────────────────────────────── */
 .seq-step{
   background:var(--navy-2);border:1px solid var(--border-2);
@@ -627,7 +660,7 @@ tbody td:first-child{padding-left:20px}
 </div>
 
 <!-- ════════════════════════════════════════════════════ -->
-<!-- SCREEN 2 — DEAL BOX                                 -->
+<!-- SCREEN 2 — DEAL BOX (natural language)              -->
 <!-- ════════════════════════════════════════════════════ -->
 <div class="screen" id="s2">
   <div class="top-bar">
@@ -638,220 +671,87 @@ tbody td:first-child{padding-left:20px}
     </div>
   </div>
 
-  <div class="dealbox-layout" style="flex:1">
-    <!-- Sidebar -->
-    <div class="dealbox-sidebar">
-      <div style="font-size:11px;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;font-weight:500">Setup steps</div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:40px 20px">
+    <div style="width:100%;max-width:620px">
 
-      <div class="sidebar-step done">
-        <div class="step-num">✓</div>
-        <div class="step-info">
-          <div class="step-name">Your profile</div>
-          <div class="step-desc">Name &amp; account type</div>
+      <!-- State: input -->
+      <div id="db-input-state">
+        <div style="text-align:center;margin-bottom:32px">
+          <div style="font-family:var(--font-display);font-size:28px;color:var(--text);margin-bottom:8px">What kind of business are you looking to buy?</div>
+          <div style="font-size:14px;color:var(--text-2);line-height:1.6">Describe your thesis in plain English. We will extract your criteria and confirm before building your list.</div>
         </div>
-      </div>
-      <div class="sidebar-step active">
-        <div class="step-num">2</div>
-        <div class="step-info">
-          <div class="step-name">Industries</div>
-          <div class="step-desc">Choose your target sectors</div>
+
+        <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px">
+          <textarea id="db-thesis-input" rows="5" placeholder="e.g. I am looking for HVAC or pest control companies in Texas and Florida, B2B focused, doing between $1M and $5M in revenue. Ideally the owner is nearing retirement and the business has low digital presence — somewhere I can add real value." style="width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:15px;padding:20px;resize:none;line-height:1.7"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--border)">
+            <div style="font-size:12px;color:var(--text-3)" id="db-char-count">0 characters</div>
+            <button class="btn btn-primary btn-sm" onclick="dbParse()" id="db-parse-btn" style="opacity:.4" disabled>Analyse thesis →</button>
+          </div>
         </div>
-      </div>
-      <div class="sidebar-step">
-        <div class="step-num">3</div>
-        <div class="step-info">
-          <div class="step-name">Geography</div>
-          <div class="step-desc">States you'll consider</div>
-        </div>
-      </div>
-      <div class="sidebar-step">
-        <div class="step-num">4</div>
-        <div class="step-info">
-          <div class="step-name">Financials</div>
-          <div class="step-desc">Revenue &amp; size targets</div>
-        </div>
-      </div>
-      <div class="sidebar-step">
-        <div class="step-num">5</div>
-        <div class="step-info">
-          <div class="step-name">Criteria weights</div>
-          <div class="step-desc">What matters most to you</div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+          <button class="db-example-btn" onclick="dbFill(0)">HVAC + pest control · Texas · $1M–$5M · B2B</button>
+          <button class="db-example-btn" onclick="dbFill(1)">Plumbing · Southeast US · under $2M · any model</button>
+          <button class="db-example-btn" onclick="dbFill(2)">Accounting firms · New York · $5M–$10M · B2B</button>
         </div>
       </div>
 
-      <div class="divider"></div>
-      <div style="font-size:12px;color:var(--text-3);line-height:1.6">
-        Your Deal Box drives every score and recommendation. You can edit it anytime from settings.
-      </div>
-    </div>
-
-    <!-- Content panels -->
-    <div class="dealbox-content" id="db-content">
-
-      <!-- Panel 1: Industries -->
-      <div class="db-panel" id="db-p1">
-        <div class="db-heading">What industries are you targeting?</div>
-        <div class="db-subheading">Select one or more. You can add more later as your thesis evolves.</div>
-        <div class="industry-grid">
-          <div class="industry-chip selected"><span class="chip-icon">🔧</span><span class="chip-label">HVAC</span></div>
-          <div class="industry-chip selected"><span class="chip-icon">🐛</span><span class="chip-label">Pest control</span></div>
-          <div class="industry-chip"><span class="chip-icon">🪠</span><span class="chip-label">Plumbing</span></div>
-          <div class="industry-chip"><span class="chip-icon">⚡</span><span class="chip-label">Electrical</span></div>
-          <div class="industry-chip selected"><span class="chip-icon">🌿</span><span class="chip-label">Landscaping</span></div>
-          <div class="industry-chip"><span class="chip-icon">🏠</span><span class="chip-label">Roofing</span></div>
-          <div class="industry-chip"><span class="chip-icon">🚗</span><span class="chip-label">Auto repair</span></div>
-          <div class="industry-chip"><span class="chip-icon">🧹</span><span class="chip-label">Cleaning services</span></div>
-          <div class="industry-chip"><span class="chip-icon">🦷</span><span class="chip-label">Dental practices</span></div>
-          <div class="industry-chip"><span class="chip-icon">📊</span><span class="chip-label">Accounting firms</span></div>
-          <div class="industry-chip"><span class="chip-icon">🏗</span><span class="chip-label">Foundation repair</span></div>
-          <div class="industry-chip" style="border-style:dashed"><span class="chip-icon">＋</span><span class="chip-label" style="color:var(--text-3)">Custom niche</span></div>
-        </div>
-        <div class="db-footer">
-          <span style="font-size:13px;color:var(--text-3)">Step 2 of 5</span>
-          <button class="btn btn-primary" onclick="dbStep(2)">Next: Geography →</button>
-        </div>
+      <!-- State: parsing animation -->
+      <div id="db-parsing-state" style="display:none;text-align:center;padding:40px 0">
+        <div style="font-size:28px;margin-bottom:16px" id="db-parse-spinner">⟳</div>
+        <div style="font-size:15px;color:var(--text-2)" id="db-parse-label">Reading your thesis...</div>
       </div>
 
-      <!-- Panel 2: Geography -->
-      <div class="db-panel" id="db-p2" style="display:none">
-        <div class="db-heading">Where are you searching?</div>
-        <div class="db-subheading">Select the states you want to source businesses from. You can target multiple states.</div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px">
-          <div class="industry-chip selected"><span class="chip-label">Texas</span></div>
-          <div class="industry-chip selected"><span class="chip-label">Florida</span></div>
-          <div class="industry-chip"><span class="chip-label">California</span></div>
-          <div class="industry-chip"><span class="chip-label">New York</span></div>
-          <div class="industry-chip"><span class="chip-label">Georgia</span></div>
-          <div class="industry-chip"><span class="chip-label">Ohio</span></div>
-          <div class="industry-chip"><span class="chip-label">North Carolina</span></div>
-          <div class="industry-chip"><span class="chip-label">Arizona</span></div>
-          <div class="industry-chip"><span class="chip-label">Illinois</span></div>
-          <div class="industry-chip"><span class="chip-label">Pennsylvania</span></div>
-          <div class="industry-chip"><span class="chip-label">Tennessee</span></div>
-          <div class="industry-chip"><span class="chip-label">Colorado</span></div>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:24px">
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:8px">Scraping is done at state level — you filter by city later for free.</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <span class="badge badge-teal">Texas selected</span>
-            <span class="badge badge-teal">Florida selected</span>
+      <!-- State: confirmation -->
+      <div id="db-confirm-state" style="display:none">
+        <div style="margin-bottom:20px">
+          <div style="font-size:12px;color:var(--text-3);margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Here is what we extracted</div>
+          <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r);padding:16px 18px;margin-bottom:10px">
+            <div style="font-size:14px;color:var(--text-2);line-height:1.8;font-style:italic" id="db-thesis-display"></div>
           </div>
         </div>
-        <div class="db-footer">
-          <button class="btn btn-ghost" onclick="dbStep(1)">← Back</button>
-          <button class="btn btn-primary" onclick="dbStep(3)">Next: Financials →</button>
-        </div>
-      </div>
 
-      <!-- Panel 3: Financials -->
-      <div class="db-panel" id="db-p3" style="display:none">
-        <div class="db-heading">What are your financial targets?</div>
-        <div class="db-subheading">Set the revenue range you want to acquire in. Leads outside this range will score lower.</div>
-        <div style="margin-bottom:24px">
-          <label style="margin-bottom:10px">Target revenue range</label>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <div class="industry-chip"><span class="chip-label">Under $1M</span></div>
-            <div class="industry-chip selected"><span class="chip-label">$1M – $5M</span></div>
-            <div class="industry-chip"><span class="chip-label">$5M – $10M</span></div>
-            <div class="industry-chip"><span class="chip-label">$10M+</span></div>
-          </div>
-        </div>
-        <div style="margin-bottom:24px">
-          <label style="margin-bottom:10px">Business model preference</label>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-            <div class="industry-chip selected"><span class="chip-label">B2B only</span></div>
-            <div class="industry-chip"><span class="chip-label">B2C only</span></div>
-            <div class="industry-chip"><span class="chip-label">Either</span></div>
-          </div>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:24px">
-          <div style="font-size:12px;color:var(--text-3);line-height:1.6">Revenue is estimated using employee count × BLS industry benchmarks. Shown as a bucket (e.g. $1M–$5M) with a confidence indicator.</div>
-        </div>
-        <div class="db-footer">
-          <button class="btn btn-ghost" onclick="dbStep(2)">← Back</button>
-          <button class="btn btn-primary" onclick="dbStep(4)">Next: Criteria weights →</button>
-        </div>
-      </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
 
-      <!-- Panel 4: Criteria weights -->
-      <div class="db-panel" id="db-p4" style="display:none">
-        <div class="db-heading">How important is each factor?</div>
-        <div class="db-subheading">Set a weight of 1–3 for each criterion. Higher weight = more influence on the lead score.</div>
-        <div style="margin-bottom:24px">
-          <div class="weight-row">
-            <div class="weight-label">Business model (B2B preferred)</div>
-            <div class="weight-pills">
-              <div class="w-pill">1</div><div class="w-pill">2</div><div class="w-pill active">3</div>
-            </div>
+          <div class="db-confirm-row" id="db-row-industry">
+            <div class="db-confirm-label">Industries</div>
+            <div class="db-confirm-val" id="db-val-industry"></div>
+            <button class="db-edit-btn" onclick="dbEditField('industry')">Edit</button>
           </div>
-          <div class="weight-row">
-            <div class="weight-label">Geography match</div>
-            <div class="weight-pills">
-              <div class="w-pill">1</div><div class="w-pill active">2</div><div class="w-pill">3</div>
-            </div>
-          </div>
-          <div class="weight-row">
-            <div class="weight-label">Revenue range fit</div>
-            <div class="weight-pills">
-              <div class="w-pill">1</div><div class="w-pill">2</div><div class="w-pill active">3</div>
-            </div>
-          </div>
-          <div class="weight-row">
-            <div class="weight-label">Low digital sophistication</div>
-            <div class="weight-pills">
-              <div class="w-pill">1</div><div class="w-pill active">2</div><div class="w-pill">3</div>
-            </div>
-          </div>
-          <div class="weight-row">
-            <div class="weight-label">Retirement age signal</div>
-            <div class="weight-pills">
-              <div class="w-pill active">1</div><div class="w-pill">2</div><div class="w-pill">3</div>
-            </div>
-          </div>
-        </div>
-        <div class="db-footer">
-          <button class="btn btn-ghost" onclick="dbStep(3)">← Back</button>
-          <button class="btn btn-primary" onclick="dbStep(5)">Next: Review →</button>
-        </div>
-      </div>
 
-      <!-- Panel 5: Review -->
-      <div class="db-panel" id="db-p5" style="display:none">
-        <div class="db-heading">Review your Deal Box</div>
-        <div class="db-subheading">This is what drives every lead score. You can edit it anytime from settings.</div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
-            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Industries</div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <span class="badge badge-teal">HVAC</span>
-              <span class="badge badge-teal">Pest control</span>
-              <span class="badge badge-teal">Landscaping</span>
-            </div>
+          <div class="db-confirm-row" id="db-row-geo">
+            <div class="db-confirm-label">Geography</div>
+            <div class="db-confirm-val" id="db-val-geo"></div>
+            <button class="db-edit-btn" onclick="dbEditField('geo')">Edit</button>
           </div>
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
-            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Geography</div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <span class="badge badge-teal">Texas</span>
-              <span class="badge badge-teal">Florida</span>
-            </div>
+
+          <div class="db-confirm-row" id="db-row-revenue">
+            <div class="db-confirm-label">Revenue range</div>
+            <div class="db-confirm-val" id="db-val-revenue"></div>
+            <button class="db-edit-btn" onclick="dbEditField('revenue')">Edit</button>
           </div>
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
-            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Financials</div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <span class="badge badge-amber">$1M – $5M revenue</span>
-              <span class="badge badge-teal">B2B preferred</span>
-            </div>
+
+          <div class="db-confirm-row" id="db-row-model">
+            <div class="db-confirm-label">Business model</div>
+            <div class="db-confirm-val" id="db-val-model"></div>
+            <button class="db-edit-btn" onclick="dbEditField('model')">Edit</button>
           </div>
-          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px">
-            <div style="font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Top weights</div>
-            <div style="font-size:13px;color:var(--text-2);line-height:1.8">
-              Business model ●●●&nbsp;&nbsp;·&nbsp;&nbsp;Revenue fit ●●●&nbsp;&nbsp;·&nbsp;&nbsp;Geography ●●○
-            </div>
+
+          <div class="db-confirm-row" id="db-row-signals">
+            <div class="db-confirm-label">Priority signals</div>
+            <div class="db-confirm-val" id="db-val-signals"></div>
+            <button class="db-edit-btn" onclick="dbEditField('signals')">Edit</button>
           </div>
+
         </div>
-        <div class="db-footer">
-          <button class="btn btn-ghost" onclick="dbStep(4)">← Back</button>
-          <button class="btn btn-primary" onclick="show('s3',null)">Build my list — 10 credits →</button>
+
+        <div style="background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--text-2);line-height:1.6">
+          Anything look off? Click Edit on any row or <button onclick="dbReset()" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:13px;padding:0;text-decoration:underline">rewrite your thesis</button> from scratch.
+        </div>
+
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-ghost" style="flex:1" onclick="dbReset()">Start over</button>
+          <button class="btn btn-primary" style="flex:2" onclick="show('s3',null)">Confirm and build my list — 10 credits →</button>
         </div>
       </div>
 
@@ -1613,28 +1513,108 @@ document.querySelectorAll('.weight-pills').forEach(group => {
   });
 });
 
-function dbStep(n) {
-  // sidebar step j=0 is Profile (always done), j=1..5 map to panels 1..5
-  const steps = document.querySelectorAll('#s2 .sidebar-step');
-  steps.forEach((s, j) => {
-    s.classList.remove('active', 'done');
-    if (j === 0) { s.classList.add('done'); return; }
-    if (j < n) s.classList.add('done');
-    if (j === n) s.classList.add('active');
-  });
-  document.querySelectorAll('.db-panel').forEach(p => p.style.display = 'none');
-  const panel = document.getElementById('db-p' + n);
-  if (panel) panel.style.display = 'block';
+const exampleTheses = [
+  "I am looking for HVAC or pest control companies in Texas and Florida, B2B focused, doing between $1M and $5M in revenue. Ideally the owner is nearing retirement and the business has low digital presence — somewhere I can add real value.",
+  "Looking for plumbing businesses in the Southeast US — Georgia, Tennessee, or North Carolina. Under $2M revenue, any business model. Ideally a sole proprietor who has been running it for 15+ years.",
+  "Interested in accounting firms in New York state. B2B only, revenue between $5M and $10M. Looking for firms with older partners who may want to transition out."
+];
+
+const parsedResults = [
+  {
+    thesis: "I am looking for HVAC or pest control companies in Texas and Florida, B2B focused, doing between $1M and $5M in revenue. Ideally the owner is nearing retirement and the business has low digital presence — somewhere I can add real value.",
+    industry: ["HVAC", "Pest control"],
+    geo: ["Texas", "Florida"],
+    revenue: "$1M – $5M",
+    model: "B2B only",
+    signals: ["Retirement age", "Low digital presence"]
+  },
+  {
+    thesis: "Looking for plumbing businesses in the Southeast US — Georgia, Tennessee, or North Carolina. Under $2M revenue, any business model. Ideally a sole proprietor who has been running it for 15+ years.",
+    industry: ["Plumbing"],
+    geo: ["Georgia", "Tennessee", "North Carolina"],
+    revenue: "Under $2M",
+    model: "Any",
+    signals: ["Long-established", "Sole proprietor"]
+  },
+  {
+    thesis: "Interested in accounting firms in New York state. B2B only, revenue between $5M and $10M. Looking for firms with older partners who may want to transition out.",
+    industry: ["Accounting firms"],
+    geo: ["New York"],
+    revenue: "$5M – $10M",
+    model: "B2B only",
+    signals: ["Retirement age"]
+  }
+];
+
+let currentParsed = null;
+
+function dbFill(idx) {
+  const ta = document.getElementById('db-thesis-input');
+  ta.value = exampleTheses[idx];
+  ta.dispatchEvent(new Event('input'));
+  currentParsed = parsedResults[idx];
 }
 
-const stepPanelMap = [null, 1, 2, 3, 4, 5];
-document.querySelectorAll('#s2 .sidebar-step').forEach((step, i) => {
-  step.addEventListener('click', () => {
-    const panelIdx = stepPanelMap[i];
-    if (panelIdx === null) return;
-    dbStep(panelIdx);
+const dbInput = document.getElementById('db-thesis-input');
+if (dbInput) {
+  dbInput.addEventListener('input', () => {
+    const len = dbInput.value.trim().length;
+    const btn = document.getElementById('db-parse-btn');
+    const counter = document.getElementById('db-char-count');
+    if (counter) counter.textContent = len + ' characters';
+    if (btn) {
+      btn.disabled = len < 20;
+      btn.style.opacity = len < 20 ? '.4' : '1';
+    }
   });
-});
+}
+
+function dbParse() {
+  const val = document.getElementById('db-thesis-input').value.trim();
+  if (!val) return;
+  document.getElementById('db-input-state').style.display = 'none';
+  document.getElementById('db-parsing-state').style.display = 'block';
+  const labels = ['Reading your thesis...', 'Extracting industries...', 'Identifying geography...', 'Parsing financials...', 'Confirming signals...'];
+  let i = 0;
+  const interval = setInterval(() => {
+    i++;
+    const el = document.getElementById('db-parse-label');
+    if (el && labels[i]) el.textContent = labels[i];
+    if (i >= labels.length - 1) {
+      clearInterval(interval);
+      setTimeout(() => {
+        document.getElementById('db-parsing-state').style.display = 'none';
+        const result = currentParsed || parsedResults[0];
+        dbShowConfirm(val, result);
+      }, 400);
+    }
+  }, 500);
+}
+
+function dbShowConfirm(thesis, result) {
+  document.getElementById('db-thesis-display').textContent = thesis;
+  document.getElementById('db-val-industry').innerHTML = result.industry.map(v => `<span class="badge badge-teal">${v}</span>`).join('');
+  document.getElementById('db-val-geo').innerHTML = result.geo.map(v => `<span class="badge badge-teal">${v}</span>`).join('');
+  document.getElementById('db-val-revenue').innerHTML = `<span class="badge badge-amber">${result.revenue}</span>`;
+  document.getElementById('db-val-model').innerHTML = `<span class="badge badge-teal">${result.model}</span>`;
+  document.getElementById('db-val-signals').innerHTML = result.signals.map(v => `<span class="badge badge-gray">${v}</span>`).join('');
+  document.getElementById('db-confirm-state').style.display = 'block';
+}
+
+function dbReset() {
+  document.getElementById('db-confirm-state').style.display = 'none';
+  document.getElementById('db-parsing-state').style.display = 'none';
+  document.getElementById('db-input-state').style.display = 'block';
+  const ta = document.getElementById('db-thesis-input');
+  if (ta) { ta.value = ''; ta.dispatchEvent(new Event('input')); }
+  currentParsed = null;
+}
+
+function dbEditField(field) {
+  const ta = document.getElementById('db-thesis-input');
+  if (ta) ta.focus();
+  dbReset();
+}
 
 let saved = 7, passed = 5, remaining = 8, actions = 3;
 function updateFeedStats() {
