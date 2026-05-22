@@ -498,7 +498,46 @@ tbody td:first-child{padding-left:20px}
 }
 
 
+
+/* ── Bolton AI panel ─────────────────────────────────── */
+.bolt-msg{display:flex;flex-direction:column;gap:4px}
+.bolt-msg.bolt-user{align-items:flex-end}
+.bolt-msg.bolt-system{align-items:flex-start}
+.bolt-msg.bolt-assistant{align-items:flex-start}
+.bolt-bubble{
+  max-width:85%;font-size:13px;line-height:1.6;
+  padding:10px 14px;border-radius:12px;
+}
+.bolt-system .bolt-bubble,.bolt-assistant .bolt-bubble{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-2);border-radius:4px 12px 12px 12px;
+}
+.bolt-user .bolt-bubble{
+  background:var(--teal-faint2);border:1px solid rgba(0,200,150,.2);
+  color:var(--text);border-radius:12px 4px 12px 12px;
+}
+.bolt-suggestion{
+  background:var(--surface);border:1px solid var(--border-2);
+  border-radius:20px;color:var(--text-2);font-size:12px;
+  padding:6px 14px;cursor:pointer;font-family:var(--font-body);
+  text-align:left;transition:all .15s;
+}
+.bolt-suggestion:hover{background:var(--surface-2);color:var(--teal);border-color:rgba(0,200,150,.3)}
+.bolt-typing{display:flex;gap:4px;padding:12px 14px;align-items:center}
+.bolt-dot{width:6px;height:6px;border-radius:50%;background:var(--text-3);animation:boltDot 1.2s ease-in-out infinite}
+.bolt-dot:nth-child(2){animation-delay:.2s}
+.bolt-dot:nth-child(3){animation-delay:.4s}
+@keyframes boltDot{0%,80%,100%{transform:scale(0.8);opacity:.5}40%{transform:scale(1.1);opacity:1}}
+
 /* ── Natural language deal box ───────────────────────── */
+.db-clarify-opt{
+  background:var(--surface);border:1px solid var(--border-2);
+  border-radius:var(--r);padding:11px 14px;cursor:pointer;
+  font-family:var(--font-body);text-align:left;width:100%;
+  transition:all .15s;
+}
+.db-clarify-opt:hover{border-color:rgba(0,200,150,.3);background:var(--surface-2)}
+
 .db-example-btn{
   background:var(--surface);border:1px solid var(--border-2);
   border-radius:20px;color:var(--text-2);font-size:12px;
@@ -698,8 +737,52 @@ tbody td:first-child{padding-left:20px}
 
       <!-- State: parsing animation -->
       <div id="db-parsing-state" style="display:none;text-align:center;padding:40px 0">
-        <div style="font-size:28px;margin-bottom:16px" id="db-parse-spinner">⟳</div>
+        <div style="font-size:28px;margin-bottom:16px" id="db-parse-spinner">&#x27F3;</div>
         <div style="font-size:15px;color:var(--text-2)" id="db-parse-label">Reading your thesis...</div>
+      </div>
+
+      <!-- State: clarification chat -->
+      <div id="db-clarify-state" style="display:none">
+        <div style="margin-bottom:20px">
+          <div style="font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:6px">One quick question</div>
+          <div style="font-size:13px;color:var(--text-2)">Your thesis mentions <span id="db-clarify-industry" style="color:var(--teal)"></span> — we want to make sure we source the right companies.</div>
+        </div>
+
+        <!-- Chat thread -->
+        <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px">
+          <div style="padding:20px;display:flex;flex-direction:column;gap:16px" id="db-chat-thread">
+
+            <!-- AI message -->
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div style="width:26px;height:26px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px">&#9889;</div>
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:12px 16px;font-size:14px;color:var(--text-2);line-height:1.7;flex:1" id="db-clarify-question"></div>
+            </div>
+
+            <!-- Answer options -->
+            <div id="db-clarify-options" style="display:flex;flex-direction:column;gap:8px;padding-left:36px"></div>
+
+            <!-- Follow-up question (shown after first answer) -->
+            <div id="db-followup-block" style="display:none;flex-direction:column;gap:12px">
+              <div style="display:flex;gap:10px;align-items:flex-start">
+                <div style="width:26px;height:26px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px">&#9889;</div>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:12px 16px;font-size:14px;color:var(--text-2);line-height:1.7;flex:1" id="db-followup-question"></div>
+              </div>
+              <div id="db-followup-options" style="display:flex;flex-direction:column;gap:8px;padding-left:36px"></div>
+            </div>
+
+          </div>
+
+          <!-- Custom text input -->
+          <div style="border-top:1px solid var(--border);padding:10px 16px;display:flex;gap:8px">
+            <input type="text" id="db-clarify-custom" placeholder="Or describe in your own words..." style="flex:1;font-size:13px;padding:7px 12px">
+            <button class="btn btn-ghost btn-sm" onclick="dbClarifyCustom()">Add</button>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-ghost" style="flex:1" onclick="dbReset()">Start over</button>
+          <button class="btn btn-primary" style="flex:2;opacity:.4" id="db-clarify-next" disabled onclick="dbClarifyDone()">Continue &#8594;</button>
+        </div>
       </div>
 
       <!-- State: confirmation -->
@@ -823,10 +906,46 @@ tbody td:first-child{padding-left:20px}
   <div class="top-bar">
     <div class="top-bar-logo">TBD</div>
     <div class="top-bar-right">
+      <button onclick="boltToggle()" id="bolt-btn" style="background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text-2);font-size:13px;font-weight:500;padding:5px 14px;cursor:pointer;display:flex;align-items:center;gap:7px;font-family:var(--font-body);transition:all .15s">
+        <span style="font-size:15px">&#9889;</span> Bolton
+      </button>
       <div class="credit-pill">35 credits</div>
       <div class="avatar">NL</div>
     </div>
   </div>
+
+  <!-- Bolton slide-out panel -->
+  <div id="bolton-panel" style="position:fixed;top:0;right:-420px;width:420px;height:100vh;background:var(--navy-2);border-left:1px solid var(--border-2);z-index:200;display:flex;flex-direction:column;transition:right .25s ease">
+    <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.3);display:flex;align-items:center;justify-content:center;font-size:14px">&#9889;</div>
+        <div>
+          <div style="font-size:14px;font-weight:500;color:var(--text)">Bolton</div>
+          <div style="font-size:11px;color:var(--text-3)">AI research assistant</div>
+        </div>
+      </div>
+      <button onclick="boltToggle()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:18px;padding:4px 8px">&#10005;</button>
+    </div>
+    <div id="bolt-messages" style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+      <div class="bolt-msg bolt-system">
+        <div class="bolt-bubble">Hey Nicholas &#8212; I can research any lead, explain signals, or take actions like saving or passing leads. Try asking me something about Lone Star HVAC, or say "save all B2B leads".</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px" id="bolt-suggestions">
+        <button class="bolt-suggestion" onclick="boltSend(this.textContent)">What do we know about Lone Star HVAC?</button>
+        <button class="bolt-suggestion" onclick="boltSend(this.textContent)">Why does it have a retirement signal?</button>
+        <button class="bolt-suggestion" onclick="boltSend(this.textContent)">Is the B2C lead worth keeping?</button>
+        <button class="bolt-suggestion" onclick="boltSend(this.textContent)">Save all B2B leads in this batch</button>
+      </div>
+    </div>
+    <div style="padding:14px 16px;border-top:1px solid var(--border);flex-shrink:0">
+      <div style="display:flex;gap:8px;align-items:flex-end">
+        <textarea id="bolt-input" rows="2" placeholder="Ask anything about your leads..." style="flex:1;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text);font-family:var(--font-body);font-size:13px;padding:9px 12px;resize:none;outline:none;line-height:1.5;transition:border .15s"></textarea>
+        <button onclick="boltSendInput()" id="bolt-send" style="width:36px;height:36px;border-radius:var(--r);background:var(--teal);border:none;cursor:pointer;font-size:16px;flex-shrink:0;color:var(--navy);font-weight:700">&#8594;</button>
+      </div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:8px;text-align:center">Deep research costs 10 credits per run</div>
+    </div>
+  </div>
+  <div id="bolton-overlay" onclick="boltToggle()" style="position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199;display:none"></div>
 
   <div class="feed-layout" style="flex:1">
     <div class="feed-main">
@@ -1569,12 +1688,86 @@ if (dbInput) {
   });
 }
 
+// Clarification questions per industry
+const clarifyMap = {
+  'HVAC': {
+    question: "HVAC businesses can serve very different clients. Which type are you looking for?",
+    options: [
+      { label: "Commercial only", sub: "Office buildings, warehouses, factories — recurring B2B contracts", key: "B2B commercial" },
+      { label: "Residential only", sub: "Homeowners — seasonal, higher volume but lower ticket size", key: "B2C residential" },
+      { label: "Both — open to either", sub: "Mixed revenue base, more leads to work with", key: "Mixed" }
+    ],
+    followup: {
+      question: "One more — when you say commercial, are you thinking service contracts or project-based installs?",
+      options: [
+        { label: "Service contracts", sub: "Recurring maintenance revenue — more predictable", key: "recurring contracts" },
+        { label: "Project installs", sub: "New construction or retrofits — higher ticket, less recurring", key: "project installs" },
+        { label: "Either works", sub: "No preference on contract structure", key: "any" }
+      ]
+    }
+  },
+  'Pest control': {
+    question: "Pest control companies operate very differently depending on who they serve. What client type matters most to you?",
+    options: [
+      { label: "Commercial / industrial", sub: "Warehouses, restaurants, hotels — higher-value B2B contracts", key: "B2B commercial" },
+      { label: "Residential", sub: "Door-to-door homeowners — high volume, subscription-based", key: "B2C residential" },
+      { label: "No preference", sub: "Cast the net wide and let the score decide", key: "Mixed" }
+    ],
+    followup: {
+      question: "Are you open to businesses that do fumigation or termite work, or just general pest management?",
+      options: [
+        { label: "General pest management", sub: "Rodents, insects, routine treatments", key: "general" },
+        { label: "Specialist — termite / fumigation", sub: "Higher margin, more specialised equipment", key: "specialist" },
+        { label: "Open to both", sub: "", key: "any" }
+      ]
+    }
+  },
+  'Plumbing': {
+    question: "Plumbing businesses vary a lot by focus. What are you looking for?",
+    options: [
+      { label: "Commercial plumbing", sub: "Construction, facilities management — larger contracts", key: "B2B commercial" },
+      { label: "Residential service", sub: "Repairs and installs for homeowners", key: "B2C residential" },
+      { label: "Either", sub: "Open to both models", key: "Mixed" }
+    ],
+    followup: {
+      question: "Are you prioritising businesses with a service van fleet, or is a smaller owner-operator setup fine?",
+      options: [
+        { label: "Fleet operation", sub: "Multiple vans, 5+ employees — more infrastructure to scale", key: "fleet" },
+        { label: "Owner-operator is fine", sub: "Smaller, simpler — easier acquisition but less scale", key: "owner-operator" },
+        { label: "No preference", sub: "", key: "any" }
+      ]
+    }
+  }
+};
+
+const defaultClarify = {
+  question: "How important is the business model to you? Some businesses serve both commercial and residential clients.",
+  options: [
+    { label: "B2B / commercial only", sub: "Contracts with businesses — more predictable revenue", key: "B2B commercial" },
+    { label: "B2C / residential only", sub: "Direct to consumers — higher volume, lower ticket", key: "B2C residential" },
+    { label: "Either is fine", sub: "No strong preference", key: "Mixed" }
+  ],
+  followup: {
+    question: "Are you open to businesses with seasonal revenue, or do you need year-round cash flow?",
+    options: [
+      { label: "Year-round only", sub: "Consistent monthly revenue is a must", key: "year-round" },
+      { label: "Seasonal is fine", sub: "Willing to manage cash flow seasonality", key: "seasonal ok" },
+      { label: "No preference", sub: "", key: "any" }
+    ]
+  }
+};
+
+let clarifyAnswers = {};
+let pendingParsed = null;
+let pendingThesis = '';
+
 function dbParse() {
   const val = document.getElementById('db-thesis-input').value.trim();
   if (!val) return;
+  pendingThesis = val;
   document.getElementById('db-input-state').style.display = 'none';
   document.getElementById('db-parsing-state').style.display = 'block';
-  const labels = ['Reading your thesis...', 'Extracting industries...', 'Identifying geography...', 'Parsing financials...', 'Confirming signals...'];
+  const labels = ['Reading your thesis...', 'Extracting industries...', 'Identifying geography...', 'Detecting ambiguities...', 'Preparing questions...'];
   let i = 0;
   const interval = setInterval(() => {
     i++;
@@ -1584,11 +1777,105 @@ function dbParse() {
       clearInterval(interval);
       setTimeout(() => {
         document.getElementById('db-parsing-state').style.display = 'none';
-        const result = currentParsed || parsedResults[0];
-        dbShowConfirm(val, result);
+        pendingParsed = currentParsed || parsedResults[0];
+        dbShowClarify(pendingParsed);
       }, 400);
     }
   }, 500);
+}
+
+function dbShowClarify(result) {
+  clarifyAnswers = {};
+  const firstIndustry = result.industry[0];
+  const clarify = clarifyMap[firstIndustry] || defaultClarify;
+  const industryEl = document.getElementById('db-clarify-industry');
+  if (industryEl) industryEl.textContent = result.industry.join(' + ');
+  const qEl = document.getElementById('db-clarify-question');
+  if (qEl) qEl.textContent = clarify.question;
+  const optsEl = document.getElementById('db-clarify-options');
+  if (optsEl) {
+    optsEl.innerHTML = '';
+    clarify.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'db-clarify-opt';
+      btn.innerHTML = `<div style="font-size:13px;font-weight:500;color:var(--text)">${opt.label}</div>${opt.sub ? `<div style="font-size:12px;color:var(--text-3);margin-top:2px">${opt.sub}</div>` : ''}`;
+      btn.onclick = () => dbSelectOpt(btn, 'model', opt.key, clarify.followup, optsEl);
+      optsEl.appendChild(btn);
+    });
+  }
+  document.getElementById('db-clarify-state').style.display = 'block';
+}
+
+function dbSelectOpt(btn, field, value, followup, container) {
+  container.querySelectorAll('.db-clarify-opt').forEach(b => {
+    b.style.borderColor = '';
+    b.style.background = 'var(--surface)';
+    b.querySelector('div').style.color = 'var(--text)';
+  });
+  btn.style.borderColor = 'rgba(0,200,150,.4)';
+  btn.style.background = 'var(--teal-faint)';
+  clarifyAnswers[field] = value;
+
+  // Add user reply bubble
+  const thread = document.getElementById('db-chat-thread');
+  const existing = thread.querySelector('.db-user-reply-' + field);
+  if (!existing) {
+    const reply = document.createElement('div');
+    reply.className = 'db-user-reply-' + field;
+    reply.style.cssText = 'display:flex;justify-content:flex-end';
+    reply.innerHTML = `<div style="background:var(--teal-faint2);border:1px solid rgba(0,200,150,.2);border-radius:12px 4px 12px 12px;padding:10px 14px;font-size:13px;color:var(--text);max-width:80%">${btn.querySelector('div').textContent}</div>`;
+    thread.appendChild(reply);
+  }
+
+  // Show follow-up question
+  if (followup) {
+    const fBlock = document.getElementById('db-followup-block');
+    const fQ = document.getElementById('db-followup-question');
+    const fOpts = document.getElementById('db-followup-options');
+    if (fBlock && fQ && fOpts) {
+      fQ.textContent = followup.question;
+      fOpts.innerHTML = '';
+      followup.options.forEach(opt => {
+        const b2 = document.createElement('button');
+        b2.className = 'db-clarify-opt';
+        b2.innerHTML = `<div style="font-size:13px;font-weight:500;color:var(--text)">${opt.label}</div>${opt.sub ? `<div style="font-size:12px;color:var(--text-3);margin-top:2px">${opt.sub}</div>` : ''}`;
+        b2.onclick = () => dbSelectOpt(b2, 'sub_model', opt.key, null, fOpts);
+        fOpts.appendChild(b2);
+      });
+      fBlock.style.display = 'flex';
+      const nextBtn = document.getElementById('db-clarify-next');
+      if (nextBtn) { nextBtn.disabled = false; nextBtn.style.opacity = '1'; }
+    }
+  } else {
+    const nextBtn = document.getElementById('db-clarify-next');
+    if (nextBtn) { nextBtn.disabled = false; nextBtn.style.opacity = '1'; }
+  }
+}
+
+function dbClarifyCustom() {
+  const input = document.getElementById('db-clarify-custom');
+  if (!input || !input.value.trim()) return;
+  clarifyAnswers['custom'] = input.value.trim();
+  const thread = document.getElementById('db-chat-thread');
+  const reply = document.createElement('div');
+  reply.style.cssText = 'display:flex;justify-content:flex-end';
+  reply.innerHTML = `<div style="background:var(--teal-faint2);border:1px solid rgba(0,200,150,.2);border-radius:12px 4px 12px 12px;padding:10px 14px;font-size:13px;color:var(--text);max-width:80%">${input.value.trim()}</div>`;
+  thread.appendChild(reply);
+  input.value = '';
+  const nextBtn = document.getElementById('db-clarify-next');
+  if (nextBtn) { nextBtn.disabled = false; nextBtn.style.opacity = '1'; }
+}
+
+function dbClarifyDone() {
+  document.getElementById('db-clarify-state').style.display = 'none';
+  const result = pendingParsed || parsedResults[0];
+  if (clarifyAnswers.model && clarifyAnswers.model !== 'Mixed') {
+    result.model = clarifyAnswers.model;
+  }
+  if (clarifyAnswers.sub_model && clarifyAnswers.sub_model !== 'any') {
+    result.signals = [...result.signals.filter(s => s !== 'B2B commercial' && s !== 'B2C residential'), clarifyAnswers.sub_model];
+  }
+  dbShowConfirm(pendingThesis, result);
 }
 
 function dbShowConfirm(thesis, result) {
@@ -1602,19 +1889,23 @@ function dbShowConfirm(thesis, result) {
 }
 
 function dbReset() {
-  document.getElementById('db-confirm-state').style.display = 'none';
-  document.getElementById('db-parsing-state').style.display = 'none';
+  ['db-confirm-state','db-parsing-state','db-clarify-state'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
   document.getElementById('db-input-state').style.display = 'block';
   const ta = document.getElementById('db-thesis-input');
   if (ta) { ta.value = ''; ta.dispatchEvent(new Event('input')); }
-  currentParsed = null;
+  currentParsed = null; pendingParsed = null; clarifyAnswers = {};
+  const fb = document.getElementById('db-followup-block');
+  if (fb) fb.style.display = 'none';
+  const opts = document.getElementById('db-clarify-options');
+  if (opts) opts.innerHTML = '';
+  const fopts = document.getElementById('db-followup-options');
+  if (fopts) fopts.innerHTML = '';
 }
 
-function dbEditField(field) {
-  const ta = document.getElementById('db-thesis-input');
-  if (ta) ta.focus();
-  dbReset();
-}
+function dbEditField(field) { dbReset(); }
 
 let saved = 7, passed = 5, remaining = 8, actions = 3;
 function updateFeedStats() {
@@ -1840,6 +2131,97 @@ function launchCampaign() {
   }, 900);
 }
 
+
+// ── Bolton AI assistant ───────────────────────────────
+let boltOpen = false;
+const boltHistory = [];
+
+const boltContext = `You are Bolton, an AI research assistant embedded in a business acquisition platform called TBD.
+The user is Nicholas Lazares, a solo searcher looking to acquire HVAC or pest control businesses in Texas and Florida, B2B focused, $1M–$5M revenue.
+Current lead feed contains:
+1. Lone Star HVAC Services — Austin TX — Score 87 — B2B commercial — Est $1M-$5M — Owner: James Whitfield (age ~63, retirement signal) — No website, No LinkedIn, BBB A+, 94 Google reviews at 4.8 stars — In business 27 years — Sole proprietor — 0 BBB complaints
+2. Precision Pest Control Inc. — Houston TX — Score 80 — B2B commercial — Est $1M-$5M — Owner: Robert Diaz (partial info) — No website, No LinkedIn, BBB B, 47 Google reviews at 4.6 stars — In business 21 years — LLC — 2 BBB complaints
+3. Gulf Coast Climate Control — Dallas TX — Score 63 — B2C residential — Est under $1M — Owner not identified (SoS agent is a law firm) — Basic website, Maps listed, LinkedIn found, BBB A — In business 24 years — LLC — 0 BBB complaints
+The user has saved 7 leads so far and passed on 5 (mainly B2C / residential).
+Your job: answer questions about these leads, explain signals, help the user decide whether to save or pass, and take platform actions when asked (e.g. "save all B2B leads", "pass the B2C one", "research Lone Star HVAC").
+Keep responses concise — 2-4 sentences unless asked to go deeper. Never make up data not in the context above. If asked to take an action, confirm it clearly.`;
+
+function boltToggle() {
+  boltOpen = !boltOpen;
+  const panel = document.getElementById('bolton-panel');
+  const overlay = document.getElementById('bolton-overlay');
+  const btn = document.getElementById('bolt-btn');
+  if (panel) panel.style.right = boltOpen ? '0' : '-420px';
+  if (overlay) overlay.style.display = boltOpen ? 'block' : 'none';
+  if (btn) {
+    btn.style.background = boltOpen ? 'var(--teal-faint2)' : 'var(--surface)';
+    btn.style.borderColor = boltOpen ? 'rgba(0,200,150,.3)' : '';
+    btn.style.color = boltOpen ? 'var(--teal)' : '';
+  }
+  if (boltOpen) setTimeout(() => { const i = document.getElementById('bolt-input'); if(i) i.focus(); }, 300);
+}
+
+function boltSendInput() {
+  const input = document.getElementById('bolt-input');
+  if (!input || !input.value.trim()) return;
+  boltSend(input.value.trim());
+  input.value = '';
+}
+
+document.getElementById('bolt-input')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); boltSendInput(); }
+});
+
+function boltAppend(role, html) {
+  const msgs = document.getElementById('bolt-messages');
+  if (!msgs) return;
+  const div = document.createElement('div');
+  div.className = `bolt-msg bolt-${role}`;
+  div.innerHTML = `<div class="bolt-bubble">${html}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function boltTyping() {
+  const msgs = document.getElementById('bolt-messages');
+  if (!msgs) return null;
+  const div = document.createElement('div');
+  div.className = 'bolt-msg bolt-assistant';
+  div.innerHTML = `<div class="bolt-bubble bolt-typing"><div class="bolt-dot"></div><div class="bolt-dot"></div><div class="bolt-dot"></div></div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+async function boltSend(text) {
+  const suggestions = document.getElementById('bolt-suggestions');
+  if (suggestions) suggestions.remove();
+  boltAppend('user', text);
+  boltHistory.push({ role: 'user', content: text });
+  const typingEl = boltTyping();
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: boltContext,
+        messages: boltHistory
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Something went wrong — please try again.';
+    if (typingEl) typingEl.remove();
+    boltHistory.push({ role: 'assistant', content: reply });
+    const escaped = reply.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    boltAppend('assistant', escaped);
+  } catch(err) {
+    if (typingEl) typingEl.remove();
+    boltAppend('assistant', 'Could not reach the API right now. Try again in a moment.');
+  }
+}
 </script>
 </body>
 </html>
