@@ -1614,23 +1614,25 @@ document.querySelectorAll('.weight-pills').forEach(group => {
 });
 
 function dbStep(n) {
+  // sidebar step j=0 is Profile (always done), j=1..5 map to panels 1..5
   const steps = document.querySelectorAll('#s2 .sidebar-step');
   steps.forEach((s, j) => {
     s.classList.remove('active', 'done');
-    if (j < n - 1) s.classList.add('done');
-    if (j === n - 1) s.classList.add('active');
+    if (j === 0) { s.classList.add('done'); return; }
+    if (j < n) s.classList.add('done');
+    if (j === n) s.classList.add('active');
   });
   document.querySelectorAll('.db-panel').forEach(p => p.style.display = 'none');
   const panel = document.getElementById('db-p' + n);
   if (panel) panel.style.display = 'block';
-  const stepLabels = ['','Profile','Industries','Geography','Financials','Criteria weights'];
-  const footerNote = document.querySelector('#s2 .db-footer span');
 }
 
+const stepPanelMap = [null, 1, 2, 3, 4, 5];
 document.querySelectorAll('#s2 .sidebar-step').forEach((step, i) => {
   step.addEventListener('click', () => {
-    if (i === 0) return;
-    dbStep(i + 1);
+    const panelIdx = stepPanelMap[i];
+    if (panelIdx === null) return;
+    dbStep(panelIdx);
   });
 });
 
