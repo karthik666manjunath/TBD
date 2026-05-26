@@ -500,6 +500,49 @@ tbody td:first-child{padding-left:20px}
 
 
 
+
+/* ── Pipeline status tracker ─────────────────────────── */
+.pipeline-status-row{
+  display:flex;align-items:center;gap:8px;
+  padding:6px 8px;background:var(--surface);
+  border:1px solid var(--border);border-radius:6px;
+}
+.ps-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ps-saved{background:var(--teal)}
+.ps-contacted{background:var(--amber)}
+.ps-replied{background:#7C3AED}
+.ps-meeting{background:#2563EB}
+.ps-dead{background:var(--text-3)}
+.ps-name{flex:1;font-size:11px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ps-select{
+  background:transparent;border:none;
+  color:var(--text-3);font-size:10px;
+  font-family:var(--font-body);cursor:pointer;
+  outline:none;padding:0;max-width:80px;
+}
+
+/* ── Channel pills ───────────────────────────────────── */
+.ch-pill{
+  font-size:10px;padding:2px 7px;border-radius:4px;
+  font-weight:500;white-space:nowrap;
+}
+.ch-email{background:var(--teal-faint2);color:var(--teal)}
+.ch-letter{background:rgba(232,162,48,.1);color:var(--amber)}
+.ch-li{background:rgba(37,99,235,.12);color:#60A5FA}
+.ch-phone{background:rgba(124,58,237,.1);color:#A78BFA}
+
+/* ── Tooltip trigger ─────────────────────────────────── */
+.tooltip-trigger{
+  width:14px;height:14px;border-radius:50%;
+  background:var(--surface-2);border:1px solid var(--border-2);
+  color:var(--text-3);font-size:9px;font-weight:500;
+  display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;
+  transition:all .15s;
+}
+.tooltip-trigger:hover{background:var(--teal-faint2);color:var(--teal);border-color:rgba(0,200,150,.3)}
+#tooltip-overlay.visible{display:flex!important}
+
 /* ── Contact hierarchy ───────────────────────────────── */
 .contact-hierarchy{
   background:var(--surface);border:1px solid var(--border);
@@ -1026,7 +1069,7 @@ tbody td:first-child{padding-left:20px}
 
         <!-- Readiness -->
         <div class="readiness-bar">
-          <span class="readiness-label">Acquisition readiness</span>
+          <span class="readiness-label" style="display:flex;align-items:center;gap:5px">Acquisition readiness <span class="tooltip-trigger" onclick="showTooltip('readiness')">?</span></span>
           <div style="display:flex;align-items:center;gap:8px">
             <div class="readiness-flames">
               <span class="flame on">🔥</span><span class="flame on">🔥</span><span class="flame on">🔥</span>
@@ -1042,7 +1085,7 @@ tbody td:first-child{padding-left:20px}
             <div class="lead-meta-val good">27 yrs</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Revenue</div>
+            <div class="lead-meta-label" style="display:flex;align-items:center;gap:3px">Revenue <span class="tooltip-trigger" onclick="showTooltip('revenue')">?</span></div>
             <div class="lead-meta-val warn">$2.1M</div>
             <div style="font-size:9px;color:var(--teal);margin-top:1px">via Creditsafe ●●●</div>
           </div>
@@ -1051,7 +1094,7 @@ tbody td:first-child{padding-left:20px}
             <div class="lead-meta-val">Sole prop</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">B2B score</div>
+            <div class="lead-meta-label" style="display:flex;align-items:center;gap:3px">B2B score <span class="tooltip-trigger" onclick="showTooltip('b2b')">?</span></div>
             <div class="lead-meta-val good">91/100</div>
             <div style="font-size:9px;color:var(--text-3);margin-top:1px">name + BBB desc</div>
           </div>
@@ -1342,9 +1385,152 @@ tbody td:first-child{padding-left:20px}
       </div>
 
       <div class="sidebar-section">
+        <div class="sidebar-heading">Lead pipeline</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="pipeline-status-row" onclick="toggleStatus(this)">
+            <div class="ps-dot ps-saved"></div>
+            <span class="ps-name">Lone Star HVAC Services</span>
+            <select class="ps-select" onchange="updateStatus(this)">
+              <option>Saved</option>
+              <option>Contacted</option>
+              <option>Replied</option>
+              <option>Meeting booked</option>
+              <option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-contacted"></div>
+            <span class="ps-name">Texas Air Solutions LLC</span>
+            <select class="ps-select" onchange="updateStatus(this)">
+              <option>Saved</option>
+              <option selected>Contacted</option>
+              <option>Replied</option>
+              <option>Meeting booked</option>
+              <option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-replied"></div>
+            <span class="ps-name">Alamo Commercial HVAC</span>
+            <select class="ps-select" onchange="updateStatus(this)">
+              <option>Saved</option>
+              <option>Contacted</option>
+              <option selected>Replied</option>
+              <option>Meeting booked</option>
+              <option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-meeting"></div>
+            <span class="ps-name">Brazos Valley Cooling</span>
+            <select class="ps-select" onchange="updateStatus(this)">
+              <option>Saved</option>
+              <option>Contacted</option>
+              <option>Replied</option>
+              <option selected>Meeting booked</option>
+              <option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-dead"></div>
+            <span class="ps-name">Gulf Coast Climate</span>
+            <select class="ps-select" onchange="updateStatus(this)">
+              <option>Saved</option>
+              <option>Contacted</option>
+              <option>Replied</option>
+              <option>Meeting booked</option>
+              <option selected>Dead</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Lead pipeline</div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:8px">
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-saved"></div>
+            <span class="ps-name">Lone Star HVAC</span>
+            <select class="ps-select" onchange="updatePsStatus(this)">
+              <option selected>Saved</option><option>Contacted</option><option>Replied</option><option>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-contacted"></div>
+            <span class="ps-name">Texas Air Solutions</span>
+            <select class="ps-select" onchange="updatePsStatus(this)">
+              <option>Saved</option><option selected>Contacted</option><option>Replied</option><option>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-replied"></div>
+            <span class="ps-name">Alamo Commercial HVAC</span>
+            <select class="ps-select" onchange="updatePsStatus(this)">
+              <option>Saved</option><option>Contacted</option><option selected>Replied</option><option>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-meeting"></div>
+            <span class="ps-name">Brazos Valley Cooling</span>
+            <select class="ps-select" onchange="updatePsStatus(this)">
+              <option>Saved</option><option>Contacted</option><option>Replied</option><option selected>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row">
+            <div class="ps-dot ps-dead"></div>
+            <span class="ps-name">Gulf Coast Climate</span>
+            <select class="ps-select" onchange="updatePsStatus(this)">
+              <option>Saved</option><option>Contacted</option><option>Replied</option><option>Meeting booked</option><option selected>Dead</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
         <div class="sidebar-heading">Next batch</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:10px;line-height:1.5">75 more leads ready. Enriching next 20 costs 5 credits.</div>
         <button class="btn btn-ghost btn-sm" style="width:100%">Load next 20 — 5 credits</button>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Lead pipeline</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="pipeline-status-row" id="ps-1">
+            <div class="ps-dot ps-saved"></div>
+            <span class="ps-name">Lone Star HVAC</span>
+            <select class="ps-select" onchange="updatePsStatus(this,'ps-1')">
+              <option selected>Saved</option><option>Contacted</option><option>Replied</option><option>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row" id="ps-2">
+            <div class="ps-dot ps-contacted"></div>
+            <span class="ps-name">Texas Air Solutions</span>
+            <select class="ps-select" onchange="updatePsStatus(this,'ps-2')">
+              <option>Saved</option><option selected>Contacted</option><option>Replied</option><option>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row" id="ps-3">
+            <div class="ps-dot ps-replied"></div>
+            <span class="ps-name">Alamo Commercial HVAC</span>
+            <select class="ps-select" onchange="updatePsStatus(this,'ps-3')">
+              <option>Saved</option><option>Contacted</option><option selected>Replied</option><option>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row" id="ps-4">
+            <div class="ps-dot ps-meeting"></div>
+            <span class="ps-name">Brazos Valley Cooling</span>
+            <select class="ps-select" onchange="updatePsStatus(this,'ps-4')">
+              <option>Saved</option><option>Contacted</option><option>Replied</option><option selected>Meeting booked</option><option>Dead</option>
+            </select>
+          </div>
+          <div class="pipeline-status-row" id="ps-5">
+            <div class="ps-dot ps-dead"></div>
+            <span class="ps-name">Gulf Coast Climate</span>
+            <select class="ps-select" onchange="updatePsStatus(this,'ps-5')">
+              <option>Saved</option><option>Contacted</option><option>Replied</option><option>Meeting booked</option><option selected>Dead</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1670,17 +1856,78 @@ tbody td:first-child{padding-left:20px}
         </div>
       </div>
 
-      <!-- Leads in campaign -->
+      <!-- Deliverability check -->
       <div>
-        <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px">Recipients</div>
+        <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px">Deliverability checks</div>
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div class="recipient-row"><span class="recipient-name">Lone Star HVAC Services</span><span class="badge badge-teal" style="font-size:10px">3 channels</span></div>
-          <div class="recipient-row"><span class="recipient-name">Precision Pest Control Inc.</span><span class="badge badge-amber" style="font-size:10px">2 channels</span></div>
-          <div class="recipient-row"><span class="recipient-name">Texas Air Solutions LLC</span><span class="badge badge-teal" style="font-size:10px">3 channels</span></div>
-          <div class="recipient-row"><span class="recipient-name">Brazos Valley Cooling Co.</span><span class="badge badge-amber" style="font-size:10px">2 channels</span></div>
-          <div class="recipient-row"><span class="recipient-name">Alamo Commercial HVAC</span><span class="badge badge-teal" style="font-size:10px">3 channels</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r)">
+            <span style="color:var(--teal)">✓</span>
+            <span style="font-size:12px;color:var(--text)">Sending domain: nicholas-lazares.com</span>
+            <span style="font-size:10px;color:var(--teal);margin-left:auto">Warmed ●●●</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r)">
+            <span style="color:var(--teal)">✓</span>
+            <span style="font-size:12px;color:var(--text)">Daily send limit: 30 emails max</span>
+            <span style="font-size:10px;color:var(--teal);margin-left:auto">Safe</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r)">
+            <span style="color:var(--teal)">✓</span>
+            <span style="font-size:12px;color:var(--text)">No info@ addresses in campaign</span>
+            <span style="font-size:10px;color:var(--teal);margin-left:auto">Verified</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(232,162,48,.08);border:1px solid rgba(232,162,48,.2);border-radius:var(--r)">
+            <span style="color:var(--amber)">⚠</span>
+            <span style="font-size:12px;color:var(--text)">2 leads: no direct email — letter + call only</span>
+            <span style="font-size:10px;color:var(--amber);margin-left:auto">Adjusted</span>
+          </div>
         </div>
-        <div style="font-size:11px;color:var(--text-3);margin-top:8px">2 leads missing LinkedIn — only email + letter will send for those.</div>
+      </div>
+
+      <!-- Recipients with adaptive channels -->
+      <div>
+        <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px">Recipients — channels adapted per contact</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="recipient-row">
+            <span class="recipient-name">Lone Star HVAC Services</span>
+            <div style="display:flex;gap:4px">
+              <span class="ch-pill ch-email">✉ Email</span>
+              <span class="ch-pill ch-letter">✍ Letter</span>
+              <span class="ch-pill ch-li">in LI</span>
+            </div>
+          </div>
+          <div class="recipient-row">
+            <span class="recipient-name">Precision Pest Control</span>
+            <div style="display:flex;gap:4px">
+              <span class="ch-pill ch-letter">✍ Letter</span>
+              <span class="ch-pill ch-phone">📞 Call</span>
+              <span style="font-size:10px;color:var(--amber)">no email</span>
+            </div>
+          </div>
+          <div class="recipient-row">
+            <span class="recipient-name">Texas Air Solutions LLC</span>
+            <div style="display:flex;gap:4px">
+              <span class="ch-pill ch-email">✉ Email</span>
+              <span class="ch-pill ch-letter">✍ Letter</span>
+              <span class="ch-pill ch-li">in LI</span>
+            </div>
+          </div>
+          <div class="recipient-row">
+            <span class="recipient-name">Brazos Valley Cooling</span>
+            <div style="display:flex;gap:4px">
+              <span class="ch-pill ch-letter">✍ Letter</span>
+              <span class="ch-pill ch-phone">📞 Call</span>
+              <span style="font-size:10px;color:var(--amber)">no email</span>
+            </div>
+          </div>
+          <div class="recipient-row">
+            <span class="recipient-name">Alamo Commercial HVAC</span>
+            <div style="display:flex;gap:4px">
+              <span class="ch-pill ch-email">✉ Email</span>
+              <span class="ch-pill ch-letter">✍ Letter</span>
+              <span class="ch-pill ch-li">in LI</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Launch -->
@@ -2239,6 +2486,48 @@ function launchCampaign() {
 }
 
 
+
+// ── Pipeline status tracker ───────────────────────────
+const psColors = {
+  'Saved':'ps-saved','Contacted':'ps-contacted',
+  'Replied':'ps-replied','Meeting booked':'ps-meeting','Dead':'ps-dead'
+};
+function updatePsStatus(sel, rowId) {
+  const row = document.getElementById(rowId);
+  if (!row) return;
+  const dot = row.querySelector('.ps-dot');
+  if (!dot) return;
+  dot.className = 'ps-dot ' + (psColors[sel.value] || 'ps-saved');
+}
+
+// ── Tooltip system ────────────────────────────────────
+const tooltips = {
+  readiness: {
+    title: 'Acquisition readiness',
+    body: 'A composite score built from three signals: (1) Retirement age — is the owner likely 60+, inferred from founding date and SoS continuity; (2) Business age — has this been operating 15+ years; (3) Low digital sophistication — no website, no Google Maps, or Facebook-only presence. High means all three signals are present. This is the strongest indicator that an owner might be open to a conversation.'
+  },
+  b2b: {
+    title: 'B2B confidence score',
+    body: 'How likely this business serves commercial clients rather than homeowners. Calculated by scoring four text sources: the business name, the BBB description, Google Maps sub-categories, and the homepage first 500 characters. Keywords like "commercial", "industrial", "property manager", and "contracts" raise the score. "Residential", "homeowners", and "family" lower it. A score above 70 is treated as likely B2B. The source shown tells you which signal was strongest.'
+  },
+  revenue: {
+    title: 'Revenue estimate',
+    body: 'Revenue is estimated from the best available source. Three dots (●●●) means Creditsafe returned a verified figure for this business — the most reliable. Two dots (●●○) means we estimated from employee count or review count against BLS industry benchmarks. One dot (●○○) means we used the industry median as a default because no other signal was available. Never an exact figure — always an estimate. Treat it as a qualifier, not a price anchor.'
+  }
+};
+
+function showTooltip(key) {
+  const t = tooltips[key];
+  if (!t) return;
+  document.getElementById('tooltip-title').textContent = t.title;
+  document.getElementById('tooltip-body').textContent = t.body;
+  const overlay = document.getElementById('tooltip-overlay');
+  overlay.style.display = 'flex';
+}
+function hideTooltip() {
+  document.getElementById('tooltip-overlay').style.display = 'none';
+}
+
 // ── Bolton AI assistant ───────────────────────────────
 let boltOpen = false;
 const boltHistory = [];
@@ -2330,5 +2619,14 @@ async function boltSend(text) {
   }
 }
 </script>
+
+<!-- Tooltip overlay -->
+<div id="tooltip-overlay" onclick="hideTooltip()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center">
+  <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);padding:24px 28px;max-width:380px;margin:20px">
+    <div style="font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px" id="tooltip-title"></div>
+    <div style="font-size:13px;color:var(--text-2);line-height:1.7" id="tooltip-body"></div>
+    <button onclick="hideTooltip()" style="margin-top:16px;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text-2);font-size:13px;padding:7px 18px;cursor:pointer;font-family:var(--font-body)">Got it</button>
+  </div>
+</div>
 </body>
 </html>
