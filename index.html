@@ -499,6 +499,26 @@ tbody td:first-child{padding-left:20px}
 
 
 
+
+/* ── Contact hierarchy ───────────────────────────────── */
+.contact-hierarchy{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:10px 12px;margin-bottom:12px;
+}
+.contact-row{
+  display:flex;align-items:center;gap:8px;
+  padding:5px 0;border-bottom:1px solid var(--border);
+  font-size:12px;
+}
+.contact-row:last-child{border-bottom:none}
+.contact-icon{width:16px;text-align:center;flex-shrink:0;font-size:12px}
+.contact-val{flex:1;font-weight:500}
+.contact-src{font-size:10px;color:var(--text-3);white-space:nowrap;margin-left:auto;padding-left:8px}
+.contact-good .contact-val{color:var(--text)}
+.contact-warn .contact-val{color:var(--amber)}
+.contact-warn .contact-src{color:var(--red)}
+.contact-pending .contact-val{color:var(--text-3);font-style:italic;font-weight:400}
+
 /* ── Bolton AI panel ─────────────────────────────────── */
 .bolt-msg{display:flex;flex-direction:column;gap:4px}
 .bolt-msg.bolt-user{align-items:flex-end}
@@ -862,27 +882,42 @@ tbody td:first-child{padding-left:20px}
       <div class="pipeline-steps">
         <div class="pipe-step">
           <div class="pipe-dot done"></div>
-          <span class="pipe-label done">Scraping BBB and Google Maps</span>
+          <div style="flex:1">
+            <span class="pipe-label done">Tier 1 — BBB + Google Maps scrape</span>
+            <div style="font-size:11px;color:var(--text-3);margin-top:2px">~500 raw records pulled</div>
+          </div>
           <span class="pipe-time">Done</span>
         </div>
         <div class="pipe-step">
           <div class="pipe-dot done"></div>
-          <span class="pipe-label done">Filtering to your geography</span>
+          <div style="flex:1">
+            <span class="pipe-label done">Tier 2 — Signal pass</span>
+            <div style="font-size:11px;color:var(--text-3);margin-top:2px">B2B classification · revenue estimation · 500 → 84 leads</div>
+          </div>
           <span class="pipe-time">Done</span>
         </div>
         <div class="pipe-step">
           <div class="pipe-dot active"></div>
-          <span class="pipe-label active">Enriching top matches</span>
-          <span class="pipe-time" style="color:var(--amber)">~2 hrs left</span>
+          <div style="flex:1">
+            <span class="pipe-label active">Tier 3 — Deep enrichment (top 20)</span>
+            <div style="font-size:11px;color:var(--amber);margin-top:2px">Owner lookup · Creditsafe · contact discovery</div>
+          </div>
+          <span class="pipe-time" style="color:var(--amber)">~2 hrs</span>
         </div>
         <div class="pipe-step">
           <div class="pipe-dot pending"></div>
-          <span class="pipe-label pending">Scoring against your Deal Box</span>
+          <div style="flex:1">
+            <span class="pipe-label pending">Scoring against your Deal Box</span>
+            <div style="font-size:11px;color:var(--text-3);margin-top:2px">Weighted formula · B2B · revenue · signals</div>
+          </div>
           <span class="pipe-time">Queued</span>
         </div>
         <div class="pipe-step">
           <div class="pipe-dot pending"></div>
-          <span class="pipe-label pending">Your list is ready</span>
+          <div style="flex:1">
+            <span class="pipe-label pending">Your list is ready</span>
+            <div style="font-size:11px;color:var(--text-3);margin-top:2px">Email sent to nicholas@example.com</div>
+          </div>
           <span class="pipe-time">Queued</span>
         </div>
       </div>
@@ -976,24 +1011,25 @@ tbody td:first-child{padding-left:20px}
           </div>
         </div>
 
-        <!-- Owner identified -->
+        <!-- Owner row -->
         <div class="owner-row">
           <div class="owner-avatar">JW</div>
-          <div>
+          <div style="flex:1">
             <div class="owner-name">James Whitfield</div>
-            <div class="owner-detail">Owner · Est. age 63 · Retirement signal</div>
+            <div class="owner-detail">LLC Member · Est. age 63 · Founded 1997</div>
           </div>
-          <span class="badge badge-teal" style="margin-left:auto;font-size:10px">Owner found</span>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <span class="badge badge-teal" style="font-size:10px">SoS confirmed</span>
+            <span style="font-size:10px;color:var(--text-3)">via Florida SunBiz</span>
+          </div>
         </div>
 
-        <!-- Acquisition readiness -->
+        <!-- Readiness -->
         <div class="readiness-bar">
           <span class="readiness-label">Acquisition readiness</span>
           <div style="display:flex;align-items:center;gap:8px">
             <div class="readiness-flames">
-              <span class="flame on">🔥</span>
-              <span class="flame on">🔥</span>
-              <span class="flame on">🔥</span>
+              <span class="flame on">🔥</span><span class="flame on">🔥</span><span class="flame on">🔥</span>
             </div>
             <span style="font-size:11px;color:var(--teal);font-weight:500">High</span>
           </div>
@@ -1006,32 +1042,59 @@ tbody td:first-child{padding-left:20px}
             <div class="lead-meta-val good">27 yrs</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Est. revenue</div>
-            <div class="lead-meta-val warn">$1M–$5M</div>
+            <div class="lead-meta-label">Revenue</div>
+            <div class="lead-meta-val warn">$2.1M</div>
+            <div style="font-size:9px;color:var(--teal);margin-top:1px">via Creditsafe ●●●</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Entity type</div>
+            <div class="lead-meta-label">Entity</div>
             <div class="lead-meta-val">Sole prop</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Google reviews</div>
+            <div class="lead-meta-label">B2B score</div>
+            <div class="lead-meta-val good">91/100</div>
+            <div style="font-size:9px;color:var(--text-3);margin-top:1px">name + BBB desc</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Reviews</div>
             <div class="lead-meta-val good">4.8 · 94</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">BBB rating</div>
-            <div class="lead-meta-val good">A+</div>
-          </div>
-          <div class="lead-meta-cell">
-            <div class="lead-meta-label">BBB complaints</div>
-            <div class="lead-meta-val good">0</div>
+            <div class="lead-meta-label">BBB</div>
+            <div class="lead-meta-val good">A+ · 0 complaints</div>
           </div>
         </div>
 
-        <div class="lead-badges">
+        <!-- Contact hierarchy -->
+        <div class="contact-hierarchy">
+          <div style="font-size:10px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Contact found</div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">✉</span>
+            <span class="contact-val">james@lonestarhvac.com</span>
+            <span class="contact-src">TX contractor license DB</span>
+          </div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">📞</span>
+            <span class="contact-val">(512) 555-0184</span>
+            <span class="contact-src">BBB + Google Maps</span>
+          </div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">✉</span>
+            <span class="contact-val">1204 Burnet Rd, Austin TX 78757</span>
+            <span class="contact-src">SoS registered address</span>
+          </div>
+          <div class="contact-row contact-warn">
+            <span class="contact-icon">⚠</span>
+            <span class="contact-val">info@lonestarhvac.com</span>
+            <span class="contact-src">Not recommended — goes to admin</span>
+          </div>
+        </div>
+
+        <div class="lead-badges" style="margin-top:12px">
           <span class="badge badge-teal">B2B commercial</span>
           <span class="badge badge-amber">Retirement age</span>
           <span class="badge badge-red">No website</span>
-          <span class="badge badge-red">No LinkedIn</span>
+          <span class="badge badge-gray">LinkedIn flagged</span>
         </div>
         <div class="lead-actions">
           <button class="action-pass">✕ Pass</button>
@@ -1055,24 +1118,25 @@ tbody td:first-child{padding-left:20px}
           </div>
         </div>
 
-        <!-- Owner identified -->
+        <!-- Owner row -->
         <div class="owner-row">
           <div class="owner-avatar">RD</div>
-          <div>
+          <div style="flex:1">
             <div class="owner-name">Robert Diaz</div>
-            <div class="owner-detail">Registered agent · Age unknown</div>
+            <div class="owner-detail">BBB Principal · SoS agent is a law firm</div>
           </div>
-          <span class="badge badge-amber" style="margin-left:auto;font-size:10px">Partial info</span>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px">
+            <span class="badge badge-amber" style="font-size:10px">Partial info</span>
+            <span style="font-size:10px;color:var(--text-3)">via BBB only</span>
+          </div>
         </div>
 
-        <!-- Acquisition readiness -->
+        <!-- Readiness -->
         <div class="readiness-bar">
           <span class="readiness-label">Acquisition readiness</span>
           <div style="display:flex;align-items:center;gap:8px">
             <div class="readiness-flames">
-              <span class="flame on">🔥</span>
-              <span class="flame on">🔥</span>
-              <span class="flame" style="opacity:.15">🔥</span>
+              <span class="flame on">🔥</span><span class="flame on">🔥</span><span class="flame" style="opacity:.15">🔥</span>
             </div>
             <span style="font-size:11px;color:var(--amber);font-weight:500">Medium</span>
           </div>
@@ -1085,31 +1149,53 @@ tbody td:first-child{padding-left:20px}
             <div class="lead-meta-val good">21 yrs</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Est. revenue</div>
+            <div class="lead-meta-label">Revenue</div>
             <div class="lead-meta-val warn">$1M–$5M</div>
+            <div style="font-size:9px;color:var(--amber);margin-top:1px">via reviews ●●○</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Entity type</div>
+            <div class="lead-meta-label">Entity</div>
             <div class="lead-meta-val">LLC</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Google reviews</div>
+            <div class="lead-meta-label">B2B score</div>
+            <div class="lead-meta-val good">78/100</div>
+            <div style="font-size:9px;color:var(--text-3);margin-top:1px">BBB description</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Reviews</div>
             <div class="lead-meta-val good">4.6 · 47</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">BBB rating</div>
-            <div class="lead-meta-val warn">B</div>
-          </div>
-          <div class="lead-meta-cell">
-            <div class="lead-meta-label">BBB complaints</div>
-            <div class="lead-meta-val warn">2</div>
+            <div class="lead-meta-label">BBB</div>
+            <div class="lead-meta-val warn">B · 2 complaints</div>
           </div>
         </div>
 
-        <div class="lead-badges">
+        <!-- Contact hierarchy -->
+        <div class="contact-hierarchy">
+          <div style="font-size:10px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Contact — no direct email found</div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">📞</span>
+            <span class="contact-val">(713) 555-0291</span>
+            <span class="contact-src">BBB · owner likely answers</span>
+          </div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">✉</span>
+            <span class="contact-val">2847 Main St, Houston TX 77002</span>
+            <span class="contact-src">SoS registered address</span>
+          </div>
+          <div class="contact-row contact-pending">
+            <span class="contact-icon">→</span>
+            <span class="contact-val">Recommend: letter first, then call</span>
+            <span class="contact-src">No direct email available</span>
+          </div>
+        </div>
+
+        <div class="lead-badges" style="margin-top:12px">
           <span class="badge badge-teal">B2B commercial</span>
+          <span class="badge badge-amber">2 BBB complaints</span>
           <span class="badge badge-red">No website</span>
-          <span class="badge badge-red">No LinkedIn</span>
         </div>
         <div class="lead-actions">
           <button class="action-pass">✕ Pass</button>
@@ -1133,24 +1219,22 @@ tbody td:first-child{padding-left:20px}
           </div>
         </div>
 
-        <!-- No owner found -->
+        <!-- No owner -->
         <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:12px">
           <div style="width:24px;height:24px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-3);flex-shrink:0">?</div>
-          <div>
+          <div style="flex:1">
             <div style="font-size:13px;color:var(--text-2)">Owner not identified</div>
-            <div style="font-size:11px;color:var(--text-3)">No BBB filing match · SoS agent is a law firm</div>
+            <div style="font-size:11px;color:var(--text-3)">BBB: no principal · SoS agent: Registered Agent Inc · OSHA: no match</div>
           </div>
-          <span class="badge badge-gray" style="margin-left:auto;font-size:10px">No owner</span>
+          <span class="badge badge-gray" style="font-size:10px">No owner</span>
         </div>
 
-        <!-- Acquisition readiness -->
+        <!-- Readiness -->
         <div class="readiness-bar">
           <span class="readiness-label">Acquisition readiness</span>
           <div style="display:flex;align-items:center;gap:8px">
             <div class="readiness-flames">
-              <span class="flame on">🔥</span>
-              <span class="flame" style="opacity:.15">🔥</span>
-              <span class="flame" style="opacity:.15">🔥</span>
+              <span class="flame on">🔥</span><span class="flame" style="opacity:.15">🔥</span><span class="flame" style="opacity:.15">🔥</span>
             </div>
             <span style="font-size:11px;color:var(--text-2);font-weight:500">Low</span>
           </div>
@@ -1163,30 +1247,53 @@ tbody td:first-child{padding-left:20px}
             <div class="lead-meta-val warn">24 yrs</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Est. revenue</div>
+            <div class="lead-meta-label">Revenue</div>
             <div class="lead-meta-val">&lt;$1M</div>
+            <div style="font-size:9px;color:var(--text-3);margin-top:1px">industry default ●○○</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Entity type</div>
+            <div class="lead-meta-label">Entity</div>
             <div class="lead-meta-val">LLC</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">Google reviews</div>
+            <div class="lead-meta-label">B2B score</div>
+            <div class="lead-meta-val warn">34/100</div>
+            <div style="font-size:9px;color:var(--text-3);margin-top:1px">homepage text</div>
+          </div>
+          <div class="lead-meta-cell">
+            <div class="lead-meta-label">Reviews</div>
             <div class="lead-meta-val warn">3.9 · 18</div>
           </div>
           <div class="lead-meta-cell">
-            <div class="lead-meta-label">BBB rating</div>
-            <div class="lead-meta-val good">A</div>
-          </div>
-          <div class="lead-meta-cell">
-            <div class="lead-meta-label">BBB complaints</div>
-            <div class="lead-meta-val good">0</div>
+            <div class="lead-meta-label">BBB</div>
+            <div class="lead-meta-val good">A · 0 complaints</div>
           </div>
         </div>
 
-        <div class="lead-badges">
+        <!-- Contact — very limited -->
+        <div class="contact-hierarchy">
+          <div style="font-size:10px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Contact — limited</div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">📞</span>
+            <span class="contact-val">(214) 555-0847</span>
+            <span class="contact-src">Google Maps</span>
+          </div>
+          <div class="contact-row contact-warn">
+            <span class="contact-icon">⚠</span>
+            <span class="contact-val">info@gulfcoastclimate.com</span>
+            <span class="contact-src">Not recommended — goes to admin</span>
+          </div>
+          <div class="contact-row contact-pending">
+            <span class="contact-icon">→</span>
+            <span class="contact-val">Owner not found — outreach not recommended</span>
+            <span class="contact-src">Pass or request deeper research</span>
+          </div>
+        </div>
+
+        <div class="lead-badges" style="margin-top:12px">
           <span class="badge badge-gray">B2C residential</span>
           <span class="badge badge-gray">Basic website</span>
+          <span class="badge badge-red">Owner unknown</span>
         </div>
         <div class="lead-actions">
           <button class="action-pass">✕ Pass</button>
