@@ -2610,7 +2610,6 @@ document.querySelectorAll('.radio-opt').forEach(opt => {
 
 setDbStep(1);
 initCompactLeadCards();
-initDemoPolish();
 
 document.querySelectorAll('.industry-chip:not([style*="dashed"])').forEach(chip => {
   chip.addEventListener('click', () => chip.classList.toggle('selected'));
@@ -3917,6 +3916,8 @@ function initDemoPolish() {
   updateDemoAnalytics();
 }
 
+
+initDemoPolish();
 function toggleDemoPanel() {
   const panel = document.getElementById('demo-helper-panel');
   if (!panel) return;
