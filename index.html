@@ -127,6 +127,17 @@ label{font-size:13px;color:var(--text-2);display:block;margin-bottom:6px;font-we
 
 .divider{height:1px;background:var(--border);margin:24px 0}
 
+.db-stepper{display:flex;gap:8px;align-items:center;margin:0 0 18px}
+.db-step{font-size:11px;color:var(--text-3);padding:5px 10px;border:1px solid var(--border-2);border-radius:999px;background:var(--surface)}
+.db-step.active{color:var(--text);border-color:rgba(0,200,150,.35);background:var(--teal-faint)}
+.db-step.done{color:var(--teal);border-color:rgba(0,200,150,.35);background:var(--teal-faint2)}
+
+.lead-quick-signals{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 12px}
+.quick-signal{border:1px solid var(--border);background:var(--surface);border-radius:8px;padding:9px 10px}
+.quick-signal-k{font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.05em}
+.quick-signal-v{font-size:13px;color:var(--text);font-weight:600;margin-top:3px}
+.lead-details-toggle{margin:2px 0 10px}
+
 /* ── SCREEN 1: SIGNUP ────────────────────────────────── */
 #s1{
   background:var(--navy);
@@ -1052,6 +1063,12 @@ tbody td:first-child{padding-left:20px}
 
         <!-- Heading -->
         <div id="db-input-state">
+          <div class="db-stepper" id="db-stepper">
+            <span class="db-step active" data-step="1">1. Thesis</span>
+            <span class="db-step" data-step="2">2. Clarify</span>
+            <span class="db-step" data-step="3">3. Confirm</span>
+            <span class="db-step" data-step="4">4. Build</span>
+          </div>
           <div style="margin-bottom:20px">
             <div style="font-family:var(--font-display);font-size:26px;color:var(--text);margin-bottom:6px" id="db-main-heading">What kind of business are you looking to buy?</div>
             <div style="font-size:13px;color:var(--text-2);line-height:1.6" id="db-main-sub">Describe your thesis in plain English. We will extract your criteria and confirm before building your list.</div>
@@ -1068,7 +1085,7 @@ tbody td:first-child{padding-left:20px}
 
           <!-- Example pills -->
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
-            <button class="db-example-btn" onclick="dbFill(0)">HVAC + pest control &#183; Texas &#183; $1M&#8211;$5M &#183; B2B</button>
+            <button class="db-example-btn" onclick="dbFill(0)">Dental practices &#183; Growing metros &#183; $1M&#8211;$5M</button>
             <button class="db-example-btn" onclick="dbFill(1)">Plumbing &#183; Southeast &#183; under $2M</button>
             <button class="db-example-btn" onclick="dbFill(2)">Accounting firms &#183; New York &#183; $5M&#8211;$10M</button>
           </div>
@@ -1354,7 +1371,7 @@ tbody td:first-child{padding-left:20px}
     <div class="wait-card">
       <div class="wait-icon">⚙</div>
       <div class="wait-title">Building your list</div>
-      <div class="wait-sub" id="wait-sub">We're sourcing and scoring HVAC + pest control companies across Texas and Florida. This usually takes 4–12 hours for popular niches.</div>
+      <div class="wait-sub" id="wait-sub">We're sourcing and scoring dental practices across growing metros. This usually takes 4–12 hours for popular niches.</div>
 
       <div class="pipeline-steps">
         <div class="pipe-step">
@@ -1464,7 +1481,7 @@ tbody td:first-child{padding-left:20px}
       <div class="feed-header">
         <div>
           <div class="feed-title">Your leads</div>
-          <div class="feed-meta" id="feed-meta">Batch 1 of 5 · HVAC &amp; pest control · Texas</div>
+          <div class="feed-meta" id="feed-meta">Batch 1 of 5 · Dental · Growing metros</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center">
           <div class="feed-source-toggle" id="feed-toggle">
@@ -2585,6 +2602,9 @@ document.querySelectorAll('.radio-opt').forEach(opt => {
   });
 });
 
+setDbStep(1);
+initCompactLeadCards();
+
 document.querySelectorAll('.industry-chip:not([style*="dashed"])').forEach(chip => {
   chip.addEventListener('click', () => chip.classList.toggle('selected'));
 });
@@ -2607,7 +2627,7 @@ document.querySelectorAll('.weight-pills').forEach(group => {
 });
 
 const exampleTheses = [
-  "I am looking for HVAC or pest control companies in Texas and Florida, B2B focused, doing between $1M and $5M in revenue. Ideally the owner is nearing retirement and the business has low digital presence — somewhere I can add real value.",
+  "I am looking for dental practices in growing metros, ideally in the $1M-$5M revenue range with a clear transition path from the owner.",
   "Looking for plumbing businesses in the Southeast US — Georgia, Tennessee, or North Carolina. Under $2M revenue, any business model. Ideally a sole proprietor who has been running it for 15+ years.",
   "Interested in accounting firms in New York state. B2B only, revenue between $5M and $10M. Looking for firms with older partners who may want to transition out."
 ];
@@ -2615,11 +2635,11 @@ const exampleTheses = [
 const parsedResults = [
   {
     thesis: "I am looking for HVAC or pest control companies in Texas and Florida, B2B focused, doing between $1M and $5M in revenue. Ideally the owner is nearing retirement and the business has low digital presence — somewhere I can add real value.",
-    industry: ["HVAC", "Pest control"],
-    geo: ["Texas", "Florida"],
+    industry: ["Dental"],
+    geo: ["Growing metros"],
     revenue: "$1M – $5M",
-    model: "B2B only",
-    signals: ["Retirement age", "Low digital presence"]
+    model: "Healthcare services",
+    signals: ["Owner transition", "Stable patient base"]
   },
   {
     thesis: "Looking for plumbing businesses in the Southeast US — Georgia, Tennessee, or North Carolina. Under $2M revenue, any business model. Ideally a sole proprietor who has been running it for 15+ years.",
@@ -2642,8 +2662,8 @@ const parsedResults = [
 let currentParsed = null;
 
 let leadSearchContext = {
-  industries: ['HVAC', 'Pest control'],
-  geo: ['Texas', 'Florida']
+  industries: ['Dental'],
+  geo: ['Growing metros']
 };
 
 function titleCaseWord(word) {
@@ -2860,8 +2880,53 @@ let clarifyAnswers = {};
 let pendingParsed = null;
 let pendingThesis = '';
 
+function setDbStep(step) {
+  document.querySelectorAll('#db-stepper .db-step').forEach(el => {
+    const n = Number(el.dataset.step || 0);
+    el.classList.toggle('active', n === step);
+    el.classList.toggle('done', n < step);
+  });
+}
+
+function initCompactLeadCards() {
+  document.querySelectorAll('#s4 .lead-card').forEach((card, idx) => {
+    const owner = card.querySelector('.owner-row');
+    const readiness = card.querySelector('.readiness-bar');
+    const meta = card.querySelector('.lead-meta-grid');
+    const contact = card.querySelector('.contact-hierarchy');
+    if (!owner || !readiness || !meta) return;
+
+    const quick = document.createElement('div');
+    quick.className = 'lead-quick-signals';
+    quick.innerHTML = `
+      <div class="quick-signal"><div class="quick-signal-k">Owner</div><div class="quick-signal-v">${card.querySelector('.owner-name') ? 'Found' : 'Unknown'}</div></div>
+      <div class="quick-signal"><div class="quick-signal-k">Revenue</div><div class="quick-signal-v">${(card.querySelector('.lead-meta-cell:nth-child(2) .lead-meta-val')||{}).textContent || 'Est.'}</div></div>
+      <div class="quick-signal"><div class="quick-signal-k">Fit score</div><div class="quick-signal-v">${(card.querySelector('.score-val')||{}).textContent || '-'}</div></div>
+    `;
+    owner.insertAdjacentElement('afterend', quick);
+
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-ghost btn-sm lead-details-toggle';
+    btn.textContent = 'See details';
+    let open = false;
+    const toggle = () => {
+      open = !open;
+      [readiness, meta, contact].forEach(el => { if (el) el.style.display = open ? '' : 'none'; });
+      btn.textContent = open ? 'Hide details' : 'See details';
+    };
+    btn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+    quick.insertAdjacentElement('afterend', btn);
+
+    // collapsed by default for first two cards, open on active card 1
+    if (idx > 0) {
+      [readiness, meta, contact].forEach(el => { if (el) el.style.display = 'none'; });
+    }
+  });
+}
+
 function dbParse() {
   const val = document.getElementById('db-thesis-input').value.trim();
+  setDbStep(2);
   if (!val) return;
   pendingThesis = val;
   document.getElementById('db-input-state').style.display = 'none';
@@ -2967,6 +3032,7 @@ function dbClarifyCustom() {
 
 function dbClarifyDone() {
   document.getElementById('db-clarify-state').style.display = 'none';
+  setDbStep(3);
   const result = pendingParsed || inferParsedFromThesis(pendingThesis) || currentParsed || parsedResults[0];
   if (clarifyAnswers.model && clarifyAnswers.model !== 'Mixed') {
     result.model = clarifyAnswers.model;
@@ -2985,6 +3051,7 @@ function dbShowConfirm(thesis, result) {
   document.getElementById('db-val-model').innerHTML = `<span class="badge badge-teal">${result.model}</span>`;
   document.getElementById('db-val-signals').innerHTML = result.signals.map(v => `<span class="badge badge-gray">${v}</span>`).join('');
   document.getElementById('db-confirm-state').style.display = 'block';
+  setDbStep(4);
   updateLeadSearchContext({ industries: result.industry, geo: result.geo });
 }
 
@@ -2994,6 +3061,7 @@ function dbReset() {
     if (el) el.style.display = 'none';
   });
   document.getElementById('db-input-state').style.display = 'block';
+  setDbStep(1);
   const ta = document.getElementById('db-thesis-input');
   if (ta) { ta.value = ''; ta.dispatchEvent(new Event('input')); }
   currentParsed = null; pendingParsed = null; clarifyAnswers = {};
