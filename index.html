@@ -501,6 +501,154 @@ tbody td:first-child{padding-left:20px}
 
 
 
+
+
+
+
+/* ── Volume selector ─────────────────────────────────── */
+.db-vol-opt{
+  background:var(--surface);border:2px solid var(--border);
+  border-radius:var(--r);padding:14px 16px;cursor:pointer;
+  transition:all .15s;
+}
+.db-vol-opt:hover{border-color:var(--border-2);background:var(--surface-2)}
+.db-vol-opt.selected{border-color:rgba(0,200,150,.5);background:var(--teal-faint)}
+
+/* ── Deal box mode toggle ────────────────────────────── */
+.db-mode-toggle{
+  display:flex;background:var(--surface);border:1px solid var(--border-2);
+  border-radius:var(--r);overflow:hidden;
+}
+.dmt-btn{
+  font-size:12px;font-weight:500;padding:5px 14px;
+  background:transparent;border:none;color:var(--text-3);
+  cursor:pointer;font-family:var(--font-body);transition:all .15s;
+  white-space:nowrap;
+}
+.dmt-btn.active{background:var(--navy-3);color:var(--text);border:1px solid var(--border-2)}
+
+/* ── Mode selection ──────────────────────────────────── */
+.mode-card{
+  background:var(--navy-2);border:2px solid var(--border-2);
+  border-radius:var(--r-lg);padding:24px;cursor:pointer;
+  transition:all .2s;display:flex;flex-direction:column;
+}
+.mode-card:hover{border-color:rgba(0,200,150,.3);background:var(--teal-faint)}
+.mode-card.selected{border-color:var(--teal);background:var(--teal-faint2)}
+.mode-icon{font-size:28px;margin-bottom:12px}
+.mode-title{font-size:17px;font-weight:500;color:var(--text);margin-bottom:8px}
+.mode-sub{font-size:13px;color:var(--text-2);line-height:1.6}
+.mode-feature{font-size:12px;color:var(--text-2);padding:2px 0}
+.mode-card.selected .mode-feature{color:var(--teal)}
+.mode-best{
+  margin-top:auto;padding-top:14px;
+  font-size:11px;color:var(--text-3);
+  border-top:1px solid var(--border);
+  font-style:italic;
+}
+
+/* ── Go deeper panel ─────────────────────────────────── */
+.deeper-panel{
+  background:var(--navy-3);border:1px solid rgba(124,58,237,.2);
+  border-radius:var(--r);padding:12px 14px;margin-bottom:12px;
+}
+.deeper-row{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.deeper-row:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.deeper-label{font-size:10px;font-weight:500;color:#A78BFA;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.deeper-val{font-size:12px;color:var(--text-2);line-height:1.6}
+.deeper-btn{
+  flex:1;padding:9px;border-radius:var(--r);
+  border:1px solid rgba(124,58,237,.25);background:rgba(124,58,237,.06);
+  color:#A78BFA;font-size:13px;font-weight:500;cursor:pointer;
+  transition:all .15s;
+}
+.deeper-btn:hover{background:rgba(124,58,237,.12)}
+.deeper-btn.active{background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.4)}
+
+/* ── Enrichment badges ───────────────────────────────── */
+.enrich-badge{
+  font-size:11px;padding:2px 8px;border-radius:4px;
+  font-family:var(--font-mono);font-weight:500;cursor:default;
+}
+.enrich-deep{background:var(--teal-faint2);color:var(--teal)}
+.enrich-shallow{background:rgba(232,162,48,.1);color:var(--amber)}
+.enrich-listed{background:rgba(37,99,235,.1);color:#60A5FA}
+.enrich-pending{
+  background:var(--surface-2);color:var(--text-3);cursor:pointer;
+  border:1px dashed var(--border-2);
+}
+.enrich-pending:hover{border-color:rgba(0,200,150,.3);color:var(--teal)}
+
+/* ── Thesis assistant ────────────────────────────────── */
+.ta-row{display:flex;gap:10px;align-items:flex-start}
+.ta-ai-row{align-items:flex-start}
+.ta-user-row{flex-direction:row-reverse}
+.ta-avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;flex-shrink:0;
+}
+.ta-bubble{
+  padding:10px 14px;border-radius:12px;
+  font-size:13px;line-height:1.6;
+}
+.ta-ai{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text-2);border-radius:4px 12px 12px 12px;
+  max-width:420px;
+}
+.ta-user{
+  background:var(--teal-faint2);border:1px solid rgba(0,200,150,.2);
+  color:var(--text);border-radius:12px 4px 12px 12px;
+  max-width:320px;
+}
+.ta-opts{display:flex;flex-wrap:wrap;gap:6px}
+.ta-opt{
+  background:var(--surface);border:1px solid var(--border-2);
+  border-radius:20px;color:var(--text-2);font-size:12px;
+  padding:5px 14px;cursor:pointer;font-family:var(--font-body);
+  transition:all .15s;
+}
+.ta-opt:hover{background:var(--surface-2);color:var(--teal);border-color:rgba(0,200,150,.3)}
+.ta-opt.selected{background:var(--teal-faint2);color:var(--teal);border-color:rgba(0,200,150,.4)}
+.ta-profile-row{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 10px;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r);
+}
+.ta-profile-label{font-size:10px;color:var(--text-3);width:72px;flex-shrink:0;text-transform:uppercase;letter-spacing:.05em}
+.ta-profile-val{font-size:12px;color:var(--teal);font-weight:500}
+.ta-thesis-card{
+  background:var(--surface);border:1px solid var(--border-2);
+  border-radius:var(--r);padding:12px 14px;cursor:pointer;
+  transition:all .15s;
+}
+.ta-thesis-card:hover{border-color:rgba(0,200,150,.35);background:var(--teal-faint)}
+.ta-thesis-card.selected{border-color:rgba(0,200,150,.5);background:var(--teal-faint2)}
+.ta-thesis-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px}
+.ta-thesis-why{font-size:11px;color:var(--text-3);line-height:1.5}
+
+/* ── Feed source toggle + broker cards ───────────────── */
+.feed-source-toggle{
+  display:flex;background:var(--surface);border:1px solid var(--border-2);
+  border-radius:var(--r);overflow:hidden;
+}
+.fst-btn{
+  font-size:12px;font-weight:500;padding:5px 12px;
+  background:transparent;border:none;color:var(--text-3);
+  cursor:pointer;font-family:var(--font-body);transition:all .15s;
+}
+.fst-btn.active{background:var(--teal);color:var(--navy)}
+.source-badge{
+  font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;
+  font-family:var(--font-mono);
+}
+.source-offmarket{background:var(--teal-faint2);color:var(--teal);border:1px solid rgba(0,200,150,.2)}
+.source-listed{background:rgba(37,99,235,.1);color:#60A5FA;border:1px solid rgba(37,99,235,.2)}
+.broker-card{border-color:rgba(37,99,235,.2)}
+.broker-card:hover{border-color:rgba(37,99,235,.4)}
+
 /* ── Pipeline status tracker ─────────────────────────── */
 .pipeline-status-row{
   display:flex;align-items:center;gap:8px;
@@ -762,9 +910,88 @@ tbody td:first-child{padding-left:20px}
 </div>
 
 <!-- ════════════════════════════════════════════════════ -->
-<!-- SCREEN 2 — DEAL BOX (natural language)              -->
+<!-- SCREEN 8 — MODE SELECTION                           -->
 <!-- ════════════════════════════════════════════════════ -->
-<div class="screen" id="s2">
+<div class="screen" id="s8">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <div class="credit-pill">50 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:40px 20px">
+    <div style="width:100%;max-width:680px">
+      <div style="text-align:center;margin-bottom:36px">
+        <div style="font-family:var(--font-display);font-size:28px;color:var(--text);margin-bottom:8px">How are you using TBD?</div>
+        <div style="font-size:14px;color:var(--text-2);line-height:1.6">Your answer changes the entire experience &#8212; the deal box, the feed, the enrichment depth, and the outputs.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
+
+        <!-- Targeted mode card -->
+        <div class="mode-card" id="mode-targeted" onclick="selectMode('targeted')">
+          <div class="mode-icon">&#127919;</div>
+          <div class="mode-title">Personal acquisition search</div>
+          <div class="mode-sub">I am looking to buy one business. I will personally reach out to owners and want a curated shortlist I can act on.</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
+            <div class="mode-feature">&#10003; Thesis discovery assistant</div>
+            <div class="mode-feature">&#10003; Card feed &#8212; 20 leads at a time</div>
+            <div class="mode-feature">&#10003; Deep enrichment per lead</div>
+            <div class="mode-feature">&#10003; Personalised outreach sequences</div>
+            <div class="mode-feature">&#10003; Pipeline status tracker</div>
+          </div>
+          <div class="mode-best">Best for solo searchers and ETA buyers</div>
+        </div>
+
+        <!-- High-volume mode card -->
+        <div class="mode-card" id="mode-bulk" onclick="selectMode('bulk')">
+          <div class="mode-icon">&#128202;</div>
+          <div class="mode-title">High-volume sourcing</div>
+          <div class="mode-sub">I need a qualified dataset at scale. My team has campaign infrastructure and I want to pull thousands of leads matching my criteria.</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
+            <div class="mode-feature">&#10003; Table view with bulk filters</div>
+            <div class="mode-feature">&#10003; Shallow enrichment on all leads</div>
+            <div class="mode-feature">&#10003; Deep enrich on demand per selection</div>
+            <div class="mode-feature">&#10003; Bulk CSV or CRM push</div>
+            <div class="mode-feature">&#10003; Off-market + broker listings combined</div>
+          </div>
+          <div class="mode-best">Best for PE firms, search funds, institutional buyers</div>
+        </div>
+
+      </div>
+
+      <!-- Difference explainer -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:24px">
+        <div style="font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">How they differ</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0">
+          <div style="font-size:12px;color:var(--text-3);font-weight:500;padding:6px 0;border-bottom:1px solid var(--border)"></div>
+          <div style="font-size:12px;color:var(--teal);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">Personal search</div>
+          <div style="font-size:12px;color:#60A5FA;font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">High-volume</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0">Typical list size</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">20&#8211;100 leads</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">500&#8211;20,000 leads</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Enrichment depth</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Deep per lead</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Shallow by default</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Cost per lead</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Higher</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Lower</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Outreach</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Built-in sequences</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Your own stack</div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lg" id="mode-confirm-btn" style="width:100%;opacity:.4" disabled onclick="confirmMode()">Continue →</button>
+      <div style="font-size:12px;color:var(--text-3);text-align:center;margin-top:10px">You can switch modes at any time from settings.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 7 — THESIS DISCOVERY ASSISTANT               -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s7">
   <div class="top-bar">
     <div class="top-bar-logo">TBD</div>
     <div class="top-bar-right">
@@ -773,135 +1000,604 @@ tbody td:first-child{padding-left:20px}
     </div>
   </div>
 
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:40px 20px">
-    <div style="width:100%;max-width:620px">
+  <div style="flex:1;display:flex;background:var(--navy);min-height:0">
 
-      <!-- State: input -->
-      <div id="db-input-state">
-        <div style="text-align:center;margin-bottom:32px">
-          <div style="font-family:var(--font-display);font-size:28px;color:var(--text);margin-bottom:8px">What kind of business are you looking to buy?</div>
-          <div style="font-size:14px;color:var(--text-2);line-height:1.6">Describe your thesis in plain English. We will extract your criteria and confirm before building your list.</div>
+    <!-- Left: conversation -->
+    <div style="flex:1;display:flex;flex-direction:column;max-width:620px;margin:0 auto;padding:28px 24px">
+
+      <!-- Header -->
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-family:var(--font-display);font-size:24px;color:var(--text);margin-bottom:6px">Let us help you find the right business to buy</div>
+        <div style="font-size:13px;color:var(--text-2)">Answer a few questions and we will suggest a thesis that fits your background, capital, and goals.</div>
+      </div>
+
+      <!-- Chat thread -->
+      <div id="ta-thread" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:14px;margin-bottom:16px;padding-right:4px">
+
+        <!-- AI opening message -->
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">⚡</div>
+          <div class="ta-bubble ta-ai">Hey Nicholas — I am going to ask you five quick questions. Based on your answers I will suggest two or three types of businesses that could be a great fit. Ready?</div>
         </div>
 
-        <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px">
-          <textarea id="db-thesis-input" rows="5" placeholder="e.g. I am looking for HVAC or pest control companies in Texas and Florida, B2B focused, doing between $1M and $5M in revenue. Ideally the owner is nearing retirement and the business has low digital presence — somewhere I can add real value." style="width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:15px;padding:20px;resize:none;line-height:1.7"></textarea>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--border)">
-            <div style="font-size:12px;color:var(--text-3)" id="db-char-count">0 characters</div>
-            <button class="btn btn-primary btn-sm" onclick="dbParse()" id="db-parse-btn" style="opacity:.4" disabled>Analyse thesis →</button>
+        <!-- Q1 block -->
+        <div id="ta-q1" style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">⚡</div>
+            <div class="ta-bubble ta-ai">What industry have you worked in? This is the single biggest predictor of acquisition success — you will add the most value where you already know how things work.</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;padding-left:38px" id="ta-opts-1">
+            <button class="ta-opt" onclick="taAnswer(1,'Construction / trades')">Construction / trades</button>
+            <button class="ta-opt" onclick="taAnswer(1,'Sales / business development')">Sales / BD</button>
+            <button class="ta-opt" onclick="taAnswer(1,'Operations / supply chain')">Operations</button>
+            <button class="ta-opt" onclick="taAnswer(1,'Finance / accounting')">Finance</button>
+            <button class="ta-opt" onclick="taAnswer(1,'Healthcare')">Healthcare</button>
+            <button class="ta-opt" onclick="taAnswer(1,'Technology')">Technology</button>
+            <button class="ta-opt" onclick="taAnswer(1,'No specific industry')">No specific background</button>
           </div>
         </div>
 
-        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-          <button class="db-example-btn" onclick="dbFill(0)">HVAC + pest control · Texas · $1M–$5M · B2B</button>
-          <button class="db-example-btn" onclick="dbFill(1)">Plumbing · Southeast US · under $2M · any model</button>
-          <button class="db-example-btn" onclick="dbFill(2)">Accounting firms · New York · $5M–$10M · B2B</button>
+        <!-- Q2–Q5 injected dynamically -->
+        <div id="ta-q2" style="display:none;flex-direction:column;gap:10px"></div>
+        <div id="ta-q3" style="display:none;flex-direction:column;gap:10px"></div>
+        <div id="ta-q4" style="display:none;flex-direction:column;gap:10px"></div>
+        <div id="ta-q5" style="display:none;flex-direction:column;gap:10px"></div>
+
+        <!-- Recommendation block -->
+        <div id="ta-recommendation" style="display:none;flex-direction:column;gap:12px"></div>
+
+      </div>
+
+      <!-- Free text input -->
+      <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r);display:flex;gap:8px;padding:8px 12px;align-items:flex-end">
+        <textarea id="ta-free-input" rows="2" placeholder="Or describe your situation in your own words..." style="flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:13px;resize:none;line-height:1.5"></textarea>
+        <button onclick="taFreeSubmit()" style="width:32px;height:32px;border-radius:var(--r);background:var(--teal);border:none;cursor:pointer;font-size:15px;color:var(--navy);font-weight:700;flex-shrink:0">→</button>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn btn-ghost btn-sm" style="flex:1" onclick="show('s2',null)">I already know what I want →</button>
+      </div>
+    </div>
+
+    <!-- Right: thesis preview panel -->
+    <div id="ta-preview-panel" style="width:320px;background:var(--navy-2);border-left:1px solid var(--border);padding:24px 20px;display:flex;flex-direction:column;gap:16px;overflow-y:auto">
+      <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase">Building your thesis</div>
+
+      <div id="ta-profile-rows" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:13px;color:var(--text-3);line-height:1.7">Your answers will appear here as you go. We will use these to suggest the right type of business for you.</div>
+      </div>
+
+      <div id="ta-thesis-cards" style="display:none;flex-direction:column;gap:10px;margin-top:8px"></div>
+
+      <div id="ta-confirm-btn-wrap" style="display:none;margin-top:auto">
+        <button class="btn btn-primary" style="width:100%" onclick="taConfirmThesis()">Use this thesis →</button>
+        <div style="font-size:11px;color:var(--text-3);text-align:center;margin-top:8px">This will pre-fill your Deal Box. You can adjust anything before triggering your scrape.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 8 — MODE SELECTION                           -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s8">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <div class="credit-pill">50 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:40px 20px">
+    <div style="width:100%;max-width:680px">
+      <div style="text-align:center;margin-bottom:36px">
+        <div style="font-family:var(--font-display);font-size:28px;color:var(--text);margin-bottom:8px">How are you using TBD?</div>
+        <div style="font-size:14px;color:var(--text-2);line-height:1.6">Your answer changes the entire experience &#8212; the deal box, the feed, the enrichment depth, and the outputs.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
+
+        <!-- Targeted mode card -->
+        <div class="mode-card" id="mode-targeted" onclick="selectMode('targeted')">
+          <div class="mode-icon">&#127919;</div>
+          <div class="mode-title">Personal acquisition search</div>
+          <div class="mode-sub">I am looking to buy one business. I will personally reach out to owners and want a curated shortlist I can act on.</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
+            <div class="mode-feature">&#10003; Thesis discovery assistant</div>
+            <div class="mode-feature">&#10003; Card feed &#8212; 20 leads at a time</div>
+            <div class="mode-feature">&#10003; Deep enrichment per lead</div>
+            <div class="mode-feature">&#10003; Personalised outreach sequences</div>
+            <div class="mode-feature">&#10003; Pipeline status tracker</div>
+          </div>
+          <div class="mode-best">Best for solo searchers and ETA buyers</div>
+        </div>
+
+        <!-- High-volume mode card -->
+        <div class="mode-card" id="mode-bulk" onclick="selectMode('bulk')">
+          <div class="mode-icon">&#128202;</div>
+          <div class="mode-title">High-volume sourcing</div>
+          <div class="mode-sub">I need a qualified dataset at scale. My team has campaign infrastructure and I want to pull thousands of leads matching my criteria.</div>
+          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
+            <div class="mode-feature">&#10003; Table view with bulk filters</div>
+            <div class="mode-feature">&#10003; Shallow enrichment on all leads</div>
+            <div class="mode-feature">&#10003; Deep enrich on demand per selection</div>
+            <div class="mode-feature">&#10003; Bulk CSV or CRM push</div>
+            <div class="mode-feature">&#10003; Off-market + broker listings combined</div>
+          </div>
+          <div class="mode-best">Best for PE firms, search funds, institutional buyers</div>
+        </div>
+
+      </div>
+
+      <!-- Difference explainer -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:24px">
+        <div style="font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">How they differ</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0">
+          <div style="font-size:12px;color:var(--text-3);font-weight:500;padding:6px 0;border-bottom:1px solid var(--border)"></div>
+          <div style="font-size:12px;color:var(--teal);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">Personal search</div>
+          <div style="font-size:12px;color:#60A5FA;font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">High-volume</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0">Typical list size</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">20&#8211;100 leads</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">500&#8211;20,000 leads</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Enrichment depth</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Deep per lead</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Shallow by default</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Cost per lead</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Higher</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Lower</div>
+          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Outreach</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Built-in sequences</div>
+          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Your own stack</div>
         </div>
       </div>
 
-      <!-- State: parsing animation -->
-      <div id="db-parsing-state" style="display:none;text-align:center;padding:40px 0">
-        <div style="font-size:28px;margin-bottom:16px" id="db-parse-spinner">&#x27F3;</div>
-        <div style="font-size:15px;color:var(--text-2)" id="db-parse-label">Reading your thesis...</div>
+      <button class="btn btn-primary btn-lg" id="mode-confirm-btn" style="width:100%;opacity:.4" disabled onclick="confirmMode()">Continue →</button>
+      <div style="font-size:12px;color:var(--text-3);text-align:center;margin-top:10px">You can switch modes at any time from settings.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 7 — THESIS DISCOVERY ASSISTANT               -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s7">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <div class="credit-pill">50 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;background:var(--navy);min-height:0;overflow:hidden">
+    <!-- Left conversation -->
+    <div style="flex:1;display:flex;flex-direction:column;max-width:620px;margin:0 auto;padding:28px 24px">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="font-family:var(--font-display);font-size:24px;color:var(--text);margin-bottom:6px">Not sure what to buy?</div>
+        <div style="font-size:13px;color:var(--text-2)">Answer five quick questions. We will suggest a thesis that fits your background, capital, and goals.</div>
       </div>
-
-      <!-- State: clarification chat -->
-      <div id="db-clarify-state" style="display:none">
-        <div style="margin-bottom:20px">
-          <div style="font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:6px">One quick question</div>
-          <div style="font-size:13px;color:var(--text-2)">Your thesis mentions <span id="db-clarify-industry" style="color:var(--teal)"></span> — we want to make sure we source the right companies.</div>
+      <div id="ta-thread" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:14px;margin-bottom:16px;padding-right:4px">
+        <div class="ta-row ta-ai-row">
+          <div class="ta-avatar">&#9889;</div>
+          <div class="ta-bubble ta-ai">Hey Nicholas, I am going to ask you five quick questions. Based on your answers I will suggest two or three types of businesses that could be a great fit for you. Ready when you are.</div>
         </div>
-
-        <!-- Chat thread -->
-        <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px">
-          <div style="padding:20px;display:flex;flex-direction:column;gap:16px" id="db-chat-thread">
-
-            <!-- AI message -->
-            <div style="display:flex;gap:10px;align-items:flex-start">
-              <div style="width:26px;height:26px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px">&#9889;</div>
-              <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:12px 16px;font-size:14px;color:var(--text-2);line-height:1.7;flex:1" id="db-clarify-question"></div>
+        <div class="ta-row ta-ai-row" id="ta-q1-block">
+          <div class="ta-avatar">&#9889;</div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <div class="ta-bubble ta-ai">What industry have you worked in? This is the biggest predictor of acquisition success &#8212; you add the most value where you already understand operations.</div>
+            <div class="ta-opts" id="ta-opts-1">
+              <button class="ta-opt" onclick="taAnswer(1,this,'Construction / trades')">Construction / trades</button>
+              <button class="ta-opt" onclick="taAnswer(1,this,'Sales / business development')">Sales / BD</button>
+              <button class="ta-opt" onclick="taAnswer(1,this,'Operations / supply chain')">Operations</button>
+              <button class="ta-opt" onclick="taAnswer(1,this,'Finance / accounting')">Finance</button>
+              <button class="ta-opt" onclick="taAnswer(1,this,'Healthcare')">Healthcare</button>
+              <button class="ta-opt" onclick="taAnswer(1,this,'Technology')">Technology</button>
+              <button class="ta-opt" onclick="taAnswer(1,this,'General management')">General management</button>
             </div>
+          </div>
+        </div>
+        <div id="ta-q2-block" style="display:none" class="ta-row ta-ai-row">
+          <div class="ta-avatar">&#9889;</div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <div class="ta-bubble ta-ai">How much capital do you have available to invest? This sets your ceiling before anything else.</div>
+            <div class="ta-opts" id="ta-opts-2">
+              <button class="ta-opt" onclick="taAnswer(2,this,'Under $500K')">Under $500K</button>
+              <button class="ta-opt" onclick="taAnswer(2,this,'$500K &#8211; $1M')">$500K &#8211; $1M</button>
+              <button class="ta-opt" onclick="taAnswer(2,this,'$1M &#8211; $3M')">$1M &#8211; $3M</button>
+              <button class="ta-opt" onclick="taAnswer(2,this,'$3M &#8211; $10M')">$3M &#8211; $10M</button>
+              <button class="ta-opt" onclick="taAnswer(2,this,'$10M+')">$10M+</button>
+            </div>
+          </div>
+        </div>
+        <div id="ta-q3-block" style="display:none" class="ta-row ta-ai-row">
+          <div class="ta-avatar">&#9889;</div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <div class="ta-bubble ta-ai">Do you want to run the business yourself day-to-day, or install a manager and be more hands-off?</div>
+            <div class="ta-opts" id="ta-opts-3">
+              <button class="ta-opt" onclick="taAnswer(3,this,'Run it myself')">Run it myself</button>
+              <button class="ta-opt" onclick="taAnswer(3,this,'Install a manager')">Install a manager</button>
+              <button class="ta-opt" onclick="taAnswer(3,this,'Flexible &#8212; either works')">Either works</button>
+            </div>
+          </div>
+        </div>
+        <div id="ta-q4-block" style="display:none" class="ta-row ta-ai-row">
+          <div class="ta-avatar">&#9889;</div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <div class="ta-bubble ta-ai">Are you tied to a specific location or are you open to relocating for the right deal?</div>
+            <div class="ta-opts" id="ta-opts-4">
+              <button class="ta-opt" onclick="taAnswer(4,this,'Staying in my city')">Staying in my city</button>
+              <button class="ta-opt" onclick="taAnswer(4,this,'Willing to stay in my state')">Within my state</button>
+              <button class="ta-opt" onclick="taAnswer(4,this,'Open to anywhere in the US')">Anywhere in the US</button>
+            </div>
+          </div>
+        </div>
+        <div id="ta-q5-block" style="display:none" class="ta-row ta-ai-row">
+          <div class="ta-avatar">&#9889;</div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+            <div class="ta-bubble ta-ai">What do you most want to fix or improve in the business you buy?</div>
+            <div class="ta-opts" id="ta-opts-5">
+              <button class="ta-opt" onclick="taAnswer(5,this,'Operations &#8212; install better processes')">Operations &#8212; better processes</button>
+              <button class="ta-opt" onclick="taAnswer(5,this,'Sales &#8212; grow revenue with a proper sales function')">Sales &#8212; grow revenue</button>
+              <button class="ta-opt" onclick="taAnswer(5,this,'Technology &#8212; modernise systems and tools')">Technology &#8212; modernise</button>
+              <button class="ta-opt" onclick="taAnswer(5,this,'Talent &#8212; hire better people and build a team')">Talent &#8212; build a team</button>
+              <button class="ta-opt" onclick="taAnswer(5,this,'Marketing &#8212; improve digital presence and lead gen')">Marketing &#8212; digital presence</button>
+            </div>
+          </div>
+        </div>
+        <div id="ta-recommendation-block" style="display:none"></div>
+      </div>
+      <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r);display:flex;gap:8px;padding:8px 12px;align-items:flex-end">
+        <textarea id="ta-free-input" rows="2" placeholder="Or describe your situation in your own words..." style="flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:13px;resize:none;line-height:1.5"></textarea>
+        <button onclick="taFreeSubmit()" style="width:32px;height:32px;border-radius:var(--r);background:var(--teal);border:none;cursor:pointer;font-size:15px;color:var(--navy);font-weight:700;flex-shrink:0">&#8594;</button>
+      </div>
+      <div style="margin-top:10px">
+        <button class="btn btn-ghost btn-sm" style="width:100%" onclick="show('s2',null)">I already know what I want &#8212; skip to Deal Box</button>
+      </div>
+    </div>
+    <!-- Right: profile build-up panel -->
+    <div style="width:300px;background:var(--navy-2);border-left:1px solid var(--border);padding:22px 18px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;flex-shrink:0">
+      <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase">Your profile</div>
+      <div id="ta-profile-rows" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:var(--text-3);line-height:1.7">Your answers appear here as you go.</div>
+      </div>
+      <div id="ta-thesis-section" style="display:none;flex-direction:column;gap:10px;border-top:1px solid var(--border);padding-top:14px">
+        <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase">Suggested theses</div>
+        <div id="ta-thesis-cards" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+      <div id="ta-confirm-wrap" style="display:none;margin-top:auto;padding-top:12px;border-top:1px solid var(--border)">
+        <button class="btn btn-primary" style="width:100%;font-size:13px" onclick="taConfirm()">Use this thesis &#8594;</button>
+        <div style="font-size:11px;color:var(--text-3);text-align:center;margin-top:8px;line-height:1.5">Pre-fills your Deal Box. You can adjust anything before triggering the scrape.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <!-- Answer options -->
-            <div id="db-clarify-options" style="display:flex;flex-direction:column;gap:8px;padding-left:36px"></div>
 
-            <!-- Follow-up question (shown after first answer) -->
-            <div id="db-followup-block" style="display:none;flex-direction:column;gap:12px">
+<!-- ════════════════════════════════════════════════════ -->
+<!-- SCREEN 2 — DEAL BOX (natural language)              -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="screen" id="s2">
+  <div class="top-bar">
+    <div class="top-bar-logo">TBD</div>
+    <div class="top-bar-right">
+      <!-- Mode toggle -->
+      <div class="db-mode-toggle" id="db-mode-toggle">
+        <button class="dmt-btn active" id="dmt-personal" onclick="setDbMode('personal',this)">&#127919; Personal search</button>
+        <button class="dmt-btn" id="dmt-bulk" onclick="setDbMode('bulk',this)">&#128202; High-volume</button>
+      </div>
+      <div class="credit-pill">50 credits</div>
+      <div class="avatar">NL</div>
+    </div>
+  </div>
+
+  <!-- Main layout: content left, thesis assistant right -->
+  <div style="flex:1;display:flex;background:var(--navy);min-height:0;overflow:hidden">
+
+    <!-- Left: deal box content (all states) -->
+    <div style="flex:1;display:flex;align-items:flex-start;justify-content:center;padding:36px 28px;overflow-y:auto">
+      <div style="width:100%;max-width:560px">
+
+        <!-- Mode context banner -->
+        <div id="db-mode-banner-personal" style="display:flex;align-items:center;gap:10px;background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r);padding:10px 14px;margin-bottom:20px">
+          <span style="font-size:16px">&#127919;</span>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--teal)">Personal acquisition search</div>
+            <div style="font-size:11px;color:var(--text-2)">Curated shortlist &#183; deep enrichment per lead &#183; personalised outreach sequences</div>
+          </div>
+        </div>
+        <div id="db-mode-banner-bulk" style="display:none;align-items:center;gap:10px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:10px 14px;margin-bottom:20px">
+          <span style="font-size:16px">&#128202;</span>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:#60A5FA">High-volume sourcing</div>
+            <div style="font-size:11px;color:var(--text-2)">Dataset at scale &#183; shallow enrichment &#183; CRM push &#183; off-market + listed combined</div>
+          </div>
+        </div>
+
+        <!-- Heading -->
+        <div id="db-input-state">
+          <div style="margin-bottom:20px">
+            <div style="font-family:var(--font-display);font-size:26px;color:var(--text);margin-bottom:6px" id="db-main-heading">What kind of business are you looking to buy?</div>
+            <div style="font-size:13px;color:var(--text-2);line-height:1.6" id="db-main-sub">Describe your thesis in plain English. We will extract your criteria and confirm before building your list.</div>
+          </div>
+
+          <!-- Thesis input -->
+          <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:14px">
+            <textarea id="db-thesis-input" rows="5" placeholder="e.g. I am looking for HVAC or pest control companies in Texas and Florida, B2B focused, doing between $1M and $5M in revenue. Ideally the owner is nearing retirement and the business has low digital presence." style="width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:14px;padding:18px;resize:none;line-height:1.7"></textarea>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--border)">
+              <div style="font-size:12px;color:var(--text-3)" id="db-char-count">0 characters</div>
+              <button class="btn btn-primary btn-sm" onclick="dbParse()" id="db-parse-btn" style="opacity:.4" disabled>Analyse &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Example pills -->
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px">
+            <button class="db-example-btn" onclick="dbFill(0)">HVAC + pest control &#183; Texas &#183; $1M&#8211;$5M &#183; B2B</button>
+            <button class="db-example-btn" onclick="dbFill(1)">Plumbing &#183; Southeast &#183; under $2M</button>
+            <button class="db-example-btn" onclick="dbFill(2)">Accounting firms &#183; New York &#183; $5M&#8211;$10M</button>
+          </div>
+
+          <!-- Thesis assistant nudge -->
+          <div id="db-assist-nudge" style="background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px">Not sure what to buy?</div>
+              <div style="font-size:12px;color:var(--text-3)">Answer 5 questions and we will suggest the right type of business for your background and capital.</div>
+            </div>
+            <button class="btn btn-ghost btn-sm" style="white-space:nowrap;margin-left:14px;flex-shrink:0" onclick="dbOpenAssistant()">Help me decide &#8594;</button>
+          </div>
+
+          <!-- High-volume extra fields (hidden by default) -->
+          <div id="db-bulk-fields" style="display:none;margin-top:16px;display:none">
+            <div style="font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Campaign setup</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+              <div>
+                <label style="font-size:12px;color:var(--text-2);margin-bottom:5px;display:block">Target lead volume</label>
+                <select style="width:100%;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text);font-family:var(--font-body);font-size:13px;padding:8px 12px;outline:none">
+                  <option>Up to 500 leads</option>
+                  <option selected>500 &#8211; 2,000 leads</option>
+                  <option>2,000 &#8211; 10,000 leads</option>
+                  <option>10,000+ leads</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;color:var(--text-2);margin-bottom:5px;display:block">Push to CRM</label>
+                <select style="width:100%;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text);font-family:var(--font-body);font-size:13px;padding:8px 12px;outline:none">
+                  <option>CSV download only</option>
+                  <option selected>HubSpot</option>
+                  <option>Salesforce</option>
+                  <option>Instantly</option>
+                  <option>Pipedrive</option>
+                </select>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div>
+                <label style="font-size:12px;color:var(--text-2);margin-bottom:5px;display:block">Include broker listings</label>
+                <select style="width:100%;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text);font-family:var(--font-body);font-size:13px;padding:8px 12px;outline:none">
+                  <option selected>Off-market + listed</option>
+                  <option>Off-market only</option>
+                  <option>Listed only</option>
+                </select>
+              </div>
+              <div>
+                <label style="font-size:12px;color:var(--text-2);margin-bottom:5px;display:block">Enrichment depth</label>
+                <select style="width:100%;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text);font-family:var(--font-body);font-size:13px;padding:8px 12px;outline:none">
+                  <option selected>Shallow (all leads)</option>
+                  <option>Deep (top 20% by score)</option>
+                  <option>Deep on demand only</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- State: parsing animation -->
+        <div id="db-parsing-state" style="display:none;text-align:center;padding:40px 0">
+          <div style="font-size:28px;margin-bottom:16px" id="db-parse-spinner">&#x27F3;</div>
+          <div style="font-size:15px;color:var(--text-2)" id="db-parse-label">Reading your thesis...</div>
+        </div>
+
+        <!-- State: clarification chat -->
+        <div id="db-clarify-state" style="display:none">
+          <div style="margin-bottom:20px">
+            <div style="font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:6px">One quick question</div>
+            <div style="font-size:13px;color:var(--text-2)">Your thesis mentions <span id="db-clarify-industry" style="color:var(--teal)"></span> &#8212; we want to make sure we source the right companies.</div>
+          </div>
+          <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:16px">
+            <div style="padding:20px;display:flex;flex-direction:column;gap:16px" id="db-chat-thread">
               <div style="display:flex;gap:10px;align-items:flex-start">
                 <div style="width:26px;height:26px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px">&#9889;</div>
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:12px 16px;font-size:14px;color:var(--text-2);line-height:1.7;flex:1" id="db-followup-question"></div>
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:12px 16px;font-size:14px;color:var(--text-2);line-height:1.7;flex:1" id="db-clarify-question"></div>
               </div>
-              <div id="db-followup-options" style="display:flex;flex-direction:column;gap:8px;padding-left:36px"></div>
+              <div id="db-clarify-options" style="display:flex;flex-direction:column;gap:8px;padding-left:36px"></div>
+              <div id="db-followup-block" style="display:none;flex-direction:column;gap:12px">
+                <div style="display:flex;gap:10px;align-items:flex-start">
+                  <div style="width:26px;height:26px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px">&#9889;</div>
+                  <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:12px 16px;font-size:14px;color:var(--text-2);line-height:1.7;flex:1" id="db-followup-question"></div>
+                </div>
+                <div id="db-followup-options" style="display:flex;flex-direction:column;gap:8px;padding-left:36px"></div>
+              </div>
             </div>
-
+            <div style="border-top:1px solid var(--border);padding:10px 16px;display:flex;gap:8px">
+              <input type="text" id="db-clarify-custom" placeholder="Or describe in your own words..." style="flex:1;font-size:13px;padding:7px 12px">
+              <button class="btn btn-ghost btn-sm" onclick="dbClarifyCustom()">Add</button>
+            </div>
           </div>
-
-          <!-- Custom text input -->
-          <div style="border-top:1px solid var(--border);padding:10px 16px;display:flex;gap:8px">
-            <input type="text" id="db-clarify-custom" placeholder="Or describe in your own words..." style="flex:1;font-size:13px;padding:7px 12px">
-            <button class="btn btn-ghost btn-sm" onclick="dbClarifyCustom()">Add</button>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-ghost" style="flex:1" onclick="dbReset()">Start over</button>
+            <button class="btn btn-primary" style="flex:2;opacity:.4" id="db-clarify-next" disabled onclick="dbClarifyDone()">Continue &#8594;</button>
           </div>
         </div>
 
-        <div style="display:flex;gap:10px">
-          <button class="btn btn-ghost" style="flex:1" onclick="dbReset()">Start over</button>
-          <button class="btn btn-primary" style="flex:2;opacity:.4" id="db-clarify-next" disabled onclick="dbClarifyDone()">Continue &#8594;</button>
+        <!-- State: confirmation -->
+        <div id="db-confirm-state" style="display:none">
+          <div style="margin-bottom:20px">
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Here is what we extracted</div>
+            <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r);padding:16px 18px;margin-bottom:10px">
+              <div style="font-size:14px;color:var(--text-2);line-height:1.8;font-style:italic" id="db-thesis-display"></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+            <div class="db-confirm-row" id="db-row-industry"><div class="db-confirm-label">Industries</div><div class="db-confirm-val" id="db-val-industry"></div><button class="db-edit-btn" onclick="dbEditField('industry')">Edit</button></div>
+            <div class="db-confirm-row" id="db-row-geo"><div class="db-confirm-label">Geography</div><div class="db-confirm-val" id="db-val-geo"></div><button class="db-edit-btn" onclick="dbEditField('geo')">Edit</button></div>
+            <div class="db-confirm-row" id="db-row-revenue"><div class="db-confirm-label">Revenue range</div><div class="db-confirm-val" id="db-val-revenue"></div><button class="db-edit-btn" onclick="dbEditField('revenue')">Edit</button></div>
+            <div class="db-confirm-row" id="db-row-model"><div class="db-confirm-label">Business model</div><div class="db-confirm-val" id="db-val-model"></div><button class="db-edit-btn" onclick="dbEditField('model')">Edit</button></div>
+            <div class="db-confirm-row" id="db-row-signals"><div class="db-confirm-label">Priority signals</div><div class="db-confirm-val" id="db-val-signals"></div><button class="db-edit-btn" onclick="dbEditField('signals')">Edit</button></div>
+          </div>
+          <div style="background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--text-2);line-height:1.6">
+            Anything look off? Click Edit on any row or <button onclick="dbReset()" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:13px;padding:0;text-decoration:underline">rewrite your thesis</button> from scratch.
+          </div>
+
+          <!-- Volume selector -->
+          <div style="margin-bottom:20px">
+            <div style="font-size:12px;color:var(--text-3);letter-spacing:.05em;text-transform:uppercase;font-weight:500;margin-bottom:12px">How many leads do you want?</div>
+            <div style="display:flex;flex-direction:column;gap:8px" id="db-volume-opts">
+
+              <div class="db-vol-opt selected" id="vol-20" onclick="selectVolume(this,20,10,'Curated shortlist &#8212; card feed, deep enrichment, personalised outreach')">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--text)">20 leads &#8212; curated shortlist</div>
+                    <div style="font-size:12px;color:var(--text-2);margin-top:3px;line-height:1.5">Deep enrichment per lead. Owner identified, Creditsafe revenue, direct contact found. Card feed with Like / Pass. Built for personal outreach.</div>
+                  </div>
+                  <div style="text-align:right;flex-shrink:0;margin-left:16px">
+                    <div style="font-family:var(--font-mono);font-size:15px;font-weight:500;color:var(--teal)">10 credits</div>
+                    <div style="font-size:10px;color:var(--text-3);margin-top:2px">~4&#8211;12 hrs</div>
+                  </div>
+                </div>
+                <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                  <span class="tag">&#10003; Owner name + contact</span>
+                  <span class="tag">&#10003; Creditsafe revenue</span>
+                  <span class="tag">&#10003; Outreach sequences</span>
+                </div>
+              </div>
+
+              <div class="db-vol-opt" id="vol-100" onclick="selectVolume(this,100,25,'Expanded list &#8212; table view, medium enrichment')">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--text)">100 leads &#8212; expanded list</div>
+                    <div style="font-size:12px;color:var(--text-2);margin-top:3px;line-height:1.5">Shallow enrichment on all 100. B2B score, revenue bucket, owner name where easily found. Table view. Good for a broader search you want to filter yourself.</div>
+                  </div>
+                  <div style="text-align:right;flex-shrink:0;margin-left:16px">
+                    <div style="font-family:var(--font-mono);font-size:15px;font-weight:500;color:var(--amber)">25 credits</div>
+                    <div style="font-size:10px;color:var(--text-3);margin-top:2px">~12&#8211;24 hrs</div>
+                  </div>
+                </div>
+                <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                  <span class="tag">&#10003; B2B score all leads</span>
+                  <span class="tag">&#10003; Revenue bucket</span>
+                  <span class="tag">&#10003; Deep enrich on demand</span>
+                </div>
+              </div>
+
+              <div class="db-vol-opt" id="vol-500" onclick="selectVolume(this,500,50,'High-volume dataset &#8212; bulk table, CRM push, off-market + listed')">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between">
+                  <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--text)">500+ leads &#8212; full dataset</div>
+                    <div style="font-size:12px;color:var(--text-2);margin-top:3px;line-height:1.5">Shallow enrichment at scale. Off-market and broker listings combined. Bulk table with filters. Push directly to HubSpot, Salesforce, or Instantly. Built for campaign infrastructure.</div>
+                  </div>
+                  <div style="text-align:right;flex-shrink:0;margin-left:16px">
+                    <div style="font-family:var(--font-mono);font-size:15px;font-weight:500;color:var(--red)">50 credits</div>
+                    <div style="font-size:10px;color:var(--text-3);margin-top:2px">~24&#8211;48 hrs</div>
+                  </div>
+                </div>
+                <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                  <span class="tag">&#10003; Off-market + listed</span>
+                  <span class="tag">&#10003; CRM push</span>
+                  <span class="tag">&#10003; Bulk export</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-ghost" style="flex:1" onclick="dbReset()">Start over</button>
+            <button class="btn btn-primary" style="flex:2" id="db-build-btn" onclick="dbConfirmBuild(this)">Build my list &#8212; 10 credits &#8594;</button>
+          </div>
         </div>
+
       </div>
-
-      <!-- State: confirmation -->
-      <div id="db-confirm-state" style="display:none">
-        <div style="margin-bottom:20px">
-          <div style="font-size:12px;color:var(--text-3);margin-bottom:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:500">Here is what we extracted</div>
-          <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r);padding:16px 18px;margin-bottom:10px">
-            <div style="font-size:14px;color:var(--text-2);line-height:1.8;font-style:italic" id="db-thesis-display"></div>
-          </div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
-
-          <div class="db-confirm-row" id="db-row-industry">
-            <div class="db-confirm-label">Industries</div>
-            <div class="db-confirm-val" id="db-val-industry"></div>
-            <button class="db-edit-btn" onclick="dbEditField('industry')">Edit</button>
-          </div>
-
-          <div class="db-confirm-row" id="db-row-geo">
-            <div class="db-confirm-label">Geography</div>
-            <div class="db-confirm-val" id="db-val-geo"></div>
-            <button class="db-edit-btn" onclick="dbEditField('geo')">Edit</button>
-          </div>
-
-          <div class="db-confirm-row" id="db-row-revenue">
-            <div class="db-confirm-label">Revenue range</div>
-            <div class="db-confirm-val" id="db-val-revenue"></div>
-            <button class="db-edit-btn" onclick="dbEditField('revenue')">Edit</button>
-          </div>
-
-          <div class="db-confirm-row" id="db-row-model">
-            <div class="db-confirm-label">Business model</div>
-            <div class="db-confirm-val" id="db-val-model"></div>
-            <button class="db-edit-btn" onclick="dbEditField('model')">Edit</button>
-          </div>
-
-          <div class="db-confirm-row" id="db-row-signals">
-            <div class="db-confirm-label">Priority signals</div>
-            <div class="db-confirm-val" id="db-val-signals"></div>
-            <button class="db-edit-btn" onclick="dbEditField('signals')">Edit</button>
-          </div>
-
-        </div>
-
-        <div style="background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--text-2);line-height:1.6">
-          Anything look off? Click Edit on any row or <button onclick="dbReset()" style="background:none;border:none;color:var(--teal);cursor:pointer;font-size:13px;padding:0;text-decoration:underline">rewrite your thesis</button> from scratch.
-        </div>
-
-        <div style="display:flex;gap:10px">
-          <button class="btn btn-ghost" style="flex:1" onclick="dbReset()">Start over</button>
-          <button class="btn btn-primary" style="flex:2" onclick="show('s3',null)">Confirm and build my list — 10 credits →</button>
-        </div>
-      </div>
-
     </div>
+
+    <!-- Right: thesis assistant slide-in panel -->
+    <div id="db-assist-panel" style="width:0;overflow:hidden;background:var(--navy-2);border-left:1px solid var(--border);transition:width .25s ease;flex-shrink:0">
+      <div style="width:360px;padding:22px 20px;display:flex;flex-direction:column;height:100%;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-shrink:0">
+          <div>
+            <div style="font-size:15px;font-weight:500;color:var(--text)">Help me find the right business</div>
+            <div style="font-size:12px;color:var(--text-3);margin-top:2px">5 questions &#183; 2 minutes</div>
+          </div>
+          <button onclick="dbCloseAssistant()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:16px;padding:4px 8px">&#10005;</button>
+        </div>
+        <div id="db-assist-thread" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px;margin-bottom:14px;padding-right:2px">
+          <div class="ta-row ta-ai-row">
+            <div class="ta-avatar">&#9889;</div>
+            <div class="ta-bubble ta-ai" style="font-size:12px">I will ask you five quick questions and suggest 2&#8211;3 business types that fit. Ready?</div>
+          </div>
+          <div class="ta-row ta-ai-row" id="da-q1-block">
+            <div class="ta-avatar">&#9889;</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+              <div class="ta-bubble ta-ai" style="font-size:12px">What industry have you worked in?</div>
+              <div class="ta-opts" id="da-opts-1">
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(1,this,'Construction / trades')">Construction</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(1,this,'Sales / BD')">Sales / BD</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(1,this,'Operations')">Operations</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(1,this,'Finance')">Finance</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(1,this,'Healthcare')">Healthcare</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(1,this,'Technology')">Technology</button>
+              </div>
+            </div>
+          </div>
+          <div id="da-q2-block" style="display:none" class="ta-row ta-ai-row">
+            <div class="ta-avatar">&#9889;</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+              <div class="ta-bubble ta-ai" style="font-size:12px">How much capital do you have available?</div>
+              <div class="ta-opts" id="da-opts-2">
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(2,this,'Under $500K')">Under $500K</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(2,this,'$500K&#8211;$1M')">$500K&#8211;$1M</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(2,this,'$1M&#8211;$3M')">$1M&#8211;$3M</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(2,this,'$3M+')">$3M+</button>
+              </div>
+            </div>
+          </div>
+          <div id="da-q3-block" style="display:none" class="ta-row ta-ai-row">
+            <div class="ta-avatar">&#9889;</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+              <div class="ta-bubble ta-ai" style="font-size:12px">Run it yourself or install a manager?</div>
+              <div class="ta-opts" id="da-opts-3">
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(3,this,'Run it myself')">Run it myself</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(3,this,'Install a manager')">Install a manager</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(3,this,'Either works')">Either works</button>
+              </div>
+            </div>
+          </div>
+          <div id="da-q4-block" style="display:none" class="ta-row ta-ai-row">
+            <div class="ta-avatar">&#9889;</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+              <div class="ta-bubble ta-ai" style="font-size:12px">Tied to a location or open to relocating?</div>
+              <div class="ta-opts" id="da-opts-4">
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(4,this,'My city')">My city</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(4,this,'My state')">My state</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(4,this,'Anywhere in US')">Anywhere</button>
+              </div>
+            </div>
+          </div>
+          <div id="da-q5-block" style="display:none" class="ta-row ta-ai-row">
+            <div class="ta-avatar">&#9889;</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+              <div class="ta-bubble ta-ai" style="font-size:12px">What do you most want to improve in the business?</div>
+              <div class="ta-opts" id="da-opts-5">
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(5,this,'Operations')">Operations</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(5,this,'Sales')">Sales</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(5,this,'Technology')">Technology</button>
+                <button class="ta-opt" style="font-size:11px;padding:4px 10px" onclick="daAnswer(5,this,'Marketing')">Marketing</button>
+              </div>
+            </div>
+          </div>
+          <div id="da-suggestion-block" style="display:none;flex-direction:column;gap:8px"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1033,6 +1729,11 @@ tbody td:first-child{padding-left:20px}
           <div class="feed-meta">Batch 1 of 5 · HVAC &amp; pest control · Texas</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center">
+          <div class="feed-source-toggle" id="feed-toggle">
+            <button class="fst-btn active" onclick="filterFeed('all',this)">All</button>
+            <button class="fst-btn" onclick="filterFeed('offmarket',this)">Off-market</button>
+            <button class="fst-btn" onclick="filterFeed('listed',this)">Listed</button>
+          </div>
           <button class="btn btn-ghost btn-sm">Filter</button>
           <button class="btn btn-ghost btn-sm" onclick="show('s6',null)">Start outreach →</button>
         </div>
@@ -1346,7 +2047,132 @@ tbody td:first-child{padding-left:20px}
     </div>
 
     <!-- Sidebar -->
-    <div class="feed-sidebar">
+      <!-- Broker card 1 — BizBuySell listing -->
+      <div class="lead-card broker-card" data-source="listed">
+        <div class="lead-top">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+              <div class="lead-name">Alamo HVAC &amp; Refrigeration</div>
+            </div>
+            <div class="lead-location">San Antonio, TX · HVAC · Est. 2001</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+            <div class="score-ring">
+              <svg width="48" height="48" viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3"/>
+                <circle cx="24" cy="24" r="20" fill="none" stroke="#00C896" stroke-width="3" stroke-dasharray="113" stroke-dashoffset="18" stroke-linecap="round" transform="rotate(-90 24 24)"/>
+              </svg>
+              <span class="score-val">84</span>
+            </div>
+            <span class="source-badge source-listed">BizBuySell</span>
+          </div>
+        </div>
+
+        <!-- Financials — stated by seller -->
+        <div style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:10px 14px;margin-bottom:12px">
+          <div style="font-size:10px;font-weight:500;color:#60A5FA;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Seller-stated financials</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div>
+              <div style="font-size:10px;color:var(--text-3)">Asking price</div>
+              <div style="font-size:14px;font-weight:500;color:var(--text);font-family:var(--font-mono)">$1.95M</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--text-3)">Revenue</div>
+              <div style="font-size:14px;font-weight:500;color:var(--teal);font-family:var(--font-mono)">$2.8M</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--text-3)">Cash flow</div>
+              <div style="font-size:14px;font-weight:500;color:var(--teal);font-family:var(--font-mono)">$420K</div>
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:6px">Multiple: 4.6× · Listed 23 days ago</div>
+        </div>
+
+        <!-- Broker contact -->
+        <div class="contact-hierarchy">
+          <div style="font-size:10px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Broker contact</div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">✉</span>
+            <span class="contact-val">jmartinez@transworldba.com</span>
+            <span class="contact-src">Transworld BA</span>
+          </div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">📞</span>
+            <span class="contact-val">(210) 555-0193</span>
+            <span class="contact-src">Direct broker line</span>
+          </div>
+        </div>
+
+        <div class="lead-badges" style="margin-top:10px">
+          <span class="badge badge-teal">B2B commercial</span>
+          <span class="badge badge-gray">NDA required</span>
+          <span class="badge badge-gray">Financials available</span>
+        </div>
+        <div class="lead-actions">
+          <button class="action-pass">✕ Pass</button>
+          <button class="action-like">♥ Save</button>
+        </div>
+      </div>
+
+      <!-- Broker card 2 — BizQuest listing -->
+      <div class="lead-card broker-card" data-source="listed">
+        <div class="lead-top">
+          <div>
+            <div class="lead-name">Hill Country Pest Solutions</div>
+            <div class="lead-location">Austin, TX · Pest control · Est. 1998</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+            <div class="score-ring">
+              <svg width="48" height="48" viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="3"/>
+                <circle cx="24" cy="24" r="20" fill="none" stroke="#E8A230" stroke-width="3" stroke-dasharray="113" stroke-dashoffset="34" stroke-linecap="round" transform="rotate(-90 24 24)"/>
+              </svg>
+              <span class="score-val" style="color:var(--amber)">70</span>
+            </div>
+            <span class="source-badge source-listed">BizQuest</span>
+          </div>
+        </div>
+
+        <div style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:10px 14px;margin-bottom:12px">
+          <div style="font-size:10px;font-weight:500;color:#60A5FA;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Seller-stated financials</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div>
+              <div style="font-size:10px;color:var(--text-3)">Asking price</div>
+              <div style="font-size:14px;font-weight:500;color:var(--text);font-family:var(--font-mono)">$890K</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--text-3)">Revenue</div>
+              <div style="font-size:14px;font-weight:500;color:var(--teal);font-family:var(--font-mono)">$1.2M</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:var(--text-3)">Cash flow</div>
+              <div style="font-size:14px;font-weight:500;color:var(--teal);font-family:var(--font-mono)">$210K</div>
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:6px">Multiple: 4.2× · Listed 61 days ago · Price reduced</div>
+        </div>
+
+        <div class="contact-hierarchy">
+          <div style="font-size:10px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Broker contact</div>
+          <div class="contact-row contact-good">
+            <span class="contact-icon">✉</span>
+            <span class="contact-val">sarah@exitstrategies.com</span>
+            <span class="contact-src">Exit Strategies Group</span>
+          </div>
+        </div>
+
+        <div class="lead-badges" style="margin-top:10px">
+          <span class="badge badge-gray">B2C residential</span>
+          <span class="badge badge-amber">Price reduced</span>
+          <span class="badge badge-gray">61 days on market</span>
+        </div>
+        <div class="lead-actions">
+          <button class="action-pass">✕ Pass</button>
+          <button class="action-like">♥ Save</button>
+        </div>
+      </div>
+
+        <div class="feed-sidebar">
       <div class="sidebar-section">
         <div class="sidebar-heading">Batch progress</div>
         <div class="stat-grid">
@@ -1489,7 +2315,7 @@ tbody td:first-child{padding-left:20px}
       <div class="sidebar-section">
         <div class="sidebar-heading">Next batch</div>
         <div style="font-size:13px;color:var(--text-2);margin-bottom:10px;line-height:1.5">75 more leads ready. Enriching next 20 costs 5 credits.</div>
-        <button class="btn btn-ghost btn-sm" style="width:100%">Load next 20 — 5 credits</button>
+        <button class="btn btn-ghost btn-sm" style="width:100%" onclick="spendCredits(5,'Enrich next 20 leads — website, SoS, Creditsafe',this,null)">Load next 20 — 5 credits</button>
       </div>
 
       <div class="sidebar-section">
@@ -1550,32 +2376,67 @@ tbody td:first-child{padding-left:20px}
   </div>
 
   <div class="bulk-layout" style="flex:1">
+    <!-- Bulk mode sub-header -->
+    <div style="padding:10px 20px;background:var(--navy-3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--teal)"></div>
+          <span style="font-size:12px;color:var(--text-2)"><strong style="color:var(--text)">412</strong> leads &#183; shallow enrichment complete</span>
+        </div>
+        <div style="font-size:12px;color:var(--text-3)">&#183;</div>
+        <div style="font-size:12px;color:var(--text-2)"><strong style="color:var(--amber)">38</strong> awaiting deep enrich</div>
+        <div style="font-size:12px;color:var(--text-3)">&#183;</div>
+        <div style="font-size:12px;color:var(--text-2)">Off-market <strong style="color:var(--text)">389</strong> &#183; Listed <strong style="color:var(--text)">23</strong></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost btn-sm" style="font-size:12px" onclick="spendCredits(10,'Deep enrich 5 selected leads — owner + Creditsafe + contact',this,function(){bulkEnrichSelected()})">&#128269; Deep enrich selected &#8212; 2 credits/lead</button>
+        <button class="btn btn-ghost btn-sm" style="font-size:12px">&#8593; Push to CRM</button>
+      </div>
+    </div>
     <div class="bulk-toolbar">
-      <span class="toolbar-label">HVAC · Texas</span>
+      <span class="toolbar-label">HVAC &#183; Texas</span>
       <div class="bulk-filters">
-        <select class="filter-select">
-          <option>All business models</option>
+        <select class="filter-select" onchange="bulkFilter()">
+          <option>All sources</option>
+          <option>Off-market only</option>
+          <option>Listed only</option>
+        </select>
+        <select class="filter-select" onchange="bulkFilter()">
+          <option>All enrichment</option>
+          <option selected>Any</option>
+          <option>Deep enriched</option>
+          <option>Shallow only</option>
+        </select>
+        <select class="filter-select" onchange="bulkFilter()">
+          <option>All models</option>
           <option selected>B2B only</option>
           <option>B2C only</option>
         </select>
-        <select class="filter-select">
-          <option>All revenue ranges</option>
-          <option selected>$1M–$5M</option>
-          <option>$5M–$10M</option>
+        <select class="filter-select" onchange="bulkFilter()">
+          <option>All revenue</option>
+          <option selected>$1M&#8211;$5M</option>
+          <option>$5M&#8211;$10M</option>
         </select>
-        <select class="filter-select">
-          <option>All signals</option>
-          <option>Retirement signal</option>
-          <option>Low sophistication</option>
+        <select class="filter-select" onchange="bulkFilter()">
+          <option>Owner: any</option>
+          <option>Owner identified</option>
+          <option>Owner unknown</option>
         </select>
-        <select class="filter-select">
+        <select class="filter-select" onchange="bulkFilter()">
+          <option>Contact: any</option>
+          <option>Direct email found</option>
+          <option>Phone only</option>
+          <option>No contact</option>
+        </select>
+        <select class="filter-select" onchange="bulkFilter()">
           <option>Score: all</option>
-          <option>Score 70+</option>
+          <option>Score 80+</option>
           <option selected>Score 60+</option>
+          <option>Score 40+</option>
         </select>
       </div>
-      <span class="bulk-count"><strong>412</strong> leads</span>
-      <button class="btn btn-primary btn-sm" onclick="show('s6',null)">Export selection →</button>
+      <span class="bulk-count"><strong id="bulk-visible-count">412</strong> shown</span>
+      <button class="btn btn-primary btn-sm" onclick="show('s6',null)">Export selection &#8594;</button>
     </div>
 
     <div class="bulk-table-wrap">
@@ -1584,11 +2445,13 @@ tbody td:first-child{padding-left:20px}
           <tr>
             <th><input type="checkbox" class="cb"></th>
             <th>Business</th>
+            <th>Source</th>
             <th>Location</th>
             <th>Model</th>
-            <th>Est. revenue</th>
-            <th>Signals</th>
-            <th>Website</th>
+            <th>Revenue</th>
+            <th>Owner</th>
+            <th>Contact</th>
+            <th>Enrichment</th>
             <th>Score</th>
           </tr>
         </thead>
@@ -1596,81 +2459,97 @@ tbody td:first-child{padding-left:20px}
           <tr class="selected-row">
             <td><input type="checkbox" class="cb" checked></td>
             <td class="td-name">Lone Star HVAC Services</td>
+            <td><span class="source-badge source-offmarket" style="font-size:10px">Off-market</span></td>
             <td>Austin, TX</td>
             <td><span class="badge badge-teal">B2B</span></td>
-            <td>$1M–$5M ●●●</td>
-            <td><span class="tag">Retirement</span> <span class="tag">Low digital</span></td>
-            <td><span style="color:var(--amber);font-size:12px">Bare</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--teal)">$2.1M</span> <span style="font-size:10px;color:var(--teal)">&#9679;&#9679;&#9679;</span></td>
+            <td><span style="font-size:12px;color:var(--text)">James Whitfield</span></td>
+            <td><span style="color:var(--teal);font-size:11px">&#10003; Direct email</span></td>
+            <td><span class="enrich-badge enrich-deep">Deep &#9679;&#9679;&#9679;</span></td>
             <td class="td-score high">87</td>
           </tr>
           <tr class="selected-row">
             <td><input type="checkbox" class="cb" checked></td>
-            <td class="td-name">Precision Pest Control Inc.</td>
+            <td class="td-name">Precision Pest Control</td>
+            <td><span class="source-badge source-offmarket" style="font-size:10px">Off-market</span></td>
             <td>Houston, TX</td>
             <td><span class="badge badge-teal">B2B</span></td>
-            <td>$1M–$5M ●●○</td>
-            <td><span class="tag">Low digital</span></td>
-            <td><span style="color:var(--red);font-size:12px">None</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">$1M&#8211;$5M</span> <span style="font-size:10px;color:var(--amber)">&#9679;&#9679;&#9675;</span></td>
+            <td><span style="font-size:12px;color:var(--amber)">Robert Diaz</span></td>
+            <td><span style="color:var(--amber);font-size:11px">&#128222; Phone only</span></td>
+            <td><span class="enrich-badge enrich-deep">Deep &#9679;&#9679;&#9679;</span></td>
             <td class="td-score high">80</td>
           </tr>
           <tr>
             <td><input type="checkbox" class="cb"></td>
             <td class="td-name">Gulf Coast Climate Control</td>
+            <td><span class="source-badge source-offmarket" style="font-size:10px">Off-market</span></td>
             <td>Dallas, TX</td>
             <td><span class="badge badge-gray">B2C</span></td>
-            <td>&lt;$1M ●○○</td>
-            <td>—</td>
-            <td><span style="color:var(--teal);font-size:12px">Yes</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-3)">&lt;$1M</span> <span style="font-size:10px;color:var(--text-3)">&#9679;&#9675;&#9675;</span></td>
+            <td><span style="font-size:12px;color:var(--red)">Unknown</span></td>
+            <td><span style="color:var(--red);font-size:11px">&#10007; None found</span></td>
+            <td><span class="enrich-badge enrich-shallow">Shallow &#9679;&#9675;&#9675;</span></td>
             <td class="td-score mid">63</td>
           </tr>
           <tr class="selected-row">
             <td><input type="checkbox" class="cb" checked></td>
             <td class="td-name">Texas Air Solutions LLC</td>
+            <td><span class="source-badge source-offmarket" style="font-size:10px">Off-market</span></td>
             <td>San Antonio, TX</td>
             <td><span class="badge badge-teal">B2B</span></td>
-            <td>$1M–$5M ●●●</td>
-            <td><span class="tag">Retirement</span></td>
-            <td><span style="color:var(--amber);font-size:12px">Bare</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--teal)">$1.8M</span> <span style="font-size:10px;color:var(--teal)">&#9679;&#9679;&#9679;</span></td>
+            <td><span style="font-size:12px;color:var(--text)">David Chen</span></td>
+            <td><span style="color:var(--teal);font-size:11px">&#10003; Direct email</span></td>
+            <td><span class="enrich-badge enrich-deep">Deep &#9679;&#9679;&#9679;</span></td>
             <td class="td-score high">79</td>
           </tr>
           <tr>
             <td><input type="checkbox" class="cb"></td>
-            <td class="td-name">Hill Country HVAC &amp; Plumbing</td>
+            <td class="td-name">Hill Country HVAC</td>
+            <td><span class="source-badge source-listed" style="font-size:10px">BizBuySell</span></td>
             <td>Austin, TX</td>
             <td><span class="badge badge-teal">B2B</span></td>
-            <td>$5M–$10M ●●○</td>
-            <td><span class="tag">Long-established</span></td>
-            <td><span style="color:var(--teal);font-size:12px">Yes</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--teal)">$4.2M</span> <span style="font-size:10px;color:#60A5FA">stated</span></td>
+            <td><span style="font-size:12px;color:var(--text-2)">Via broker</span></td>
+            <td><span style="color:#60A5FA;font-size:11px">&#10003; Broker email</span></td>
+            <td><span class="enrich-badge enrich-listed">Listed &#9679;&#9679;&#9679;</span></td>
             <td class="td-score mid">71</td>
           </tr>
           <tr class="selected-row">
             <td><input type="checkbox" class="cb" checked></td>
-            <td class="td-name">Brazos Valley Cooling Co.</td>
+            <td class="td-name">Brazos Valley Cooling</td>
+            <td><span class="source-badge source-offmarket" style="font-size:10px">Off-market</span></td>
             <td>Waco, TX</td>
             <td><span class="badge badge-teal">B2B</span></td>
-            <td>$1M–$5M ●●○</td>
-            <td><span class="tag">Low digital</span></td>
-            <td><span style="color:var(--red);font-size:12px">None</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--amber)">$1M&#8211;$5M</span> <span style="font-size:10px;color:var(--amber)">&#9679;&#9679;&#9675;</span></td>
+            <td><span style="font-size:12px;color:var(--text-3)">Pending</span></td>
+            <td><span style="color:var(--text-3);font-size:11px">&#8212; Awaiting enrich</span></td>
+            <td><span class="enrich-badge enrich-pending" onclick="bulkEnrichOne(this)">Shallow &#9675;&#9675;&#9675; &#8594; Enrich</span></td>
             <td class="td-score high">76</td>
           </tr>
           <tr>
             <td><input type="checkbox" class="cb"></td>
             <td class="td-name">Permian Basin Air Services</td>
+            <td><span class="source-badge source-offmarket" style="font-size:10px">Off-market</span></td>
             <td>Midland, TX</td>
             <td><span class="badge badge-gray">B2C</span></td>
-            <td>&lt;$1M ●○○</td>
-            <td>—</td>
-            <td><span style="color:var(--amber);font-size:12px">Bare</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--text-3)">&lt;$1M</span> <span style="font-size:10px;color:var(--text-3)">&#9679;&#9675;&#9675;</span></td>
+            <td><span style="font-size:12px;color:var(--text-3)">Pending</span></td>
+            <td><span style="color:var(--text-3);font-size:11px">&#8212; Awaiting enrich</span></td>
+            <td><span class="enrich-badge enrich-pending" onclick="bulkEnrichOne(this)">Shallow &#9675;&#9675;&#9675; &#8594; Enrich</span></td>
             <td class="td-score mid">58</td>
           </tr>
           <tr class="selected-row">
             <td><input type="checkbox" class="cb" checked></td>
             <td class="td-name">Alamo Commercial HVAC</td>
+            <td><span class="source-badge source-offmarket" style="font-size:10px">Off-market</span></td>
             <td>San Antonio, TX</td>
             <td><span class="badge badge-teal">B2B</span></td>
-            <td>$1M–$5M ●●●</td>
-            <td><span class="tag">Retirement</span> <span class="tag">Low digital</span></td>
-            <td><span style="color:var(--red);font-size:12px">None</span></td>
+            <td><span style="font-family:var(--font-mono);font-size:12px;color:var(--teal)">$2.8M</span> <span style="font-size:10px;color:var(--teal)">&#9679;&#9679;&#9679;</span></td>
+            <td><span style="font-size:12px;color:var(--text)">Maria Santos</span></td>
+            <td><span style="color:var(--teal);font-size:11px">&#10003; Direct email</span></td>
+            <td><span class="enrich-badge enrich-deep">Deep &#9679;&#9679;&#9679;</span></td>
             <td class="td-score high">84</td>
           </tr>
         </tbody>
@@ -1678,10 +2557,13 @@ tbody td:first-child{padding-left:20px}
     </div>
 
     <div class="bulk-footer">
-      <div class="bulk-footer-left"><strong>5</strong> of 412 leads selected</div>
-      <div style="display:flex;gap:8px">
+      <div class="bulk-footer-left"><strong id="bulk-sel-count">5</strong> of <strong>412</strong> leads selected</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-size:12px;color:var(--text-3)">Selected: <strong style="color:var(--teal)">4</strong> deep enriched, <strong style="color:var(--amber)">1</strong> shallow</span>
         <button class="btn btn-ghost btn-sm">Select all 412</button>
-        <button class="btn btn-primary btn-sm" onclick="show('s6',null)">Start outreach campaign → →</button>
+        <button class="btn btn-ghost btn-sm" onclick="spendCredits(10,'Deep enrich selected leads',this,function(){bulkEnrichSelected()})">&#128269; Deep enrich selection &#8212; 10 credits</button>
+        <button class="btn btn-ghost btn-sm">&#8593; Push to HubSpot</button>
+        <button class="btn btn-primary btn-sm" onclick="spendCredits(20,'Export enriched dataset as CSV',this,null)">&#8681; Export CSV &#8212; 20 credits</button>
       </div>
     </div>
   </div>
@@ -1932,7 +2814,7 @@ tbody td:first-child{padding-left:20px}
 
       <!-- Launch -->
       <div style="margin-top:auto;padding-top:8px">
-        <button class="btn btn-primary" style="width:100%;font-size:14px;padding:13px" id="launch-btn" onclick="launchCampaign()">Launch campaign — 21 credits</button>
+        <button class="btn btn-primary" style="width:100%;font-size:14px;padding:13px" id="launch-btn" onclick="spendCredits(21,'Launch outreach campaign — 5 leads across 3 channels',this,function(){launchCampaign()})">Launch campaign — 21 credits</button>
         <div style="font-size:11px;color:var(--text-3);text-align:center;margin-top:8px">You have 35 credits · 14 remaining after launch</div>
       </div>
 
@@ -2487,6 +3369,499 @@ function launchCampaign() {
 
 
 
+
+
+
+
+// ── Volume selector ───────────────────────────────────
+let selectedVolume = 20;
+let selectedVolumeCost = 10;
+let selectedVolumeDesc = 'Trigger scrape — curated shortlist of 20 leads';
+
+function selectVolume(el, vol, cost, desc) {
+  selectedVolume = vol;
+  selectedVolumeCost = cost;
+  selectedVolumeDesc = desc;
+  document.querySelectorAll('.db-vol-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  const btn = document.getElementById('db-build-btn');
+  if (btn) btn.textContent = 'Build my list \u2014 ' + cost + ' credits \u2192';
+}
+
+function dbConfirmBuild(btn) {
+  const dest = selectedVolume >= 500 ? function(){ show('s5', null); } : function(){ show('s3', null); };
+  spendCredits(selectedVolumeCost, selectedVolumeDesc, btn, dest);
+}
+
+// ── Deal box mode toggle ──────────────────────────────
+let currentDbMode = 'personal';
+function setDbMode(mode, btn) {
+  currentDbMode = mode;
+  document.querySelectorAll('.dmt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const personalBanner = document.getElementById('db-mode-banner-personal');
+  const bulkBanner = document.getElementById('db-mode-banner-bulk');
+  const bulkFields = document.getElementById('db-bulk-fields');
+  const heading = document.getElementById('db-main-heading');
+  const sub = document.getElementById('db-main-sub');
+  const nudge = document.getElementById('db-assist-nudge');
+  if (mode === 'personal') {
+    if (personalBanner) personalBanner.style.display = 'flex';
+    if (bulkBanner) bulkBanner.style.display = 'none';
+    if (bulkFields) bulkFields.style.display = 'none';
+    if (nudge) nudge.style.display = 'flex';
+    if (heading) heading.textContent = 'What kind of business are you looking to buy?';
+    if (sub) sub.textContent = 'Describe your thesis in plain English. We will extract your criteria and confirm before building your list.';
+    const ta = document.getElementById('db-thesis-input');
+    if (ta) ta.placeholder = 'e.g. I am looking for HVAC or pest control companies in Texas, B2B focused, doing between $1M and $5M in revenue...';
+  } else {
+    if (personalBanner) personalBanner.style.display = 'none';
+    if (bulkBanner) { bulkBanner.style.display = 'flex'; }
+    if (bulkFields) bulkFields.style.display = 'grid';
+    if (nudge) nudge.style.display = 'none';
+    if (heading) heading.textContent = 'Define your sourcing criteria';
+    if (sub) sub.textContent = 'Describe the type of business you want to source at scale. We will build a dataset matching your criteria.';
+    const ta = document.getElementById('db-thesis-input');
+    if (ta) ta.placeholder = 'e.g. HVAC and pest control companies across Texas and Florida, B2B commercial focus, $1M-$10M revenue range. Include both off-market and listed businesses.';
+  }
+}
+
+// ── Thesis assistant panel (inline) ──────────────────
+function dbOpenAssistant() {
+  const panel = document.getElementById('db-assist-panel');
+  const nudge = document.getElementById('db-assist-nudge');
+  if (panel) panel.style.width = '360px';
+  if (nudge) nudge.style.display = 'none';
+}
+function dbCloseAssistant() {
+  const panel = document.getElementById('db-assist-panel');
+  const nudge = document.getElementById('db-assist-nudge');
+  if (panel) panel.style.width = '0';
+  if (nudge) nudge.style.display = 'flex';
+}
+
+// ── Inline thesis assistant questions ────────────────
+const daAnswers = {};
+const daQMap = [null,'industry','capital','involvement','geography','fix'];
+
+function daAnswer(qNum, btn, value) {
+  daAnswers[daQMap[qNum]] = value;
+  const opts = document.getElementById('da-opts-' + qNum);
+  if (opts) opts.querySelectorAll('.ta-opt').forEach(b => {
+    b.disabled = true;
+    b.style.opacity = b === btn ? '1' : '0.35';
+  });
+  btn.classList.add('selected');
+  // Add user bubble
+  const thread = document.getElementById('db-assist-thread');
+  const reply = document.createElement('div');
+  reply.style.cssText = 'display:flex;justify-content:flex-end';
+  reply.innerHTML = '<div class="ta-bubble ta-user" style="font-size:12px;max-width:200px">' + value + '</div>';
+  thread.appendChild(reply);
+  thread.scrollTop = thread.scrollHeight;
+  // Show next
+  setTimeout(() => {
+    const nextId = 'da-q' + (qNum + 1) + '-block';
+    const nextEl = document.getElementById(nextId);
+    if (nextEl) {
+      nextEl.style.display = 'flex';
+      thread.scrollTop = thread.scrollHeight;
+    } else {
+      daShowSuggestion();
+    }
+  }, 350);
+}
+
+function daShowSuggestion() {
+  const industry = daAnswers.industry || 'Construction / trades';
+  const suggestions = {
+    'Construction / trades': ['HVAC · Texas or Southeast · $1M&#8211;$5M · B2B commercial', 'Plumbing service · Mid-sized metros · B2B'],
+    'Sales / BD': ['Pest control · B2B commercial · Texas or Florida', 'Commercial cleaning · Major metros'],
+    'Finance': ['Accounting firms · $1M&#8211;$5M · Northeast', 'Bookkeeping services · Any geography'],
+    'Healthcare': ['Dental practices · $1M&#8211;$5M · Growing metros', 'Home health agencies · Southeast'],
+    'Technology': ['IT managed services · Any geography', 'HVAC with tech modernisation thesis'],
+    'Operations': ['Specialty distribution · Regional · $2M&#8211;$10M', 'Commercial HVAC · Multi-state'],
+    'Sales / business development': ['Pest control · B2B · Texas or Florida', 'Commercial cleaning · Major metros']
+  };
+  const opts = suggestions[industry] || suggestions['Construction / trades'];
+  const block = document.getElementById('da-suggestion-block');
+  if (!block) return;
+  block.style.display = 'flex';
+  // AI message
+  const thread = document.getElementById('db-assist-thread');
+  const aiMsg = document.createElement('div');
+  aiMsg.className = 'ta-row ta-ai-row';
+  aiMsg.innerHTML = '<div class="ta-avatar">&#9889;</div><div class="ta-bubble ta-ai" style="font-size:12px">Based on your answers, here are two thesis options. Click one to pre-fill your deal box.</div>';
+  thread.appendChild(aiMsg);
+  block.innerHTML = opts.map(o =>
+    '<button class="ta-opt" style="font-size:11px;padding:6px 10px;text-align:left;width:100%" onclick="daUseSuggestion(this)">' + o + '</button>'
+  ).join('');
+  thread.scrollTop = thread.scrollHeight;
+}
+
+function daUseSuggestion(btn) {
+  const ta = document.getElementById('db-thesis-input');
+  if (ta) {
+    ta.value = 'I am looking for ' + btn.textContent.replace(/&#8211;/g, '-') + ' businesses' +
+      (daAnswers.capital ? ' with a budget of ' + daAnswers.capital : '') + '.';
+    ta.dispatchEvent(new Event('input'));
+  }
+  dbCloseAssistant();
+}
+
+// ── Mode selection ────────────────────────────────────
+let selectedMode = null;
+function selectMode(mode) {
+  selectedMode = mode;
+  document.getElementById('mode-targeted').classList.toggle('selected', mode === 'targeted');
+  document.getElementById('mode-bulk').classList.toggle('selected', mode === 'bulk');
+  const btn = document.getElementById('mode-confirm-btn');
+  btn.disabled = false; btn.style.opacity = '1';
+  btn.textContent = mode === 'targeted' ? 'Continue to thesis assistant →' : 'Continue to deal box →';
+}
+function confirmMode() {
+  if (!selectedMode) return;
+  show(selectedMode === 'targeted' ? 's7' : 's2', null);
+}
+
+// ── Go deeper ─────────────────────────────────────────
+function toggleDeeper(id, btn) {
+  const panel = document.getElementById(id);
+  if (!panel) return;
+  const isOpen = panel.style.display !== 'none';
+  panel.style.display = isOpen ? 'none' : 'block';
+  btn.classList.toggle('active', !isOpen);
+  btn.textContent = isOpen ? '\u{1F50D} Go deeper' : '\u25B2 Less detail';
+}
+
+// ── Bulk enrich on demand ─────────────────────────────
+function bulkEnrichOne(badge) {
+  badge.textContent = 'Enriching...';
+  badge.style.color = 'var(--amber)';
+  badge.style.borderStyle = 'solid';
+  badge.style.borderColor = 'rgba(232,162,48,.3)';
+  badge.onclick = null;
+  setTimeout(() => {
+    badge.className = 'enrich-badge enrich-deep';
+    badge.textContent = 'Deep \u25CF\u25CF\u25CF';
+    badge.style.cursor = 'default';
+    // Update owner and contact cells in same row
+    const row = badge.closest('tr');
+    if (row) {
+      const cells = row.querySelectorAll('td');
+      if (cells[7]) cells[7].innerHTML = '<span style="font-size:12px;color:var(--text)">Owner found</span>';
+      if (cells[8]) cells[8].innerHTML = '<span style="color:var(--teal);font-size:11px">\u2713 Direct email</span>';
+    }
+  }, 1800);
+}
+
+function bulkEnrichSelected() {
+  document.querySelectorAll('.enrich-pending').forEach(badge => {
+    bulkEnrichOne(badge);
+  });
+}
+
+function bulkFilter() { /* filter logic already handled by browser select */ }
+
+// ── Thesis assistant ──────────────────────────────────
+const taAnswers = {};
+const taQuestions = [null,'industry','capital','involvement','geography','fix'];
+const taLabels = [null,'Industry','Capital','Involvement','Geography','Focus'];
+
+const thesisSuggestions = {
+  'Construction / trades': [
+    {title:'HVAC companies · Texas or Southeast', why:'Your trades background means you understand scheduling, technician management, and seasonal demand. HVAC is the highest-volume acquisition niche with strong B2B commercial contracts.'},
+    {title:'Plumbing service businesses · Mid-sized metros', why:'Similar operational profile to HVAC. Commercial plumbing contracts are sticky and recurring. Your background gives you an edge on the technical side.'},
+    {title:'Roofing or foundation repair · Sun Belt states', why:'Storm-driven demand creates recurring revenue cycles. Low digital sophistication is common &#8212; real opportunity to modernise.'}
+  ],
+  'Sales / business development': [
+    {title:'Pest control · B2B commercial · Texas or Florida', why:'Commercial pest control runs on contracts. Your sales background is the exact lever these businesses are missing &#8212; most owners win clients on referral alone.'},
+    {title:'Commercial cleaning services · Major metros', why:'Highly fragmented, relationship-driven, and almost always underinvested in sales. Your BD background could double revenue in 18 months.'},
+    {title:'Landscaping · Commercial accounts · Southeast', why:'Contract-based, repeat revenue, and most operators have never built a proper pipeline. High upside for someone who can sell.'}
+  ],
+  'Finance / accounting': [
+    {title:'Accounting firms · $1M&#8211;$5M · Northeast or Midwest', why:'You can read the books better than almost any other buyer. Retiring owner-operators are common and the transition to new ownership is smoother when the buyer understands financials.'},
+    {title:'Bookkeeping or payroll services · Any geography', why:'Sticky recurring revenue, low capital intensity, and easy to value. Your background means you spot the real margins quickly.'},
+    {title:'Insurance agencies · Independent · Southeast', why:'Commission-based recurring revenue. Owners often lack succession plans. Financial literacy is a genuine edge in due diligence.'}
+  ],
+  'Healthcare': [
+    {title:'Dental practices · $1M&#8211;$5M · Growing metros', why:'Strong recurring revenue, established patient bases, and retiring practitioners across the US. Your healthcare background reduces clinical risk perception.'},
+    {title:'Physical therapy or chiropractic · Mid-sized cities', why:'Insurance reimbursement complexity keeps less sophisticated buyers away &#8212; your background makes this navigable.'},
+    {title:'Home health or senior care agencies', why:'Demographically driven demand, fragmented market, and long-term tailwinds. Operationally complex but your background is a real differentiator.'}
+  ],
+  'Technology': [
+    {title:'IT managed services (MSP) · Any geography', why:'Recurring SaaS-like revenue from SMB clients. Most MSPs are run by technical founders who never built a proper business. Your background can transform the operation.'},
+    {title:'HVAC or trades with tech modernisation thesis', why:'Buy a boring trades business and win by installing modern scheduling, CRM, and digital marketing. Your tech background is the moat.'},
+    {title:'Digital marketing agencies · $500K&#8211;$2M', why:'Fragmented, founder-led, and almost always lacking in process. Your background lets you evaluate the real value of the client base.'}
+  ],
+  'Operations / supply chain': [
+    {title:'Specialty distribution · Regional · $2M&#8211;$10M', why:'Your ops background is exactly what most distribution businesses need &#8212; better inventory management, supplier relationships, and routing.'},
+    {title:'Commercial HVAC or electrical · Multi-state', why:'Larger, more complex operations that suit someone who can run a business with multiple crews and routes.'},
+    {title:'Waste management or recycling services · Regional', why:'High recurring revenue, contract-based, and largely relationship-driven. Operationally complex in ways your background handles well.'}
+  ],
+  'General management': [
+    {title:'Pest control or HVAC · B2B · Texas or Florida', why:'The most liquid acquisition niches. Good general managers can run these with the right team in place quickly.'},
+    {title:'Commercial cleaning · Major metros', why:'Simple operations, recurring contracts, high demand. A general manager can stabilise and scale without deep technical knowledge.'},
+    {title:'Any service business below $3M revenue · Nationwide', why:'With general management experience, the thesis is less about the industry and more about the right size and price. Focus on businesses with low sophistication signals where you can add immediate value.'}
+  ]
+};
+
+function taAnswer(qNum, btn, value) {
+  taAnswers[taQuestions[qNum]] = value;
+  // Disable all opts in this block
+  const opts = document.getElementById('ta-opts-' + qNum);
+  if (opts) opts.querySelectorAll('.ta-opt').forEach(b => {
+    b.disabled = true;
+    b.style.opacity = b === btn ? '1' : '0.4';
+  });
+  if (btn) btn.classList.add('selected');
+  // Add user reply bubble
+  const thread = document.getElementById('ta-thread');
+  const reply = document.createElement('div');
+  reply.className = 'ta-row ta-user-row';
+  reply.style.justifyContent = 'flex-end';
+  reply.innerHTML = '<div class="ta-bubble ta-user">' + value + '</div>';
+  thread.appendChild(reply);
+  // Update profile panel
+  taUpdateProfile();
+  // Show next question after delay
+  setTimeout(() => {
+    const nextId = 'ta-q' + (qNum + 1) + '-block';
+    const nextEl = document.getElementById(nextId);
+    if (nextEl) {
+      nextEl.style.display = 'flex';
+      nextEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    } else {
+      taShowRecommendation();
+    }
+  }, 400);
+}
+
+function taUpdateProfile() {
+  const panel = document.getElementById('ta-profile-rows');
+  if (!panel) return;
+  const rows = Object.entries(taAnswers).map(([key, val]) => {
+    const label = taLabels[taQuestions.indexOf(key)] || key;
+    return '<div class="ta-profile-row"><span class="ta-profile-label">' + label + '</span><span class="ta-profile-val">' + val + '</span></div>';
+  });
+  panel.innerHTML = rows.join('') || '<div style="font-size:12px;color:var(--text-3);line-height:1.7">Your answers appear here as you go.</div>';
+}
+
+function taShowRecommendation() {
+  const industry = taAnswers.industry || 'General management';
+  const suggestions = thesisSuggestions[industry] || thesisSuggestions['General management'];
+  // Show in thread
+  const thread = document.getElementById('ta-recommendation-block');
+  if (thread) {
+    thread.style.display = 'flex';
+    thread.style.flexDirection = 'column';
+    thread.style.gap = '10px';
+    thread.innerHTML = '<div class="ta-row ta-ai-row"><div class="ta-avatar">&#9889;</div><div class="ta-bubble ta-ai">Based on your answers, here are three thesis options that fit your profile. Select the one that resonates most &#8212; or pick two and we will blend them.</div></div>';
+    thread.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
+  // Show in right panel
+  const section = document.getElementById('ta-thesis-section');
+  const cards = document.getElementById('ta-thesis-cards');
+  if (section && cards) {
+    section.style.display = 'flex';
+    cards.innerHTML = suggestions.map((s, i) =>
+      '<div class="ta-thesis-card" id="ta-tc-' + i + '" onclick="taSelectThesis(' + i + ')">' +
+      '<div class="ta-thesis-title">' + s.title + '</div>' +
+      '<div class="ta-thesis-why">' + s.why + '</div></div>'
+    ).join('');
+  }
+}
+
+function taSelectThesis(idx) {
+  document.querySelectorAll('.ta-thesis-card').forEach((c, i) => {
+    c.classList.toggle('selected', i === idx);
+  });
+  const confirmWrap = document.getElementById('ta-confirm-wrap');
+  if (confirmWrap) confirmWrap.style.display = 'block';
+}
+
+function taConfirm() {
+  show('s2', null);
+  // Pre-fill thesis input with selected thesis
+  const selected = document.querySelector('.ta-thesis-card.selected');
+  if (selected) {
+    const title = selected.querySelector('.ta-thesis-title');
+    const ta = document.getElementById('db-thesis-input');
+    if (ta && title) {
+      ta.value = 'I am looking for ' + title.textContent + '. ' +
+        (taAnswers.capital ? 'My budget is ' + taAnswers.capital + '. ' : '') +
+        (taAnswers.involvement ? 'I want to ' + taAnswers.involvement.toLowerCase() + '. ' : '') +
+        (taAnswers.fix ? 'I plan to add value through: ' + taAnswers.fix.toLowerCase() + '.' : '');
+      ta.dispatchEvent(new Event('input'));
+    }
+  }
+}
+
+function taFreeSubmit() {
+  const input = document.getElementById('ta-free-input');
+  if (!input || !input.value.trim()) return;
+  const val = input.value.trim();
+  const thread = document.getElementById('ta-thread');
+  const reply = document.createElement('div');
+  reply.className = 'ta-row ta-user-row';
+  reply.style.justifyContent = 'flex-end';
+  reply.innerHTML = '<div class="ta-bubble ta-user">' + val + '</div>';
+  thread.appendChild(reply);
+  input.value = '';
+  setTimeout(() => {
+    show('s2', null);
+    const ta = document.getElementById('db-thesis-input');
+    if (ta) { ta.value = val; ta.dispatchEvent(new Event('input')); }
+  }, 600);
+}
+
+// ── Feed source filter ────────────────────────────────
+function filterFeed(type, btn) {
+  document.querySelectorAll('.fst-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#s4 .lead-card').forEach(card => {
+    const src = card.dataset.source || 'offmarket';
+    if (type === 'all') card.style.display = '';
+    else if (type === 'offmarket') card.style.display = src === 'offmarket' ? '' : 'none';
+    else if (type === 'listed') card.style.display = src === 'listed' ? '' : 'none';
+  });
+}
+
+// Tag existing off-market cards
+document.querySelectorAll('#s4 .lead-card:not(.broker-card)').forEach(card => {
+  card.dataset.source = 'offmarket';
+});
+
+
+// ── Credit system ─────────────────────────────────────
+let globalCredits = 50;
+let pendingCost = 0;
+let pendingCallback = null;
+let pendingBtn = null;
+
+function getAllCreditPills() {
+  return document.querySelectorAll('.credit-pill');
+}
+
+function updateAllPills() {
+  getAllCreditPills().forEach(pill => {
+    pill.textContent = globalCredits + ' credits';
+    pill.style.background = globalCredits <= 10 ? 'rgba(224,80,80,.15)' : '';
+    pill.style.borderColor = globalCredits <= 10 ? 'rgba(224,80,80,.3)' : '';
+    pill.style.color = globalCredits <= 10 ? 'var(--red)' : '';
+  });
+}
+
+function spendCredits(cost, description, btn, callback) {
+  if (globalCredits <= 0) {
+    showToast('&#10007;', 'Insufficient credits', 'Top up to continue', 'var(--red)');
+    return;
+  }
+  pendingCost = cost;
+  pendingCallback = callback;
+  pendingBtn = btn;
+  const after = Math.max(0, globalCredits - cost);
+  const popover = document.getElementById('credit-popover');
+  const overlay = document.getElementById('credit-popover-overlay');
+  document.getElementById('cp-description').textContent = description;
+  document.getElementById('cp-cost').textContent = cost + ' credits';
+  document.getElementById('cp-before').textContent = globalCredits + ' credits';
+  const afterEl = document.getElementById('cp-after');
+  afterEl.textContent = after + ' credits';
+  afterEl.style.color = after <= 10 ? 'var(--red)' : 'var(--teal)';
+  const warn = document.getElementById('cp-low-warning');
+  warn.style.display = after <= 10 ? 'block' : 'none';
+  // Position near button
+  if (btn) {
+    const rect = btn.getBoundingClientRect();
+    const pop = document.getElementById('credit-popover-inner');
+    const viewW = window.innerWidth;
+    const viewH = window.innerHeight;
+    let top = rect.bottom + 8;
+    let left = rect.left;
+    // Keep within viewport
+    const popW = 320;
+    if (left + popW > viewW - 16) left = viewW - popW - 16;
+    if (left < 16) left = 16;
+    if (top + 260 > viewH) top = rect.top - 270;
+    popover.style.top = top + 'px';
+    popover.style.left = left + 'px';
+  } else {
+    popover.style.top = '50%';
+    popover.style.left = '50%';
+    popover.style.transform = 'translate(-50%,-50%)';
+  }
+  popover.style.display = 'block';
+  overlay.style.display = 'block';
+}
+
+function confirmSpend() {
+  // Capture pending values BEFORE closing (closePopover resets them)
+  const cost = pendingCost;
+  const cb = pendingCallback;
+  const btn = pendingBtn;
+  // Close popover UI only — don't reset pending state yet
+  document.getElementById('credit-popover').style.display = 'none';
+  document.getElementById('credit-popover-overlay').style.display = 'none';
+  document.getElementById('credit-popover').style.transform = '';
+  // Deduct credits
+  globalCredits = Math.max(0, globalCredits - cost);
+  updateAllPills();
+  // Animate the button
+  if (btn) {
+    btn.style.opacity = '0.6';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    }, 800);
+  }
+  showToast('&#10003;', cost + ' credits used', globalCredits + ' remaining', 'var(--teal)');
+  if (cb) setTimeout(cb, 300);
+  // Now reset
+  pendingCost = 0; pendingCallback = null; pendingBtn = null;
+}
+
+function closePopover() {
+  document.getElementById('credit-popover').style.display = 'none';
+  document.getElementById('credit-popover-overlay').style.display = 'none';
+  document.getElementById('credit-popover').style.transform = '';
+  pendingCost = 0; pendingCallback = null; pendingBtn = null;
+}
+
+let toastTimer = null;
+function showToast(icon, title, sub, color) {
+  const toast = document.getElementById('credit-toast');
+  const iconEl = document.getElementById('toast-icon');
+  const titleEl = document.getElementById('toast-title');
+  const subEl = document.getElementById('toast-sub');
+  iconEl.innerHTML = icon;
+  iconEl.style.color = color || 'var(--teal)';
+  titleEl.textContent = title;
+  subEl.textContent = sub;
+  toast.style.display = 'block';
+  toast.style.opacity = '1';
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => { toast.style.display = 'none'; }, 300);
+  }, 2500);
+}
+
+// Top up — add 200 credits
+function topUpCredits() {
+  globalCredits += 200;
+  updateAllPills();
+  showToast('&#9650;', '200 credits added', globalCredits + ' total balance', 'var(--amber)');
+}
+
+// Add top-up button to all credit pills on click
+document.querySelectorAll('.credit-pill').forEach(pill => {
+  pill.style.cursor = 'pointer';
+  pill.title = 'Click to top up';
+  pill.addEventListener('click', topUpCredits);
+});
+
 // ── Pipeline status tracker ───────────────────────────
 const psColors = {
   'Saved':'ps-saved','Contacted':'ps-contacted',
@@ -2619,6 +3994,51 @@ async function boltSend(text) {
   }
 }
 </script>
+
+<!-- Credit spend popover -->
+<div id="credit-popover" style="display:none;position:fixed;z-index:500;pointer-events:none">
+  <div id="credit-popover-inner" style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);padding:18px 20px;min-width:280px;max-width:320px;box-shadow:0 8px 32px rgba(0,0,0,.5);pointer-events:all">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px">
+      <div style="font-size:15px;font-weight:500;color:var(--text)">Confirm action</div>
+      <button onclick="closePopover()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:16px;padding:0 4px;margin-top:-2px">&#10005;</button>
+    </div>
+    <div style="font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:14px" id="cp-description"></div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-size:12px;color:var(--text-3)">Cost</span>
+        <span style="font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--amber)" id="cp-cost"></span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-size:12px;color:var(--text-3)">Current balance</span>
+        <span style="font-family:var(--font-mono);font-size:14px;color:var(--text)" id="cp-before"></span>
+      </div>
+      <div style="height:1px;background:var(--border);margin:6px 0"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:12px;color:var(--text-3)">After this action</span>
+        <span style="font-family:var(--font-mono);font-size:14px;font-weight:500" id="cp-after"></span>
+      </div>
+    </div>
+    <div id="cp-low-warning" style="display:none;background:rgba(224,80,80,.08);border:1px solid rgba(224,80,80,.2);border-radius:var(--r);padding:8px 12px;margin-bottom:12px;font-size:12px;color:var(--red)">
+      &#9888; Low balance. <a href="#" style="color:var(--red);text-decoration:underline" onclick="closePopover()">Top up credits</a> to avoid interruptions.
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost btn-sm" style="flex:1" onclick="closePopover()">Cancel</button>
+      <button class="btn btn-primary btn-sm" style="flex:2" id="cp-confirm-btn" onclick="confirmSpend()">Confirm &#8594;</button>
+    </div>
+  </div>
+</div>
+<div id="credit-popover-overlay" onclick="closePopover()" style="display:none;position:fixed;inset:0;z-index:499"></div>
+
+<!-- Credit toast -->
+<div id="credit-toast" style="display:none;position:fixed;bottom:24px;right:24px;z-index:600;background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r);padding:12px 16px;font-size:13px;box-shadow:0 4px 20px rgba(0,0,0,.4);transition:opacity .3s;min-width:220px">
+  <div style="display:flex;align-items:center;gap:10px">
+    <span id="toast-icon" style="font-size:16px">&#10003;</span>
+    <div>
+      <div id="toast-title" style="font-weight:500;color:var(--text)"></div>
+      <div id="toast-sub" style="font-size:12px;color:var(--text-3);margin-top:2px"></div>
+    </div>
+  </div>
+</div>
 
 <!-- Tooltip overlay -->
 <div id="tooltip-overlay" onclick="hideTooltip()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:center;justify-content:center">
