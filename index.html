@@ -910,254 +910,6 @@ tbody td:first-child{padding-left:20px}
 </div>
 
 <!-- ════════════════════════════════════════════════════ -->
-<!-- SCREEN 8 — MODE SELECTION                           -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="screen" id="s8">
-  <div class="top-bar">
-    <div class="top-bar-logo">TBD</div>
-    <div class="top-bar-right">
-      <div class="credit-pill">50 credits</div>
-      <div class="avatar">NL</div>
-    </div>
-  </div>
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:40px 20px">
-    <div style="width:100%;max-width:680px">
-      <div style="text-align:center;margin-bottom:36px">
-        <div style="font-family:var(--font-display);font-size:28px;color:var(--text);margin-bottom:8px">How are you using TBD?</div>
-        <div style="font-size:14px;color:var(--text-2);line-height:1.6">Your answer changes the entire experience &#8212; the deal box, the feed, the enrichment depth, and the outputs.</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
-
-        <!-- Targeted mode card -->
-        <div class="mode-card" id="mode-targeted" onclick="selectMode('targeted')">
-          <div class="mode-icon">&#127919;</div>
-          <div class="mode-title">Personal acquisition search</div>
-          <div class="mode-sub">I am looking to buy one business. I will personally reach out to owners and want a curated shortlist I can act on.</div>
-          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
-            <div class="mode-feature">&#10003; Thesis discovery assistant</div>
-            <div class="mode-feature">&#10003; Card feed &#8212; 20 leads at a time</div>
-            <div class="mode-feature">&#10003; Deep enrichment per lead</div>
-            <div class="mode-feature">&#10003; Personalised outreach sequences</div>
-            <div class="mode-feature">&#10003; Pipeline status tracker</div>
-          </div>
-          <div class="mode-best">Best for solo searchers and ETA buyers</div>
-        </div>
-
-        <!-- High-volume mode card -->
-        <div class="mode-card" id="mode-bulk" onclick="selectMode('bulk')">
-          <div class="mode-icon">&#128202;</div>
-          <div class="mode-title">High-volume sourcing</div>
-          <div class="mode-sub">I need a qualified dataset at scale. My team has campaign infrastructure and I want to pull thousands of leads matching my criteria.</div>
-          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
-            <div class="mode-feature">&#10003; Table view with bulk filters</div>
-            <div class="mode-feature">&#10003; Shallow enrichment on all leads</div>
-            <div class="mode-feature">&#10003; Deep enrich on demand per selection</div>
-            <div class="mode-feature">&#10003; Bulk CSV or CRM push</div>
-            <div class="mode-feature">&#10003; Off-market + broker listings combined</div>
-          </div>
-          <div class="mode-best">Best for PE firms, search funds, institutional buyers</div>
-        </div>
-
-      </div>
-
-      <!-- Difference explainer -->
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:24px">
-        <div style="font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">How they differ</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0">
-          <div style="font-size:12px;color:var(--text-3);font-weight:500;padding:6px 0;border-bottom:1px solid var(--border)"></div>
-          <div style="font-size:12px;color:var(--teal);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">Personal search</div>
-          <div style="font-size:12px;color:#60A5FA;font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">High-volume</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0">Typical list size</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">20&#8211;100 leads</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">500&#8211;20,000 leads</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Enrichment depth</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Deep per lead</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Shallow by default</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Cost per lead</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Higher</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Lower</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Outreach</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Built-in sequences</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Your own stack</div>
-        </div>
-      </div>
-
-      <button class="btn btn-primary btn-lg" id="mode-confirm-btn" style="width:100%;opacity:.4" disabled onclick="confirmMode()">Continue →</button>
-      <div style="font-size:12px;color:var(--text-3);text-align:center;margin-top:10px">You can switch modes at any time from settings.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- SCREEN 7 — THESIS DISCOVERY ASSISTANT               -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="screen" id="s7">
-  <div class="top-bar">
-    <div class="top-bar-logo">TBD</div>
-    <div class="top-bar-right">
-      <div class="credit-pill">50 credits</div>
-      <div class="avatar">NL</div>
-    </div>
-  </div>
-
-  <div style="flex:1;display:flex;background:var(--navy);min-height:0">
-
-    <!-- Left: conversation -->
-    <div style="flex:1;display:flex;flex-direction:column;max-width:620px;margin:0 auto;padding:28px 24px">
-
-      <!-- Header -->
-      <div style="text-align:center;margin-bottom:24px">
-        <div style="font-family:var(--font-display);font-size:24px;color:var(--text);margin-bottom:6px">Let us help you find the right business to buy</div>
-        <div style="font-size:13px;color:var(--text-2)">Answer a few questions and we will suggest a thesis that fits your background, capital, and goals.</div>
-      </div>
-
-      <!-- Chat thread -->
-      <div id="ta-thread" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:14px;margin-bottom:16px;padding-right:4px">
-
-        <!-- AI opening message -->
-        <div style="display:flex;gap:10px;align-items:flex-start">
-          <div style="width:28px;height:28px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">⚡</div>
-          <div class="ta-bubble ta-ai">Hey Nicholas — I am going to ask you five quick questions. Based on your answers I will suggest two or three types of businesses that could be a great fit. Ready?</div>
-        </div>
-
-        <!-- Q1 block -->
-        <div id="ta-q1" style="display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:28px;height:28px;border-radius:50%;background:var(--teal-faint2);border:1px solid rgba(0,200,150,.25);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">⚡</div>
-            <div class="ta-bubble ta-ai">What industry have you worked in? This is the single biggest predictor of acquisition success — you will add the most value where you already know how things work.</div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;padding-left:38px" id="ta-opts-1">
-            <button class="ta-opt" onclick="taAnswer(1,'Construction / trades')">Construction / trades</button>
-            <button class="ta-opt" onclick="taAnswer(1,'Sales / business development')">Sales / BD</button>
-            <button class="ta-opt" onclick="taAnswer(1,'Operations / supply chain')">Operations</button>
-            <button class="ta-opt" onclick="taAnswer(1,'Finance / accounting')">Finance</button>
-            <button class="ta-opt" onclick="taAnswer(1,'Healthcare')">Healthcare</button>
-            <button class="ta-opt" onclick="taAnswer(1,'Technology')">Technology</button>
-            <button class="ta-opt" onclick="taAnswer(1,'No specific industry')">No specific background</button>
-          </div>
-        </div>
-
-        <!-- Q2–Q5 injected dynamically -->
-        <div id="ta-q2" style="display:none;flex-direction:column;gap:10px"></div>
-        <div id="ta-q3" style="display:none;flex-direction:column;gap:10px"></div>
-        <div id="ta-q4" style="display:none;flex-direction:column;gap:10px"></div>
-        <div id="ta-q5" style="display:none;flex-direction:column;gap:10px"></div>
-
-        <!-- Recommendation block -->
-        <div id="ta-recommendation" style="display:none;flex-direction:column;gap:12px"></div>
-
-      </div>
-
-      <!-- Free text input -->
-      <div style="background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r);display:flex;gap:8px;padding:8px 12px;align-items:flex-end">
-        <textarea id="ta-free-input" rows="2" placeholder="Or describe your situation in your own words..." style="flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:13px;resize:none;line-height:1.5"></textarea>
-        <button onclick="taFreeSubmit()" style="width:32px;height:32px;border-radius:var(--r);background:var(--teal);border:none;cursor:pointer;font-size:15px;color:var(--navy);font-weight:700;flex-shrink:0">→</button>
-      </div>
-
-      <div style="display:flex;gap:8px;margin-top:12px">
-        <button class="btn btn-ghost btn-sm" style="flex:1" onclick="show('s2',null)">I already know what I want →</button>
-      </div>
-    </div>
-
-    <!-- Right: thesis preview panel -->
-    <div id="ta-preview-panel" style="width:320px;background:var(--navy-2);border-left:1px solid var(--border);padding:24px 20px;display:flex;flex-direction:column;gap:16px;overflow-y:auto">
-      <div style="font-size:11px;font-weight:500;color:var(--text-3);letter-spacing:.07em;text-transform:uppercase">Building your thesis</div>
-
-      <div id="ta-profile-rows" style="display:flex;flex-direction:column;gap:8px">
-        <div style="font-size:13px;color:var(--text-3);line-height:1.7">Your answers will appear here as you go. We will use these to suggest the right type of business for you.</div>
-      </div>
-
-      <div id="ta-thesis-cards" style="display:none;flex-direction:column;gap:10px;margin-top:8px"></div>
-
-      <div id="ta-confirm-btn-wrap" style="display:none;margin-top:auto">
-        <button class="btn btn-primary" style="width:100%" onclick="taConfirmThesis()">Use this thesis →</button>
-        <div style="font-size:11px;color:var(--text-3);text-align:center;margin-top:8px">This will pre-fill your Deal Box. You can adjust anything before triggering your scrape.</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
-<!-- SCREEN 8 — MODE SELECTION                           -->
-<!-- ════════════════════════════════════════════════════ -->
-<div class="screen" id="s8">
-  <div class="top-bar">
-    <div class="top-bar-logo">TBD</div>
-    <div class="top-bar-right">
-      <div class="credit-pill">50 credits</div>
-      <div class="avatar">NL</div>
-    </div>
-  </div>
-  <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--navy);padding:40px 20px">
-    <div style="width:100%;max-width:680px">
-      <div style="text-align:center;margin-bottom:36px">
-        <div style="font-family:var(--font-display);font-size:28px;color:var(--text);margin-bottom:8px">How are you using TBD?</div>
-        <div style="font-size:14px;color:var(--text-2);line-height:1.6">Your answer changes the entire experience &#8212; the deal box, the feed, the enrichment depth, and the outputs.</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
-
-        <!-- Targeted mode card -->
-        <div class="mode-card" id="mode-targeted" onclick="selectMode('targeted')">
-          <div class="mode-icon">&#127919;</div>
-          <div class="mode-title">Personal acquisition search</div>
-          <div class="mode-sub">I am looking to buy one business. I will personally reach out to owners and want a curated shortlist I can act on.</div>
-          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
-            <div class="mode-feature">&#10003; Thesis discovery assistant</div>
-            <div class="mode-feature">&#10003; Card feed &#8212; 20 leads at a time</div>
-            <div class="mode-feature">&#10003; Deep enrichment per lead</div>
-            <div class="mode-feature">&#10003; Personalised outreach sequences</div>
-            <div class="mode-feature">&#10003; Pipeline status tracker</div>
-          </div>
-          <div class="mode-best">Best for solo searchers and ETA buyers</div>
-        </div>
-
-        <!-- High-volume mode card -->
-        <div class="mode-card" id="mode-bulk" onclick="selectMode('bulk')">
-          <div class="mode-icon">&#128202;</div>
-          <div class="mode-title">High-volume sourcing</div>
-          <div class="mode-sub">I need a qualified dataset at scale. My team has campaign infrastructure and I want to pull thousands of leads matching my criteria.</div>
-          <div style="margin-top:16px;display:flex;flex-direction:column;gap:6px">
-            <div class="mode-feature">&#10003; Table view with bulk filters</div>
-            <div class="mode-feature">&#10003; Shallow enrichment on all leads</div>
-            <div class="mode-feature">&#10003; Deep enrich on demand per selection</div>
-            <div class="mode-feature">&#10003; Bulk CSV or CRM push</div>
-            <div class="mode-feature">&#10003; Off-market + broker listings combined</div>
-          </div>
-          <div class="mode-best">Best for PE firms, search funds, institutional buyers</div>
-        </div>
-
-      </div>
-
-      <!-- Difference explainer -->
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:24px">
-        <div style="font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">How they differ</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0">
-          <div style="font-size:12px;color:var(--text-3);font-weight:500;padding:6px 0;border-bottom:1px solid var(--border)"></div>
-          <div style="font-size:12px;color:var(--teal);font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">Personal search</div>
-          <div style="font-size:12px;color:#60A5FA;font-weight:500;padding:6px 8px;border-bottom:1px solid var(--border);text-align:center">High-volume</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0">Typical list size</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">20&#8211;100 leads</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center">500&#8211;20,000 leads</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Enrichment depth</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Deep per lead</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Shallow by default</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Cost per lead</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Higher</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Lower</div>
-          <div style="font-size:11px;color:var(--text-3);padding:7px 0;border-top:1px solid var(--border)">Outreach</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Built-in sequences</div>
-          <div style="font-size:11px;color:var(--text-2);padding:7px 8px;text-align:center;border-top:1px solid var(--border)">Your own stack</div>
-        </div>
-      </div>
-
-      <button class="btn btn-primary btn-lg" id="mode-confirm-btn" style="width:100%;opacity:.4" disabled onclick="confirmMode()">Continue →</button>
-      <div style="font-size:12px;color:var(--text-3);text-align:center;margin-top:10px">You can switch modes at any time from settings.</div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════════════════ -->
 <!-- SCREEN 7 — THESIS DISCOVERY ASSISTANT               -->
 <!-- ════════════════════════════════════════════════════ -->
 <div class="screen" id="s7">
@@ -1297,20 +1049,6 @@ tbody td:first-child{padding-left:20px}
       <div style="width:100%;max-width:560px">
 
         <!-- Mode context banner -->
-        <div id="db-mode-banner-personal" style="display:flex;align-items:center;gap:10px;background:var(--teal-faint);border:1px solid rgba(0,200,150,.2);border-radius:var(--r);padding:10px 14px;margin-bottom:20px">
-          <span style="font-size:16px">&#127919;</span>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--teal)">Personal acquisition search</div>
-            <div style="font-size:11px;color:var(--text-2)">Curated shortlist &#183; deep enrichment per lead &#183; personalised outreach sequences</div>
-          </div>
-        </div>
-        <div id="db-mode-banner-bulk" style="display:none;align-items:center;gap:10px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:var(--r);padding:10px 14px;margin-bottom:20px">
-          <span style="font-size:16px">&#128202;</span>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:#60A5FA">High-volume sourcing</div>
-            <div style="font-size:11px;color:var(--text-2)">Dataset at scale &#183; shallow enrichment &#183; CRM push &#183; off-market + listed combined</div>
-          </div>
-        </div>
 
         <!-- Heading -->
         <div id="db-input-state">
@@ -1616,7 +1354,7 @@ tbody td:first-child{padding-left:20px}
     <div class="wait-card">
       <div class="wait-icon">⚙</div>
       <div class="wait-title">Building your list</div>
-      <div class="wait-sub">We're sourcing and scoring HVAC + pest control companies across Texas and Florida. This usually takes 4–12 hours for popular niches.</div>
+      <div class="wait-sub" id="wait-sub">We're sourcing and scoring HVAC + pest control companies across Texas and Florida. This usually takes 4–12 hours for popular niches.</div>
 
       <div class="pipeline-steps">
         <div class="pipe-step">
@@ -1726,7 +1464,7 @@ tbody td:first-child{padding-left:20px}
       <div class="feed-header">
         <div>
           <div class="feed-title">Your leads</div>
-          <div class="feed-meta">Batch 1 of 5 · HVAC &amp; pest control · Texas</div>
+          <div class="feed-meta" id="feed-meta">Batch 1 of 5 · HVAC &amp; pest control · Texas</div>
         </div>
         <div style="display:flex;gap:8px;align-items:center">
           <div class="feed-source-toggle" id="feed-toggle">
@@ -2044,9 +1782,7 @@ tbody td:first-child{padding-left:20px}
           <button class="action-like">♥ Save</button>
         </div>
       </div>
-    </div>
 
-    <!-- Sidebar -->
       <!-- Broker card 1 — BizBuySell listing -->
       <div class="lead-card broker-card" data-source="listed">
         <div class="lead-top">
@@ -2172,7 +1908,9 @@ tbody td:first-child{padding-left:20px}
         </div>
       </div>
 
-        <div class="feed-sidebar">
+    </div>
+
+    <div class="feed-sidebar">
       <div class="sidebar-section">
         <div class="sidebar-heading">Batch progress</div>
         <div class="stat-grid">
@@ -2394,7 +2132,7 @@ tbody td:first-child{padding-left:20px}
       </div>
     </div>
     <div class="bulk-toolbar">
-      <span class="toolbar-label">HVAC &#183; Texas</span>
+      <span class="toolbar-label" id="bulk-toolbar-label">HVAC &#183; Texas</span>
       <div class="bulk-filters">
         <select class="filter-select" onchange="bulkFilter()">
           <option>All sources</option>
@@ -2589,13 +2327,13 @@ tbody td:first-child{padding-left:20px}
       <!-- Header -->
       <div style="margin-bottom:24px">
         <div style="font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:4px">Outreach campaign</div>
-        <div style="font-size:13px;color:var(--text-2)">7 saved leads · HVAC &amp; pest control · Texas</div>
+        <div style="font-size:13px;color:var(--text-2)" id="outreach-meta">7 saved leads · HVAC &amp; pest control · Texas</div>
       </div>
 
       <!-- Campaign name -->
       <div style="margin-bottom:20px">
         <label>Campaign name</label>
-        <input type="text" value="HVAC Texas — Q1 outreach" style="width:100%">
+        <input type="text" value="HVAC Texas — Q1 outreach" id="outreach-campaign-name" style="width:100%">
       </div>
 
       <!-- Sequence builder -->
@@ -2903,16 +2641,125 @@ const parsedResults = [
 
 let currentParsed = null;
 
+let leadSearchContext = {
+  industries: ['HVAC', 'Pest control'],
+  geo: ['Texas', 'Florida']
+};
+
+function titleCaseWord(word) {
+  if (!word) return '';
+  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+}
+
+function findMentionedIndustries(text) {
+  const lower = (text || '').toLowerCase();
+  const map = [
+    ['HVAC', ['hvac']],
+    ['Pest control', ['pest control', 'pest management']],
+    ['Dental', ['dental', 'dentist', 'dental practice']],
+    ['Plumbing', ['plumbing', 'plumber']],
+    ['Accounting', ['accounting', 'bookkeeping']],
+    ['IT managed services', ['managed services', 'msp', 'it services']],
+    ['Commercial cleaning', ['commercial cleaning', 'janitorial']],
+    ['Home health', ['home health']],
+    ['Physical therapy', ['physical therapy', 'physio']],
+    ['Chiropractic', ['chiropractic', 'chiropractor']]
+  ];
+  const found = [];
+  map.forEach(([label, keywords]) => {
+    if (keywords.some(k => lower.includes(k))) found.push(label);
+  });
+  return found;
+}
+
+function findMentionedGeos(text) {
+  const lower = (text || '').toLowerCase();
+  const geos = ['Texas','Florida','Georgia','Tennessee','North Carolina','New York','Southeast','Northeast','Midwest'];
+  return geos.filter(g => lower.includes(g.toLowerCase()));
+}
+
+function updateLeadSearchContext(next) {
+  if (!next) return;
+  const industries = (next.industries || []).filter(Boolean);
+  const geo = (next.geo || []).filter(Boolean);
+  if (industries.length) leadSearchContext.industries = industries;
+  if (geo.length) leadSearchContext.geo = geo;
+
+  const industriesText = leadSearchContext.industries.join(' + ');
+  const primaryIndustry = leadSearchContext.industries[0] || 'HVAC';
+  const primaryGeo = leadSearchContext.geo[0] || 'Texas';
+  const geoText = leadSearchContext.geo.join(' and ');
+
+  const waitSub = document.getElementById('wait-sub');
+  if (waitSub) {
+    waitSub.textContent = "We're sourcing and scoring " + industriesText + ' companies across ' + geoText + '. This usually takes 4–12 hours for popular niches.';
+  }
+
+  const feedMeta = document.getElementById('feed-meta');
+  if (feedMeta) feedMeta.innerHTML = 'Batch 1 of 5 · ' + industriesText + ' · ' + primaryGeo;
+
+  const bulkLabel = document.getElementById('bulk-toolbar-label');
+  if (bulkLabel) bulkLabel.innerHTML = primaryIndustry + ' &#183; ' + primaryGeo;
+
+  const outreachMeta = document.getElementById('outreach-meta');
+  if (outreachMeta) outreachMeta.innerHTML = '7 saved leads · ' + industriesText + ' · ' + primaryGeo;
+
+  const campaignName = document.getElementById('outreach-campaign-name');
+  if (campaignName) campaignName.value = primaryIndustry + ' ' + primaryGeo + ' — Q1 outreach';
+}
+
+function updateLeadSearchContextFromThesis(text) {
+  const industries = findMentionedIndustries(text);
+  const geo = findMentionedGeos(text);
+  updateLeadSearchContext({ industries, geo });
+}
+
+function inferParsedFromThesis(text) {
+  const val = (text || '').trim();
+  if (!val) return null;
+
+  const industries = findMentionedIndustries(val);
+  const geo = findMentionedGeos(val);
+  const lower = val.toLowerCase();
+
+  let revenue = 'Any';
+  if (lower.includes('under $500k') || lower.includes('under 500k')) revenue = 'Under $500K';
+  else if (lower.includes('under $1m') || lower.includes('under 1m')) revenue = 'Under $1M';
+  else if (lower.includes('$1m') && lower.includes('$5m')) revenue = '$1M – $5M';
+  else if (lower.includes('$5m') && lower.includes('$10m')) revenue = '$5M – $10M';
+  else if (lower.includes('under $2m') || lower.includes('under 2m')) revenue = 'Under $2M';
+
+  let model = 'Any';
+  if (lower.includes('b2b') || lower.includes('commercial')) model = 'B2B only';
+  else if (lower.includes('b2c') || lower.includes('residential')) model = 'B2C only';
+
+  const signals = [];
+  if (lower.includes('retirement') || lower.includes('older owner')) signals.push('Retirement age');
+  if (lower.includes('no website') || lower.includes('low digital')) signals.push('Low digital presence');
+  if (lower.includes('sole proprietor')) signals.push('Sole proprietor');
+
+  return {
+    thesis: val,
+    industry: industries.length ? industries : ['Service businesses'],
+    geo: geo.length ? geo : ['Any geography'],
+    revenue,
+    model,
+    signals: signals.length ? signals : ['Operational fit']
+  };
+}
+
 function dbFill(idx) {
   const ta = document.getElementById('db-thesis-input');
   ta.value = exampleTheses[idx];
   ta.dispatchEvent(new Event('input'));
   currentParsed = parsedResults[idx];
+  updateLeadSearchContext({ industries: currentParsed.industry, geo: currentParsed.geo });
 }
 
 const dbInput = document.getElementById('db-thesis-input');
 if (dbInput) {
   dbInput.addEventListener('input', () => {
+    updateLeadSearchContextFromThesis(dbInput.value);
     const len = dbInput.value.trim().length;
     const btn = document.getElementById('db-parse-btn');
     const counter = document.getElementById('db-char-count');
@@ -2973,6 +2820,22 @@ const clarifyMap = {
         { label: "No preference", sub: "", key: "any" }
       ]
     }
+  },
+  'Dental': {
+    question: "For dental, what kind of practice are you targeting first?",
+    options: [
+      { label: "General dentistry", sub: "Broader patient base, steady recurring care", key: "general dentistry" },
+      { label: "Specialty practice", sub: "Ortho, endo, oral surgery, perio, pediatric, etc.", key: "specialty dental" },
+      { label: "Open to both", sub: "Let quality and economics decide", key: "mixed dental" }
+    ],
+    followup: {
+      question: "One more — are you prioritising a single-location owner-led practice or a multi-location platform?",
+      options: [
+        { label: "Single-location", sub: "Simpler transition, often founder-operated", key: "single location" },
+        { label: "Multi-location", sub: "Larger platform with systems already in place", key: "multi location" },
+        { label: "No preference", sub: "Open to either structure", key: "any" }
+      ]
+    }
   }
 };
 
@@ -3013,7 +2876,7 @@ function dbParse() {
       clearInterval(interval);
       setTimeout(() => {
         document.getElementById('db-parsing-state').style.display = 'none';
-        pendingParsed = currentParsed || parsedResults[0];
+        pendingParsed = inferParsedFromThesis(val) || currentParsed || parsedResults[0];
         dbShowClarify(pendingParsed);
       }, 400);
     }
@@ -3104,7 +2967,7 @@ function dbClarifyCustom() {
 
 function dbClarifyDone() {
   document.getElementById('db-clarify-state').style.display = 'none';
-  const result = pendingParsed || parsedResults[0];
+  const result = pendingParsed || inferParsedFromThesis(pendingThesis) || currentParsed || parsedResults[0];
   if (clarifyAnswers.model && clarifyAnswers.model !== 'Mixed') {
     result.model = clarifyAnswers.model;
   }
@@ -3122,6 +2985,7 @@ function dbShowConfirm(thesis, result) {
   document.getElementById('db-val-model').innerHTML = `<span class="badge badge-teal">${result.model}</span>`;
   document.getElementById('db-val-signals').innerHTML = result.signals.map(v => `<span class="badge badge-gray">${v}</span>`).join('');
   document.getElementById('db-confirm-state').style.display = 'block';
+  updateLeadSearchContext({ industries: result.industry, geo: result.geo });
 }
 
 function dbReset() {
@@ -3505,23 +3369,9 @@ function daUseSuggestion(btn) {
     ta.value = 'I am looking for ' + btn.textContent.replace(/&#8211;/g, '-') + ' businesses' +
       (daAnswers.capital ? ' with a budget of ' + daAnswers.capital : '') + '.';
     ta.dispatchEvent(new Event('input'));
+    currentParsed = inferParsedFromThesis(ta.value);
   }
   dbCloseAssistant();
-}
-
-// ── Mode selection ────────────────────────────────────
-let selectedMode = null;
-function selectMode(mode) {
-  selectedMode = mode;
-  document.getElementById('mode-targeted').classList.toggle('selected', mode === 'targeted');
-  document.getElementById('mode-bulk').classList.toggle('selected', mode === 'bulk');
-  const btn = document.getElementById('mode-confirm-btn');
-  btn.disabled = false; btn.style.opacity = '1';
-  btn.textContent = mode === 'targeted' ? 'Continue to thesis assistant →' : 'Continue to deal box →';
-}
-function confirmMode() {
-  if (!selectedMode) return;
-  show(selectedMode === 'targeted' ? 's7' : 's2', null);
 }
 
 // ── Go deeper ─────────────────────────────────────────
@@ -3693,6 +3543,7 @@ function taConfirm() {
         (taAnswers.involvement ? 'I want to ' + taAnswers.involvement.toLowerCase() + '. ' : '') +
         (taAnswers.fix ? 'I plan to add value through: ' + taAnswers.fix.toLowerCase() + '.' : '');
       ta.dispatchEvent(new Event('input'));
+      currentParsed = inferParsedFromThesis(ta.value);
     }
   }
 }
@@ -3903,6 +3754,73 @@ function hideTooltip() {
   document.getElementById('tooltip-overlay').style.display = 'none';
 }
 
+// Demo helpers for customer interviews
+function toggleDemoPanel() {
+  const panel = document.getElementById('demo-helper-panel');
+  if (!panel) return;
+  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
+
+function openFeedbackModal() {
+  const modal = document.getElementById('feedback-modal-overlay');
+  if (modal) modal.style.display = 'flex';
+}
+
+function closeFeedbackModal() {
+  const modal = document.getElementById('feedback-modal-overlay');
+  if (modal) modal.style.display = 'none';
+}
+
+function submitDemoFeedback() {
+  const role = document.getElementById('fb-role');
+  const score = document.getElementById('fb-score');
+  const moment = document.getElementById('fb-moment');
+  const confusion = document.getElementById('fb-confusion');
+  const pay = document.getElementById('fb-pay');
+  const next = document.getElementById('fb-next');
+  const payload = {
+    submitted_at: new Date().toISOString(),
+    role: role ? role.value.trim() : '',
+    score: score ? score.value : '',
+    aha_moment: moment ? moment.value.trim() : '',
+    confusion: confusion ? confusion.value.trim() : '',
+    willingness_to_pay: pay ? pay.value.trim() : '',
+    next_step: next ? next.value.trim() : ''
+  };
+  const existing = JSON.parse(localStorage.getItem('tbd_demo_feedback') || '[]');
+  existing.push(payload);
+  localStorage.setItem('tbd_demo_feedback', JSON.stringify(existing));
+  showToast('&#10003;', 'Feedback saved locally', 'Total entries: ' + existing.length, 'var(--teal)');
+  if (moment) moment.value = '';
+  if (confusion) confusion.value = '';
+  if (pay) pay.value = '';
+  if (next) next.value = '';
+  closeFeedbackModal();
+}
+
+function exportDemoFeedback() {
+  const existing = JSON.parse(localStorage.getItem('tbd_demo_feedback') || '[]');
+  if (!existing.length) {
+    showToast('&#9888;', 'No feedback yet', 'Submit at least one entry first', 'var(--amber)');
+    return;
+  }
+  const blob = new Blob([JSON.stringify(existing, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'tbd-demo-feedback.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast('&#8681;', 'Feedback exported', existing.length + ' entries downloaded', 'var(--teal)');
+}
+
+function resetDemoState() {
+  localStorage.removeItem('tbd_demo_feedback');
+  location.reload();
+}
+
 // ── Bolton AI assistant ───────────────────────────────
 let boltOpen = false;
 const boltHistory = [];
@@ -4048,5 +3966,55 @@ async function boltSend(text) {
     <button onclick="hideTooltip()" style="margin-top:16px;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--r);color:var(--text-2);font-size:13px;padding:7px 18px;cursor:pointer;font-family:var(--font-body)">Got it</button>
   </div>
 </div>
+
+
+<!-- Demo helper panel -->
+<div id="demo-helper-panel" style="display:none;position:fixed;right:20px;top:64px;z-index:610;width:320px;background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);padding:14px 14px 12px;box-shadow:0 8px 24px rgba(0,0,0,.45)">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+    <div style="font-size:13px;font-weight:600;color:var(--text)">Demo checklist</div>
+    <button onclick="toggleDemoPanel()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:15px">&#10005;</button>
+  </div>
+  <div style="font-size:12px;color:var(--text-2);line-height:1.7">
+    1. Capture role and current workflow.<br>
+    2. Time to first "aha" in this flow.<br>
+    3. Ask what felt confusing.<br>
+    4. Ask if they would run a 2-week pilot.<br>
+    5. Save feedback before ending call.
+  </div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button class="btn btn-ghost btn-sm" style="flex:1" onclick="openFeedbackModal()">Log feedback</button>
+    <button class="btn btn-ghost btn-sm" style="flex:1" onclick="exportDemoFeedback()">Export logs</button>
+  </div>
+  <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:8px;color:var(--amber)" onclick="resetDemoState()">Reset demo state</button>
+</div>
+
+<div style="position:fixed;right:20px;top:16px;z-index:610;display:flex;gap:8px">
+  <button class="btn btn-ghost btn-sm" onclick="toggleDemoPanel()">Demo tools</button>
+</div>
+
+<!-- Demo feedback modal -->
+<div id="feedback-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:620;align-items:center;justify-content:center" onclick="if(event.target===this) closeFeedbackModal()">
+  <div style="width:100%;max-width:520px;margin:20px;background:var(--navy-2);border:1px solid var(--border-2);border-radius:var(--r-lg);padding:18px 18px 14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div style="font-size:15px;font-weight:600;color:var(--text)">Capture customer feedback</div>
+      <button onclick="closeFeedbackModal()" style="background:none;border:none;color:var(--text-3);cursor:pointer;font-size:16px">&#10005;</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 120px;gap:10px;margin-bottom:10px">
+      <div><label style="margin-bottom:4px">Role</label><input id="fb-role" type="text" placeholder="Searcher, broker, PE associate..."></div>
+      <div><label style="margin-bottom:4px">Score (1-10)</label><select id="fb-score"><option>8</option><option>9</option><option>7</option><option>10</option><option>6</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div>
+    </div>
+    <div style="margin-bottom:10px"><label style="margin-bottom:4px">Aha moment</label><input id="fb-moment" type="text" placeholder="What clicked for them?"></div>
+    <div style="margin-bottom:10px"><label style="margin-bottom:4px">Confusing step</label><input id="fb-confusion" type="text" placeholder="Where did they hesitate?"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div><label style="margin-bottom:4px">Willingness to pay</label><input id="fb-pay" type="text" placeholder="$ / month or credits"></div>
+      <div><label style="margin-bottom:4px">Next step</label><input id="fb-next" type="text" placeholder="Pilot, follow-up, pass"></div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost btn-sm" style="flex:1" onclick="closeFeedbackModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm" style="flex:2" onclick="submitDemoFeedback()">Save feedback</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
