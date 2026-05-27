@@ -1482,6 +1482,12 @@ tbody td:first-child{padding-left:20px}
         <div>
           <div class="feed-title">Your leads</div>
           <div class="feed-meta" id="feed-meta">Batch 1 of 5 · Dental · Growing metros</div>
+          <div id="demo-analytics" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+            <span class="tag">Time to aha: <strong id="da-aha">--</strong></span>
+            <span class="tag">Reviewed: <strong id="da-reviewed">0</strong></span>
+            <span class="tag">Saved: <strong id="da-saved">0</strong></span>
+            <span class="tag">Passed: <strong id="da-passed">0</strong></span>
+          </div>
         </div>
         <div style="display:flex;gap:8px;align-items:center">
           <div class="feed-source-toggle" id="feed-toggle">
@@ -2604,6 +2610,7 @@ document.querySelectorAll('.radio-opt').forEach(opt => {
 
 setDbStep(1);
 initCompactLeadCards();
+initDemoPolish();
 
 document.querySelectorAll('.industry-chip:not([style*="dashed"])').forEach(chip => {
   chip.addEventListener('click', () => chip.classList.toggle('selected'));
@@ -3823,6 +3830,93 @@ function hideTooltip() {
 }
 
 // Demo helpers for customer interviews
+let demoStartedAt = Date.now();
+let demoReviewed = 0;
+let demoSaved = 0;
+let demoPassed = 0;
+let demoAhaMs = null;
+
+function updateDemoAnalytics() {
+  const reviewed = document.getElementById('da-reviewed');
+  const saved = document.getElementById('da-saved');
+  const passed = document.getElementById('da-passed');
+  const aha = document.getElementById('da-aha');
+  if (reviewed) reviewed.textContent = String(demoReviewed);
+  if (saved) saved.textContent = String(demoSaved);
+  if (passed) passed.textContent = String(demoPassed);
+  if (aha) aha.textContent = demoAhaMs == null ? '--' : Math.round(demoAhaMs / 1000) + 's';
+}
+
+function markDemoAha() {
+  if (demoAhaMs != null) return;
+  demoAhaMs = Date.now() - demoStartedAt;
+  updateDemoAnalytics();
+}
+
+function runGuidedDemo() {
+  const steps = [
+    () => show('s2', null),
+    () => showToast('1', 'Step 1: Thesis', 'Enter thesis and click Analyse', 'var(--teal)'),
+    () => show('s4', null),
+    () => showToast('2', 'Step 2: Evaluate leads', 'Review top cards and save/pass', 'var(--teal)'),
+    () => show('s6', null),
+    () => showToast('3', 'Step 3: Launch outreach', 'Review sequence and launch', 'var(--teal)')
+  ];
+  steps.forEach((fn, i) => setTimeout(fn, i * 2500));
+}
+
+function resetDemoState() {
+  localStorage.removeItem('tbd_demo_feedback');
+  demoStartedAt = Date.now();
+  demoReviewed = 0;
+  demoSaved = 0;
+  demoPassed = 0;
+  demoAhaMs = null;
+  updateDemoAnalytics();
+  location.reload();
+}
+
+function initDemoPolish() {
+  document.querySelectorAll('#s4 .lead-card').forEach((card, idx) => {
+    const top = card.querySelector('.lead-top > div:first-child');
+    if (top && !top.querySelector('.lead-why')) {
+      const why = document.createElement('div');
+      why.className = 'lead-why';
+      why.style.cssText = 'font-size:12px;color:var(--text-2);margin-top:6px;line-height:1.4';
+      const defaults = [
+        'Why this lead: strong owner visibility, high score, and clear transition signal.',
+        'Why this lead: recurring care demand and tractable outreach path.',
+        'Why this lead: lower fit score but potentially undervalued with improvements.'
+      ];
+      why.textContent = defaults[idx] || 'Why this lead: matches your thesis filters and quality threshold.';
+      top.appendChild(why);
+    }
+
+    card.addEventListener('click', () => {
+      demoReviewed += 1;
+      updateDemoAnalytics();
+    }, { once: true });
+
+    const saveBtn = card.querySelector('.action-like');
+    if (saveBtn) saveBtn.addEventListener('click', () => { demoSaved += 1; markDemoAha(); updateDemoAnalytics(); });
+    const passBtn = card.querySelector('.action-pass');
+    if (passBtn) passBtn.addEventListener('click', () => { demoPassed += 1; updateDemoAnalytics(); });
+  });
+
+  // Hide duplicate/mock developer artifacts by default
+  const sections = Array.from(document.querySelectorAll('#s4 .sidebar-section'));
+  const seen = new Set();
+  sections.forEach(sec => {
+    const h = sec.querySelector('.sidebar-heading');
+    const key = h ? h.textContent.trim() : '';
+    if (!key) return;
+    if (seen.has(key)) sec.style.display = 'none';
+    else seen.add(key);
+  });
+
+  updateDemoAnalytics();
+}
+
 function toggleDemoPanel() {
   const panel = document.getElementById('demo-helper-panel');
   if (!panel) return;
@@ -3846,6 +3940,7 @@ function submitDemoFeedback() {
   const confusion = document.getElementById('fb-confusion');
   const pay = document.getElementById('fb-pay');
   const next = document.getElementById('fb-next');
+  const notes = document.getElementById('fb-notes');
   const payload = {
     submitted_at: new Date().toISOString(),
     role: role ? role.value.trim() : '',
@@ -3853,7 +3948,8 @@ function submitDemoFeedback() {
     aha_moment: moment ? moment.value.trim() : '',
     confusion: confusion ? confusion.value.trim() : '',
     willingness_to_pay: pay ? pay.value.trim() : '',
-    next_step: next ? next.value.trim() : ''
+    next_step: next ? next.value.trim() : '',
+    session_notes: notes ? notes.value.trim() : ''
   };
   const existing = JSON.parse(localStorage.getItem('tbd_demo_feedback') || '[]');
   existing.push(payload);
@@ -3863,6 +3959,7 @@ function submitDemoFeedback() {
   if (confusion) confusion.value = '';
   if (pay) pay.value = '';
   if (next) next.value = '';
+  if (notes) notes.value = '';
   closeFeedbackModal();
 }
 
@@ -3884,10 +3981,6 @@ function exportDemoFeedback() {
   showToast('&#8681;', 'Feedback exported', existing.length + ' entries downloaded', 'var(--teal)');
 }
 
-function resetDemoState() {
-  localStorage.removeItem('tbd_demo_feedback');
-  location.reload();
-}
 
 // ── Bolton AI assistant ───────────────────────────────
 let boltOpen = false;
@@ -4058,6 +4151,9 @@ async function boltSend(text) {
 
 <div style="position:fixed;right:20px;top:16px;z-index:610;display:flex;gap:8px">
   <button class="btn btn-ghost btn-sm" onclick="toggleDemoPanel()">Demo tools</button>
+  <button class="btn btn-ghost btn-sm" onclick="runGuidedDemo()">Guided 90s</button>
+  <button class="btn btn-ghost btn-sm" onclick="openFeedbackModal()">Feedback</button>
+  <button class="btn btn-ghost btn-sm" style="color:var(--amber)" onclick="resetDemoState()">Reset demo</button>
 </div>
 
 <!-- Demo feedback modal -->
@@ -4076,6 +4172,7 @@ async function boltSend(text) {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
       <div><label style="margin-bottom:4px">Willingness to pay</label><input id="fb-pay" type="text" placeholder="$ / month or credits"></div>
       <div><label style="margin-bottom:4px">Next step</label><input id="fb-next" type="text" placeholder="Pilot, follow-up, pass"></div>
+      <div style="grid-column:1 / -1"><label style="margin-bottom:4px">Session notes</label><input id="fb-notes" type="text" placeholder="Key objections, quotes, action items"></div>
     </div>
     <div style="display:flex;gap:8px">
       <button class="btn btn-ghost btn-sm" style="flex:1" onclick="closeFeedbackModal()">Cancel</button>
